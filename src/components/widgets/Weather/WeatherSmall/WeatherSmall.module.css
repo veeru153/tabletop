@@ -1,0 +1,32 @@
+.WeatherSmall {
+    width: 200px;
+    height: 200px;
+    border-radius: 50px;
+    background-size: contain;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+}
+
+.city {
+    font-size: 24px;
+}
+.temp {
+    font-size: 45px;
+}
+.condn {
+    font-size: 21px;
+}
+.hl {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 17px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
