@@ -39,7 +39,7 @@ const Icon = (props) => {
 
     return (
         <div style={styles}>
-            <img src={icons[name]} style={{ width: '100%', height: '100%'}} />
+            <img src={icons[name]} style={{ width: '100%', height: '100%'}} alt={icons[name]}/>
         </div>
     )
 }

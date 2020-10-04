@@ -12,6 +12,7 @@ class WeatherSmall extends Component {
     state = {
         id: `${cuid()}_weather`,
         pos: [0, 0],
+        z: this.props.z,
         loading: true,
         data: {
             "id": 0,
@@ -55,15 +56,14 @@ class WeatherSmall extends Component {
     async componentDidMount() {
         let tempData = await fetchData("Delhi");
         this.setState({ data: tempData, loading: false, });
-        console.log(this.state.data);
     }
 
     render() {
         const w = this.state.data;
-        console.log(w.weather[0].icon);
         const myStyle = {
             backgroundImage: `url(${bg[w.weather[0].icon]})`,
-            transform: `translate(${this.state.pos[0]}, ${this.state.pos[1]})`
+            transform: `translate(${this.state.pos[0]}, ${this.state.pos[1]})`,
+            zIndex: this.state.z,
         }
 
         return (

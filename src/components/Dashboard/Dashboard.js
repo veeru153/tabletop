@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CovidSmall from '../widgets/Covid19India/CovidSmall/CovidSmall';
 import WeatherSmall from '../widgets/Weather/WeatherSmall/WeatherSmall';
 
 class Dashboard extends Component {
@@ -22,7 +23,8 @@ class Dashboard extends Component {
 
         return (
             <div style={styles}>
-                <WeatherSmall />
+                <WeatherSmall z={1}/>
+                <CovidSmall z={2}/>
             </div>
         )
     }

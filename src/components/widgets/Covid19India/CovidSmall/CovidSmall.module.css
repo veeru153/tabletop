@@ -1,0 +1,48 @@
+@font-face {
+    font-family: Archia;
+    src: url('../../../assets/Archia-Regular.otf');
+}
+
+.CovidSmall {
+    width: 200px;
+    height: 200px;
+    border-radius: 50px;
+    background-color: #161625;
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    font-family: Archia;
+}
+
+.city {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;  
+    font-size: 30px;
+    color: #E23028;
+}
+.lastUpdated {
+    font-size: 15px;
+    color: #6C757D;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+.heading {
+    font-size: 28px;
+}
+.delta {
+    font-size: 26px;
+    opacity: 60%;
+}
+.total {
+    font-size: 42px;
+}
+
+.confirmed {
+    color: #FF073A;
+}
