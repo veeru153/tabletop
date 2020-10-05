@@ -41,7 +41,7 @@ const modifiedData = (data) => {
         }
         tempW = { id: w.id, main: "snow", description: "Snow", icon: "snow" }
     } else if(w.id >= 700 && w.id < 800) {
-        if(w.id === 721) {
+        if(w.id === 701 || w.id === 721) {
             if(w.icon.includes("n")) {
                 tempW = { id: w.id, main: "clear", description: "Clear", icon: "clearN" }
             } else {
