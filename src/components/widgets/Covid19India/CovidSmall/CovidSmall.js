@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
-import styles from './CovidSmall.module.css';
+import styles from '../Covid.module.css';
 import cuid from 'cuid';
 import { fetchData } from '../util';
 
 class CovidSmall extends Component {
     state = {
         id: `${cuid()}_covid`,
-        pos: ['50%', '50%'],
+        pos: { x:0, y:0 },
         z: this.props.z,
-        territory: "DL",
-        district: "Delhi",
+        territory: "TT",
+        district: null,
         data: {
             "delta": {
                 "confirmed": 0,
@@ -35,18 +35,24 @@ class CovidSmall extends Component {
 
     async componentDidMount() {
         const tempData = await fetchData(this.state.territory, this.state.district);
-        this.setState({ data: tempData });
-        console.log(this.state.data)
+        this.setState({
+            data: tempData,
+            district: this.state.territory === "TT" ? "India" : this.state.district,
+        }, () => localStorage.setItem(this.state.id, JSON.stringify(this.state)));
     }
 
     render() {
         const cases = this.state.data;
+        const myStyle = {
+            zIndex: this.state.z,
+        }
         return (
             <Draggable
                 bounds="body"
-                onStop={(e, data) => this.setState({ pos: [data.x, data.y] })}
+                position={this.state.pos}
+                onStop={(e, data) => this.setState({ pos: {x: data.x, y: data.y} })}
             >
-                <div className={styles.CovidSmall}>
+                <div className={[styles.Covid, styles.CovidSmall].join(' ')} style={myStyle}>
                     <div>
                         <div className={styles.city}>{this.state.district}</div>
                         <div className={styles.lastUpdated}>Last Updated: {cases.meta.tested.last_updated}</div>
@@ -54,7 +60,9 @@ class CovidSmall extends Component {
                     <div className={styles.info}>
                         <div className={[styles.heading, styles.confirmed].join(' ')}>Confirmed</div>
                         <div className={[styles.delta, styles.confirmed].join(' ')}>
-                            +{Number(cases.delta.confirmed).toLocaleString()}
+                            {cases.delta 
+                                ? `+${Number(cases.delta.confirmed).toLocaleString()}` 
+                                : "--"}
                         </div>
                         <div className={[styles.total, styles.confirmed].join(' ')}>
                             {Number(cases.total.confirmed).toLocaleString()}

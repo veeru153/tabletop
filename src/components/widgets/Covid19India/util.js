@@ -35,7 +35,7 @@ const states = {
     "Telangana": "TG",
     "Tamil Nadu": "TN",
     "Tripura": "TR",
-    "": "TT",
+    "India": "TT",
     "Uttar Pradesh": "UP",
     "Uttrakhand": "UT",
     "West Bengal": "WB",
@@ -44,6 +44,10 @@ const states = {
 const fetchData = async (state, district) => {
     const res = await Axios.get(api);
     const data = await res.data;
+
+    if(district == null) {
+        return data[state];
+    }
 
     return data[state].districts[district];
 }
