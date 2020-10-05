@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CovidSmall from '../widgets/Covid19India/CovidSmall/CovidSmall';
 import CovidLarge from '../widgets/Covid19India/CovidLarge/CovidLarge';
 import WeatherSmall from '../widgets/Weather/WeatherSmall/WeatherSmall';
+import StickyNote from '../widgets/StickyNote/StickyNote';
 
 class Dashboard extends Component {
     state = {
@@ -11,9 +12,11 @@ class Dashboard extends Component {
             color: '#282c34',
         },
         widgets: [
-            'ckfw1ehvm00013j5z6wp11zct_weatherS',
-            'ckfw16ppm00053j5zxan2v2v2_covidS',
-            'ckfw1c7vg00033j5ztcbbf7w4_covidL',
+            { id: 'weatherS_ckfwpeom600013j5zyz7l4fg2', q: ["Delhi, IN"] },
+            { id: 'weatherS_ckfwpeomf00033j5zgaxhdcnj', q: ["Ottawa, CA"] },
+            { id: 'covidL_ckfwpeoml00073j5zwge5v2yu', q: ["DL", "Delhi"] },
+            { id: 'covidS_ckfwpeomh00053j5zie3u2ebo', q: ["TT", "India"] },
+            { id: 'sticky_ckfwpeomp00093j5z9q2405r6' },
         ]
     }
 
@@ -28,14 +31,19 @@ class Dashboard extends Component {
             background: bgConfig.type === 'image' ? `url(${bgConfig.image})` : bgConfig.color,
             backgroundSize: 'contain',
             width: '100%',
-            height: '100vh'
+            height: '100vh',
         }
 
         return (
             <div style={styles}>
-                <WeatherSmall z={1} savedState={this.getSavedState('ckfw1ehvm00013j5z6wp11zct_weatherS')}/>
-                <CovidSmall z={2} savedState={this.getSavedState('ckfw16ppm00053j5zxan2v2v2_covidS')}/>
-                <CovidLarge z={3} savedState={this.getSavedState('ckfw16ppm00053j5zxan2v2v2_covid')}/>
+                {this.state.widgets.map(w => {
+
+                })}
+                <WeatherSmall z={1} savedState={this.getSavedState('weatherS_ckfwpeom600013j5zyz7l4fg2')} q="Delhi, IN"/>
+                <WeatherSmall z={2} savedState={this.getSavedState('weatherS_ckfwpeomf00033j5zgaxhdcnj')} q="Ottawa, CA"/>
+                <CovidSmall z={3} savedState={this.getSavedState('covidS_ckfwpeomh00053j5zie3u2ebo')}/>
+                <CovidLarge z={4} savedState={this.getSavedState('covidL_ckfwpeoml00073j5zwge5v2yu')}/>
+                <StickyNote z={5} savedState={this.getSavedState('sticky_ckfwpeomp00093j5z9q2405r6')}/>
             </div>
         )
     }

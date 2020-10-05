@@ -2,35 +2,17 @@ import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import styles from '../Covid.module.css';
 import cuid from 'cuid';
-import { fetchData } from '../util';
+import { fetchData, initState } from '../util';
 
 class CovidLarge extends Component {
+    s = this.props.savedState;
     state = {
-        id: `${cuid()}_covid`,
-        pos: { x:0, y:0 },
+        id: this.s?.id ?? `covidL_${cuid()}`,
+        pos: this.s?.pos ?? { x:0, y:0 },
         z: this.props.z,
-        territory: "DL",
-        district: "Delhi",
-        data: {
-            "delta": {
-                "confirmed": 0,
-                "deceased": 0,
-                "recovered": 0,
-                "tested": 0
-            },
-            "meta": {
-                "population": 0,
-                "tested": {
-                    "last_updated": "Loading",
-                }
-            },
-            "total": {
-                "confirmed": "Loading",
-                "deceased": "Loading",
-                "recovered": "Loading",
-                "tested": "Loading"
-            }
-        },
+        territory: this.s?.territory ?? "DL",
+        district: this.s?.state ?? "Delhi",
+        data: this.s?.data ?? initState,
     }
 
     async componentDidMount() {
@@ -41,6 +23,12 @@ class CovidLarge extends Component {
         }, () => localStorage.setItem(this.state.id, JSON.stringify(this.state)));
     } 
 
+    handleReposition(data) {
+        this.setState({ 
+            pos: { x: data.x, y: data.y } 
+        }, () => localStorage.setItem(this.state.id, JSON.stringify(this.state)));
+    }
+
     render() {
         const cases = this.state.data;
         const myStyle = {
@@ -50,7 +38,7 @@ class CovidLarge extends Component {
             <Draggable
                 bounds="body"
                 position={this.state.pos}
-                onStop={(e, data) => this.setState({ pos: {x: data.x, y: data.y} })}
+                onStop={(e, data) => this.handleReposition(data)}
             >
                 <div className={[styles.Covid, styles.CovidLarge].join(' ')} style={myStyle}>
                     <div>

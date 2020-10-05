@@ -3,7 +3,7 @@
     width: 200px;
     height: 200px;
     border-radius: 50px;
-    background-size: contain;
+    background-size: cover;
     color: white;
     display: flex;
     flex-direction: column;

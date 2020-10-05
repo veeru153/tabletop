@@ -2,6 +2,27 @@ import Axios from 'axios';
 
 const api = "https://api.covid19india.org/v4/data.json";
 
+const initState = {
+    "delta": {
+        "confirmed": 0,
+        "deceased": 0,
+        "recovered": 0,
+        "tested": 0
+    },
+    "meta": {
+        "population": 0,
+        "tested": {
+            "last_updated": "Loading",
+        }
+    },
+    "total": {
+        "confirmed": "Loading",
+        "deceased": "Loading",
+        "recovered": "Loading",
+        "tested": "Loading"
+    }
+}
+
 const states = {
     "Andaman & Nicobar Islands": "AN",
     "Andhra Pradesh": "AP",
@@ -45,7 +66,7 @@ const fetchData = async (state, district) => {
     const res = await Axios.get(api);
     const data = await res.data;
 
-    if(district == null) {
+    if(district === null || district === "India") {
         return data[state];
     }
 
@@ -54,4 +75,4 @@ const fetchData = async (state, district) => {
 
 
 
-export { fetchData };
+export { fetchData, initState };
