@@ -2,8 +2,8 @@
     position: fixed;
     padding: 18px;
     background-size: cover;
-    width: 264px;
-    height: 264px;
+    width: 200px;
+    height: 200px;
 }
 
 textarea {
@@ -12,7 +12,7 @@ textarea {
     resize: none;
     background-color: transparent;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     margin-left: 3px;
     border: none;
 }

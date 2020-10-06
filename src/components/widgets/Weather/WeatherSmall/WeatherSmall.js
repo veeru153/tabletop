@@ -9,7 +9,7 @@ import { fetchData } from '../util';
 class WeatherSmall extends Component {
     s = this.props.savedState;
     state = {
-        id: this.s?.id ?? `weatherS_${cuid()}`,
+        id: this.s?.id ?? cuid(),
         pos: this.s?.pos ?? { x:0, y:0 },
         z: this.props.z,
         data: this.s?.data,

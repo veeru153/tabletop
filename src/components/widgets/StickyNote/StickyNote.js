@@ -7,7 +7,7 @@ import bg from './assets/background';
 class StickyNote extends Component {
     s = this.props.savedState;
     state = {
-        id: this.s?.id ?? `sticky_${cuid()}`,
+        id: this.s?.id ?? cuid(),
         pos: this.s?.pos ?? { x: 0, y: 0 },
         z: this.props.z,
         color: this.s?.color ?? 'yellow',
