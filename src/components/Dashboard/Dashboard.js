@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Widget from '../Widget/Widget';
 import * as w from '../Widget/wKey';
+import MenuBar from '../Menu/MenuBar';
+import cuid from 'cuid';
 
 class Dashboard extends Component {
     state = {
@@ -9,54 +11,51 @@ class Dashboard extends Component {
             image: null,
             color: '#282c34',
         },
-        widgets: {
-            'ckfwpeom600013j5zyz7l4fg2': {
-                type: w.WeatherSmall,
-                z: 1,
-                q: "Delhi, IN",
-            },
-            'ckfwpeomf00033j5zgaxhdcnj': {
-                type: w.WeatherSmall,
-                z: 2,
-                q: "Ottawa, CA",
-            },
-            'ckfwpeoml00073j5zwge5v2yu': {
-                type: w.CovidLarge,
-                z: 3,
-                q: ["DL", "Delhi"],
-            },
-            'ckfwpeomh00053j5zie3u2ebo': {
-                type: w.CovidSmall,
-                z: 4,
-                q: ["TT", "India"],
-            },
-            'ckfwpeomp00093j5z9q2405r6': {
-                type: w.StickyNote,
-                z: 4,
-                q: "",
-            },
-            'ckfxl7wcy00013j5zp50drlyp': {
-                type: w.Clock,
-                z: 5,
-                q: ["New Delhi", "UTC+5:30"],
-            },
-            'ckfxl7wd100033j5zynmoqp97': {
-                type: w.Clock,
-                z: 6,
-                q: ["Ottawa", "UTC-5"],
-            },
-            'ckfxl7wd400053j5zdfml6xnd': {
-                type: w.Clock,
-                z: 7,
-                q: ["Tel Aviv", "UTC+2"],
-            }
+        movable: false,
+        deleteMode: false,
+        loading: true,
+        widgets: {},
+    }
 
+    componentDidMount() {
+        const widgets = JSON.parse(localStorage.getItem('widgets'));
+        if(widgets !== null) {
+            this.setState({ widgets: widgets, loading: false });
         }
+    }
+
+    addWidget = (type, z, q) => {
+        let tempWidgets = { ...this.state.widgets };
+        const wId = cuid();
+        const wInfo = {
+            type: type,
+            z: z,
+            q: q,
+        }
+
+        tempWidgets[wId] = wInfo;
+        this.setState({ 
+            widgets: tempWidgets 
+        }, () => localStorage.setItem('widgets', JSON.stringify(this.state.widgets)));
+    }
+
+    removeWigdet = (wId) => {
+        let tempWidgets = { ...this.state.widgets };
+        delete tempWidgets[wId];
+        this.setState({ 
+            widgets: tempWidgets,
+        }, () => localStorage.setItem('widgets', JSON.stringify(this.state.widgets)));
+    }
+
+    toggleSetting = (setting) => {
+        if(!['movable', 'deleteMode'].includes(setting)) return;
+        this.setState((prevState) => ({
+            [setting]: !prevState[setting]
+        }))
     }
 
     render() {
         const bgConfig = this.state.bg;
-
         const styles = {
             background: bgConfig.type === 'image' ? `url(${bgConfig.image})` : bgConfig.color,
             backgroundSize: 'contain',
@@ -68,12 +67,19 @@ class Dashboard extends Component {
 
         return (
             <div style={styles}>
-                {Object.keys(this.state.widgets).map(wId => {
-                    const { type, q, z } = wList[wId];
-                    return (
-                        <Widget id={wId} z={z} type={type} q={q} />
-                    )
-                })}
+                {this.state.loading 
+                    ? <div>Loading...</div> 
+                    : Object.keys(this.state.widgets).map(wId => {
+                        const { type, q, z } = wList[wId];
+                        return (
+                            <Widget id={wId} z={z} type={type} q={q} movable={this.state.movable} />
+                        )
+                    })}
+                <MenuBar 
+                    movable={this.state.movable}
+                    toggleSetting={this.toggleSetting} 
+                    deleteMode={this.state.deleteMode}
+                />
             </div>
         )
     }

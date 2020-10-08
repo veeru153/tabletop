@@ -38,6 +38,7 @@ class CovidSmall extends Component {
             <Draggable
                 bounds="body"
                 position={this.state.pos}
+                onStart={() => this.props.movable}
                 onStop={(e, data) => this.handleReposition(data)}
             >
                 <div className={[styles.Covid, styles.CovidSmall].join(' ')} style={myStyle}>
