@@ -12,6 +12,7 @@ class Dashboard extends Component {
             color: '#282c34',
         },
         movable: false,
+        deleteMode: false,
         loading: true,
         widgets: {},
     }
@@ -46,9 +47,10 @@ class Dashboard extends Component {
         }, () => localStorage.setItem('widgets', JSON.stringify(this.state.widgets)));
     }
 
-    toggleMovable = () => {
+    toggleSetting = (setting) => {
+        if(!['movable', 'deleteMode'].includes(setting)) return;
         this.setState((prevState) => ({
-            movable: !prevState.movable
+            [setting]: !prevState[setting]
         }))
     }
 
@@ -73,7 +75,11 @@ class Dashboard extends Component {
                             <Widget id={wId} z={z} type={type} q={q} movable={this.state.movable} />
                         )
                     })}
-                <MenuBar toggleMovable={this.toggleMovable} />
+                <MenuBar 
+                    movable={this.state.movable}
+                    toggleSetting={this.toggleSetting} 
+                    deleteMode={this.state.deleteMode}
+                />
             </div>
         )
     }

@@ -3,14 +3,21 @@
     bottom: 4px;
     right: 4px;
     display: grid;
-    grid-template-columns: 1.6fr 5fr;
-    z-index: 99999;
+    grid-template-columns: 5fr 1.6fr;
 }
 
 .menuBtn {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 99999;
+}
+.menuBtn svg {
+    opacity: 0.4;
+    transition: all 0.2s ease;
+}
+.menuBtn svg:hover {
+    opacity: 1;
 }
 
 .options {
@@ -18,12 +25,19 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border-left: 2px solid #dadada;
+    border-right: 2px solid #dadada;
     padding-left: 4px;
+    z-index: 99998;
+    transition: all 1s ease;
 }
 
 .options svg {
     margin: 0 2px;
+    transition: all 0.2s ease;
+    opacity: 0.4;
+}
+.options svg:hover {
+    opacity: 1;
 }
 
 .divider {
