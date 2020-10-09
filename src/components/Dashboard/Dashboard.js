@@ -3,6 +3,7 @@ import Widget from '../Widget/Widget';
 import * as w from '../Widget/wKey';
 import MenuBar from '../Menu/MenuBar';
 import cuid from 'cuid';
+import AddWidgetPanel from '../AddWidget/AddWidgetPanel';
 
 class Dashboard extends Component {
     state = {
@@ -15,6 +16,7 @@ class Dashboard extends Component {
         deleteMode: false,
         loading: true,
         widgets: {},
+        zCount: 1,
     }
 
     componentDidMount() {
@@ -24,19 +26,23 @@ class Dashboard extends Component {
         }
     }
 
-    addWidget = (type, z, q) => {
+    addWidget = (type, q) => {
         let tempWidgets = { ...this.state.widgets };
         const wId = cuid();
         const wInfo = {
             type: type,
-            z: z,
+            z: this.state.zCount,
             q: q,
         }
 
         tempWidgets[wId] = wInfo;
-        this.setState({ 
-            widgets: tempWidgets 
-        }, () => localStorage.setItem('widgets', JSON.stringify(this.state.widgets)));
+        this.setState((prevState) => ({ 
+            widgets: tempWidgets,
+            zCount: prevState.zCount + 1,
+        }), () => {
+            localStorage.setItem('widgets', JSON.stringify(this.state.widgets));
+            localStorage.setItem('zCount', this.state.zCount);
+        });
     }
 
     removeWigdet = (wId) => {
@@ -80,6 +86,7 @@ class Dashboard extends Component {
                     toggleSetting={this.toggleSetting} 
                     deleteMode={this.state.deleteMode}
                 />
+                <AddWidgetPanel />
             </div>
         )
     }
