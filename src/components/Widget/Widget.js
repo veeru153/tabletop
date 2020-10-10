@@ -6,15 +6,13 @@ import StickyNote from '../widgets/StickyNote/StickyNote';
 import WeatherSmall from '../widgets/Weather/WeatherSmall/WeatherSmall';
 import * as w from './wKey';
 
-const Widget = ({ id, z, type, q, movable }) => {
+const Widget = (props) => {
+    const { id, z, type, q, movable, deleteMode, removeWidget } = props;
     const getSavedState = (id) => {
         return JSON.parse(localStorage.getItem(id));
     }
-
-    console.log(type)
-
+    
     let desiredWidget = <div></div>;
-
     switch(type) {
         case w.Clock:
             desiredWidget = (<Clock z={z} q={q} movable={movable} savedState={getSavedState(id)}/>)
@@ -36,7 +34,7 @@ const Widget = ({ id, z, type, q, movable }) => {
     }
 
     return (
-        <div>
+        <div onClick={() => {deleteMode && removeWidget(id)}}>
             {desiredWidget}
         </div>
     )
