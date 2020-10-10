@@ -7,11 +7,11 @@ import { fetchData, initState } from '../util';
 class CovidSmall extends Component {
     s = this.props.savedState;
     state = {
-        id: this.s?.id ?? cuid(),
-        pos: this.s?.pos ?? { x:0, y:0 },
+        id: this.s?.id,
+        pos: this.s?.pos,
         z: this.props.z,
-        territory: this.s?.territory ?? "TT",
-        district: this.s?.district ?? "India",
+        territory: this.props.q[0],
+        district: this.props.q[1],
         data: this.s?.data ?? initState,
     }
 

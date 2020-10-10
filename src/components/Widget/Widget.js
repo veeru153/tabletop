@@ -11,20 +11,35 @@ const Widget = ({ id, z, type, q, movable }) => {
         return JSON.parse(localStorage.getItem(id));
     }
 
+    console.log(type)
+
+    let desiredWidget = <div></div>;
+
     switch(type) {
         case w.Clock:
-            return <Clock z={z} q={q} movable={movable} savedState={getSavedState(id)}/>
+            desiredWidget = (<Clock z={z} q={q} movable={movable} savedState={getSavedState(id)}/>)
+            break;
         case w.CovidLarge:
-            return <CovidLarge z={z} q={q} movable={movable} savedState={getSavedState(id)}/>
+            desiredWidget = (<CovidLarge z={z} q={q} movable={movable} savedState={getSavedState(id)}/>)
+            break;
         case w.CovidSmall:
-            return <CovidSmall z={z} q={q} movable={movable} savedState={getSavedState(id)}/>
+            desiredWidget = (<CovidSmall z={z} q={q} movable={movable} savedState={getSavedState(id)}/>)
+            break;
         case w.StickyNote:
-            return <StickyNote z={z} movable={movable} savedState={getSavedState(id)}/>
+            desiredWidget = (<StickyNote z={z} movable={movable} savedState={getSavedState(id)}/>)
+            break;
         case w.WeatherSmall:
-            return <WeatherSmall z={z} q={q} movable={movable} savedState={getSavedState(id)} />
+            desiredWidget = (<WeatherSmall z={z} q={q} movable={movable} savedState={getSavedState(id)} />)
+            break;
         default:
-            return (<div></div>)
+            break;
     }
+
+    return (
+        <div>
+            {desiredWidget}
+        </div>
+    )
 
 }
 

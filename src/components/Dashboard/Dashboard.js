@@ -4,6 +4,7 @@ import * as w from '../Widget/wKey';
 import MenuBar from '../Menu/MenuBar';
 import cuid from 'cuid';
 import AddWidgetPanel from '../AddWidget/AddWidgetPanel';
+import { WidgetProvider } from './contexts';
 
 class Dashboard extends Component {
     state = {
@@ -13,6 +14,7 @@ class Dashboard extends Component {
             color: '#282c34',
         },
         movable: false,
+        addMode: false,
         deleteMode: false,
         loading: true,
         widgets: {},
@@ -36,17 +38,17 @@ class Dashboard extends Component {
         }
 
         tempWidgets[wId] = wInfo;
+        const widgetInit = {
+            id: wId,
+            z: wInfo.z,
+            pos: { x: 0, y: 0 }
+        }
+        localStorage.setItem(wId, JSON.stringify(widgetInit));
         this.setState((prevState) => ({ 
             widgets: tempWidgets,
             zCount: prevState.zCount + 1,
         }), () => {
-            const widgetInit = {
-                id: wId,
-                z: wInfo.z,
-                pos: { x: 500, y: 500 }
-            }
             localStorage.setItem('widgets', JSON.stringify(this.state.widgets));
-            localStorage.setItem(wId, JSON.stringify(widgetInit));
             localStorage.setItem('zCount', this.state.zCount);
         });
     }
@@ -60,7 +62,7 @@ class Dashboard extends Component {
     }
 
     toggleSetting = (setting) => {
-        if(!['movable', 'deleteMode'].includes(setting)) return;
+        if(!['movable', 'addMode', 'deleteMode',].includes(setting)) return;
         this.setState((prevState) => ({
             [setting]: !prevState[setting]
         }))
@@ -89,10 +91,13 @@ class Dashboard extends Component {
                     })}
                 <MenuBar 
                     movable={this.state.movable}
-                    toggleSetting={this.toggleSetting} 
                     deleteMode={this.state.deleteMode}
+                    addMode={this.state.addMode}
+                    toggleSetting={this.toggleSetting} 
                 />
-                <AddWidgetPanel />
+                {/* <WidgetProvider value={this.addWidget}>
+                    <AddWidgetPanel />
+                </WidgetProvider> */}
             </div>
         )
     }

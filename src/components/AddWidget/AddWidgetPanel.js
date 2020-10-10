@@ -19,7 +19,7 @@ const AddWidgetPanel = () => {
             </div> */}
             {/* <AddClock /> */}
             {/* <AddWeather /> */}
-            {/* <AddCovid /> */}
+            <AddCovid />
             <div></div>
         </div>
     )
