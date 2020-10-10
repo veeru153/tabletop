@@ -9,8 +9,8 @@ import { fetchData } from '../util';
 class WeatherSmall extends Component {
     s = this.props.savedState;
     state = {
-        id: this.s?.id ?? cuid(),
-        pos: this.s?.pos ?? { x:0, y:0 },
+        id: this.s?.id,
+        pos: this.s?.pos,
         z: this.props.z,
         data: this.s?.data,
         loading: true,
@@ -48,7 +48,7 @@ class WeatherSmall extends Component {
                     <div className={styles.WeatherSmall} style={myStyle}>
                         <div>
                             <div className={styles.city}>{w.name}</div>
-                            <div className={styles.temp}>{Math.round(w.main.temp)}°C</div>
+                            <div className={styles.temp}>{Math.round(w.main.feels_like)}°C</div>
                         </div>
                         <div className={styles.info}>
                             <Icon name={w.weather[0].icon} />

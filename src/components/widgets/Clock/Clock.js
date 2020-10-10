@@ -7,8 +7,8 @@ import { DateTime } from 'luxon';
 class Clock extends Component {
     s = this.props.savedState;
     state = {
-        id: this.s?.id ?? cuid(),
-        pos: this.s?.pos ?? { x: 0, y: 0 },
+        id: this.s?.id,
+        pos: this.s?.pos,
         z: this.props.z,
         data: {
             label: this.props.q[0],

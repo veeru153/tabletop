@@ -6,25 +6,38 @@ import StickyNote from '../widgets/StickyNote/StickyNote';
 import WeatherSmall from '../widgets/Weather/WeatherSmall/WeatherSmall';
 import * as w from './wKey';
 
-const Widget = ({ id, z, type, q, movable }) => {
+const Widget = (props) => {
+    const { id, z, type, q, movable, deleteMode, removeWidget } = props;
     const getSavedState = (id) => {
         return JSON.parse(localStorage.getItem(id));
     }
-
+    
+    let desiredWidget = <div></div>;
     switch(type) {
         case w.Clock:
-            return <Clock z={z} q={q} movable={movable} savedState={getSavedState(id)}/>
+            desiredWidget = (<Clock z={z} q={q} movable={movable} savedState={getSavedState(id)}/>)
+            break;
         case w.CovidLarge:
-            return <CovidLarge z={z} q={q} movable={movable} savedState={getSavedState(id)}/>
+            desiredWidget = (<CovidLarge z={z} q={q} movable={movable} savedState={getSavedState(id)}/>)
+            break;
         case w.CovidSmall:
-            return <CovidSmall z={z} q={q} movable={movable} savedState={getSavedState(id)}/>
+            desiredWidget = (<CovidSmall z={z} q={q} movable={movable} savedState={getSavedState(id)}/>)
+            break;
         case w.StickyNote:
-            return <StickyNote z={z} movable={movable} savedState={getSavedState(id)}/>
+            desiredWidget = (<StickyNote z={z} movable={movable} savedState={getSavedState(id)}/>)
+            break;
         case w.WeatherSmall:
-            return <WeatherSmall z={z} q={q} movable={movable} savedState={getSavedState(id)} />
+            desiredWidget = (<WeatherSmall z={z} q={q} movable={movable} savedState={getSavedState(id)} />)
+            break;
         default:
-            return (<div></div>)
+            break;
     }
+
+    return (
+        <div onClick={() => {deleteMode && removeWidget(id)}}>
+            {desiredWidget}
+        </div>
+    )
 
 }
 
