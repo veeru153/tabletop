@@ -2,7 +2,7 @@ import React from 'react';
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-const inputStyles = makeStyles({
+const useInputStyles = makeStyles({
     root: {
         margin: '16px 0',
     },
@@ -19,7 +19,7 @@ const inputStyles = makeStyles({
 
 const MyInput = (props) => {
     const { label, value, onChange, config, inputProps } = props;
-    const classes = inputStyles();
+    const classes = useInputStyles();
     return (
         <TextField
             className={classes.root}

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './AddWidgetPanel.module.css';
 import AddClock from './AddClock';
 import AddWeather from './AddWeather';
+import AddCovid from './AddCovid';
 
 const AddWidgetPanel = () => {
     return (
@@ -17,7 +18,8 @@ const AddWidgetPanel = () => {
                 </div>
             </div> */}
             {/* <AddClock /> */}
-            <AddWeather />
+            {/* <AddWeather /> */}
+            {/* <AddCovid /> */}
             <div></div>
         </div>
     )

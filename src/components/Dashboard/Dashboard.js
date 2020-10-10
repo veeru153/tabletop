@@ -40,7 +40,13 @@ class Dashboard extends Component {
             widgets: tempWidgets,
             zCount: prevState.zCount + 1,
         }), () => {
+            const widgetInit = {
+                id: wId,
+                z: wInfo.z,
+                pos: { x: 500, y: 500 }
+            }
             localStorage.setItem('widgets', JSON.stringify(this.state.widgets));
+            localStorage.setItem(wId, JSON.stringify(widgetInit));
             localStorage.setItem('zCount', this.state.zCount);
         });
     }
