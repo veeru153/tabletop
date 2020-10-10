@@ -23,8 +23,9 @@ class Dashboard extends Component {
 
     componentDidMount() {
         const widgets = JSON.parse(localStorage.getItem('widgets'));
+        const zCount = parseInt(localStorage.getItem('zCount'));
         if(widgets !== null) {
-            this.setState({ widgets: widgets, loading: false });
+            this.setState({ widgets: widgets, zCount: zCount, loading: false, });
         }
     }
 
@@ -53,7 +54,8 @@ class Dashboard extends Component {
         });
     }
 
-    removeWigdet = (wId) => {
+    removeWidget = (wId) => {
+        console.log(wId)
         let tempWidgets = { ...this.state.widgets };
         delete tempWidgets[wId];
         this.setState({ 
@@ -61,11 +63,17 @@ class Dashboard extends Component {
         }, () => localStorage.setItem('widgets', JSON.stringify(this.state.widgets)));
     }
 
-    toggleSetting = (setting) => {
+    toggleSetting = (setting, value) => {
         if(!['movable', 'addMode', 'deleteMode',].includes(setting)) return;
-        this.setState((prevState) => ({
-            [setting]: !prevState[setting]
-        }))
+        if(value) {
+            this.setState({
+                [setting]: value
+            })
+        } else {
+            this.setState((prevState) => ({
+                [setting]: !prevState[setting]
+            }))
+        }
     }
 
     render() {
@@ -86,7 +94,15 @@ class Dashboard extends Component {
                     : Object.keys(this.state.widgets).map(wId => {
                         const { type, q, z } = wList[wId];
                         return (
-                            <Widget id={wId} z={z} type={type} q={q} movable={this.state.movable} />
+                            <Widget 
+                                id={wId} 
+                                z={z} 
+                                type={type} 
+                                q={q} 
+                                movable={this.state.movable} 
+                                deleteMode={this.state.deleteMode}
+                                removeWidget={this.removeWidget}
+                            />
                         )
                     })}
                 <MenuBar 
@@ -95,9 +111,9 @@ class Dashboard extends Component {
                     addMode={this.state.addMode}
                     toggleSetting={this.toggleSetting} 
                 />
-                {/* <WidgetProvider value={this.addWidget}>
-                    <AddWidgetPanel />
-                </WidgetProvider> */}
+                <WidgetProvider value={this.addWidget}>
+                    <AddWidgetPanel addMode={this.state.addMode} />
+                </WidgetProvider>
             </div>
         )
     }

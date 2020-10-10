@@ -28,7 +28,12 @@ const MenuBar = (props) => {
                     color={deleteMode ? "#ff6c52" : "#dadada"} 
                     onClick={() => toggleSetting('deleteMode')}
                 />
-                <Plus size={60} color="#dadada" style={{ margin: 0 }}/>
+                <Plus 
+                    size={60} 
+                    color="#dadada" 
+                    style={{ margin: 0 }}
+                    onClick={() => toggleSetting('addMode')}
+                />
             </div>
             <div className={styles.menuBtn}>
                 {expanded

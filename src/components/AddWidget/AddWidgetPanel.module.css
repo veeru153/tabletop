@@ -10,18 +10,21 @@
     background-color: rgba(0, 0, 0, 0.64);
     backdrop-filter: blur(4.8px);
     color: lightgrey;
+    transition: transform 0.4s ease;
 }
 
 .AddWidgetPanel {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    height: 100%;
 }
 
 .widgetList {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin: 0 64px;
+    text-align: center;
 }
 .widgetList h2:hover {
     text-decoration: underline;
