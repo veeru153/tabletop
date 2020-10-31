@@ -21,6 +21,7 @@
 }
 .condn {
     font-size: 21px;
+    text-transform: capitalize;
 }
 .hl {
     display: grid;
