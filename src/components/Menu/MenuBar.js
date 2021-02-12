@@ -4,7 +4,7 @@ import { Menu, X, Plus, Move, Trash2, Settings } from 'react-feather';
 
 const MenuBar = (props) => {
     const [expanded, setExpanded] = useState(false);
-    const { movable, deleteMode, toggleSetting } = props;
+    const { movable, deleteMode, toggleModes, toggleSettings } = props;
 
     return (
         <div 
@@ -17,22 +17,26 @@ const MenuBar = (props) => {
                 // style={{ display: expanded ? 'flex' : 'none' }}
                 style={{ transform: expanded ? 'translateX(0)' : 'translateX(200%)'}}
             >
-                <Settings size={48} color="#dadada" />
+                <Settings 
+                    size={48} 
+                    color="#dadada" 
+                    onClick={() => toggleSettings()}
+                />
                 <Move 
                     size={48} 
                     color={movable ? "#58caed" : "#dadada"} 
-                    onClick={() => toggleSetting('movable')}
+                    onClick={() => toggleModes('movable')}
                 />
                 <Trash2 
                     size={48} 
                     color={deleteMode ? "#ff6c52" : "#dadada"} 
-                    onClick={() => toggleSetting('deleteMode')}
+                    onClick={() => toggleModes('deleteMode')}
                 />
                 <Plus 
                     size={60} 
                     color="#dadada" 
                     style={{ margin: 0 }}
-                    onClick={() => toggleSetting('addMode')}
+                    onClick={() => toggleModes('addMode')}
                 />
             </div>
             <div className={styles.menuBtn}>

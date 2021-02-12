@@ -18,7 +18,7 @@ const useInputStyles = makeStyles({
 })
 
 const MyInput = (props) => {
-    const { label, value, onChange, config, inputProps } = props;
+    const { label, value, onChange, onBlur, config, inputProps } = props;
     const classes = useInputStyles();
     return (
         <TextField
@@ -26,6 +26,7 @@ const MyInput = (props) => {
             label={label}
             value={value}
             onChange={onChange}
+            onBlur={onBlur}
             variant="outlined"
             InputProps={{
                 ...inputProps,

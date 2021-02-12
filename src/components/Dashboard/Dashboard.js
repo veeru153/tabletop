@@ -5,27 +5,38 @@ import MenuBar from '../Menu/MenuBar';
 import cuid from 'cuid';
 import AddWidgetPanel from '../AddWidget/AddWidgetPanel';
 import { WidgetProvider } from './contexts';
+import Settings from '../Settings/Settings';
 
 class Dashboard extends Component {
     state = {
         bg: {
             type: 'color',
             image: null,
-            color: '#282c34',
+            color: '#282c34', // Default
         },
         movable: false,
         addMode: false,
         deleteMode: false,
+        settingsExpanded: false,
         loading: true,
         widgets: {},
         zCount: 1,
     }
 
     componentDidMount() {
+        const BG_CONTENT = localStorage.getItem('bgContent');
+        if(BG_CONTENT !== null) {
+            this.setState({
+                bg: {
+                    ...this.state.bg,
+                    color: BG_CONTENT,
+                }
+            })
+        }
         const widgets = JSON.parse(localStorage.getItem('widgets'));
         const zCount = parseInt(localStorage.getItem('zCount'));
         if(widgets !== null) {
-            this.setState({ widgets: widgets, zCount: zCount, loading: false, });
+            this.setState({ widgets: widgets, zCount: !isNaN(zCount) ? zCount : 1 , loading: false, });
         }
     }
 
@@ -60,10 +71,13 @@ class Dashboard extends Component {
         delete tempWidgets[wId];
         this.setState({ 
             widgets: tempWidgets,
-        }, () => localStorage.setItem('widgets', JSON.stringify(this.state.widgets)));
+        }, () => {
+            localStorage.removeItem(wId);
+            localStorage.setItem('widgets', JSON.stringify(this.state.widgets))
+        });
     }
 
-    toggleSetting = (setting, value) => {
+    toggleModes = (setting, value) => {
         if(!['movable', 'addMode', 'deleteMode',].includes(setting)) return;
         if(value) {
             this.setState({
@@ -73,6 +87,24 @@ class Dashboard extends Component {
             this.setState((prevState) => ({
                 [setting]: !prevState[setting]
             }))
+        }
+    }
+
+    toggleSettings = () => {
+        this.setState((prevState) => ({
+            settingsExpanded: !prevState.settingsExpanded,
+        }))
+    }
+
+    updateSettings = () => {
+        const BG_CONTENT = localStorage.getItem('bgContent');
+        if(BG_CONTENT !== null || BG_CONTENT === '') {
+            this.setState({
+                bg: {
+                    ...this.state.bg,
+                    color: BG_CONTENT ?? '#282c34',
+                }
+            })
         }
     }
 
@@ -109,11 +141,17 @@ class Dashboard extends Component {
                     movable={this.state.movable}
                     deleteMode={this.state.deleteMode}
                     addMode={this.state.addMode}
-                    toggleSetting={this.toggleSetting} 
+                    toggleModes={this.toggleModes} 
+                    toggleSettings={this.toggleSettings}
                 />
                 <WidgetProvider value={this.addWidget}>
                     <AddWidgetPanel addMode={this.state.addMode} />
                 </WidgetProvider>
+                <Settings 
+                    expanded={this.state.settingsExpanded} 
+                    toggleSettings={this.toggleSettings}  
+                    updateSettings={this.updateSettings}  
+                />
             </div>
         )
     }
