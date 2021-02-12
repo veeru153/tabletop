@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { config, widgets } from '../util/db';
+// import Widget from './Widget';
+import Weather from '../widgets/Weather/Weather';
+import db from '../util/db';
 
 const Dashboard = () => {
     const [bg, setBg] = useState(defaultBgState);
     const [widgets, setWidgets] = useState([]);
 
     // Update Background Config in DB when state is updated
-    useEffect(() => config.add(bg, 'bg'), [bg]);
+    useEffect(() => db.collection("tabletop_config").add(bg, 'bg'), [bg]);
     let styles = {...defaultStyles, background: bg.usingImg ? `url(${bg.image})` : bg.color};
     
     return (
         <div style={styles}>
-            
+            <Weather />
         </div>
     )
 }
@@ -22,7 +24,6 @@ const defaultBgState = {
     image: null,
     color: '#282c34', // Default
 }
-
 const defaultStyles = {
     backgroundSize: 'contain',
     width: '100%',

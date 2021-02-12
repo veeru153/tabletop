@@ -1,8 +1,10 @@
 import Localbase from 'localbase';
-
 let db = new Localbase('db');
 
-export const config = db.collection('config');
-export const widgets = db.collection('widgets');
+const CONFIG = "tabletop_config";
+const WIDGETS = "tabletop_widgets";
+
+export const config = db.collection(CONFIG);
+export const widgets = db.collection(WIDGETS);
 
 export default db;
