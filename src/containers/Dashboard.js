@@ -6,16 +6,16 @@ import cuid from 'cuid';
 const Dashboard = () => {
     const [bg, setBg] = useState(defaultBgState);
     const [widgets, setWidgets] = useState([]);
+    const [loaded, setLoaded] = useState(false);
 
     // Fetch Background Data and Widgets from IndexedDB on mount
-    useEffect(() => {
-        db.collection(WIDGETS).get({ keys: true }).then(w => setWidgets(w));
-        db.collection(CONFIG).doc('bg').get().then(bg => setBg(bg));
-    }, []);
+    useEffect(() => db.collection(CONFIG).doc('bg').get().then(bg => setBg(bg)), []);
 
     // Update Background Config in DB when state is updated
-    // useEffect(() => db.collection(CONFIG).add(bg, 'bg'), [bg]);
-    let styles = { ...defaultStyles, background: bg.usingImg ? `url(${bg.image})` : bg.color };
+    let styles = { 
+        ...defaultStyles, 
+        background: bg.usingImg ? `url(${bg.image})` : bg.color ,
+    };
 
     const addWidget = (type, params) => {
         const id = cuid();
@@ -32,8 +32,8 @@ const Dashboard = () => {
 
     return (
         <div style={styles}>
-            <W.Clock />
-            <W.Weather />
+            {/* <W.Clock /> */}
+            {/* <W.Weather /> */}
             <button
                 style={{ position: 'absolute', bottom: 0, right: 0 }}
                 onClick={() => addWidget("Weather", dummyData)}
@@ -68,12 +68,12 @@ const dummyData = {
     wind: { speed: 1.59, deg: 256 },
 }
 
-
 const defaultBgState = {
     usingImg: false,
     image: null,
     color: '#282c34', // Default
 }
+
 const defaultStyles = {
     backgroundSize: 'contain',
     width: '100%',
