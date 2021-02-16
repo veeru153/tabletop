@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import classes from './Clock.module.css';
 import Widget from '../../containers/Widget';
 import { DateTime } from 'luxon';
-import { db, WIDGETS } from '../../util/db';
 
 const Clock = (props) => {
     const { id, meta, params } = props;

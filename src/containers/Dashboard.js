@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import * as W from '../widgets/';
 import { db, CONFIG, WIDGETS } from '../util/db';
 import cuid from 'cuid';
+import Settings from './Settings/Settings';
+import { ConfigContext } from '../util/contexts';
 
 const Dashboard = () => {
     const [bg, setBg] = useState(defaultBgState);
     const [widgets, setWidgets] = useState([]);
-    const [loaded, setLoaded] = useState(false);
+    const [showSettings, setShowSettings] = useState(false);
 
     // Fetch Background Data and Widgets from IndexedDB on mount
     useEffect(() => db.collection(CONFIG).doc('bg').get().then(bg => setBg(bg)), []);
@@ -30,13 +32,19 @@ const Dashboard = () => {
         db.collection(WIDGETS).add(template.data, id);
     }
 
+    const configHandlers = { addWidget, bg, setBg, widgets, setWidgets, showSettings, setShowSettings };
+
     return (
         <div style={styles}>
+            <ConfigContext.Provider value={configHandlers}>
+                <Settings />
+            </ConfigContext.Provider>
             {/* <W.Clock /> */}
             {/* <W.Weather /> */}
             <button
-                style={{ position: 'absolute', bottom: 0, right: 0 }}
-                onClick={() => addWidget("Weather", dummyData)}
+                style={{ position: 'absolute', bottom: 0, right: 0, zIndex: 999999 }}
+                // onClick={() => addWidget("Weather", dummyData)}
+                onClick={() => setShowSettings(!showSettings)}
             >Click</button>
         </div>
     )
