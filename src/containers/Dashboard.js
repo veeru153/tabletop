@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import * as W from '../widgets/';
 import { db, CONFIG, WIDGETS } from '../util/db';
 import cuid from 'cuid';
 import Settings from './Settings/Settings';
 import { ConfigContext } from '../util/contexts';
+import WidgetRenderer from './WidgetRenderer';
+import { Weather } from '../widgets';
 
 const Dashboard = () => {
     const [bg, setBg] = useState(defaultBgState);
@@ -11,7 +12,15 @@ const Dashboard = () => {
     const [showSettings, setShowSettings] = useState(false);
 
     // Fetch Background Data and Widgets from IndexedDB on mount
-    useEffect(() => db.collection(CONFIG).doc('bg').get().then(bg => setBg(bg)), []);
+    useEffect(() => {
+        async function a() {
+            const newBg = await db.collection(CONFIG).doc('bg').get();
+            setBg(newBg);
+            const w = await db.collection(WIDGETS).get({ keys: true });
+            setWidgets(w);
+        }
+        a();
+    }, [])
 
     // Update Background Config in DB when state is updated
     let styles = { 
@@ -19,13 +28,18 @@ const Dashboard = () => {
         background: bg.usingImg ? `url(${bg.image})` : bg.color ,
     };
 
-    const addWidget = (type, params) => {
+    const addWidget = (type, q) => {
         const id = cuid();
         const template = {
             key: id,
             data: {
-                meta: { pos: { x: 0, y: 0 }, type: type, z: 1 },
-                params: params
+                meta: { 
+                    pos: { x: 0, y: 0 }, 
+                    type: type, 
+                    z: widgets.length + 1, 
+                    q: q 
+                },
+                params: {}
             }
         }
         setWidgets([...widgets, template]);
@@ -39,11 +53,9 @@ const Dashboard = () => {
             <ConfigContext.Provider value={configHandlers}>
                 <Settings />
             </ConfigContext.Provider>
-            {/* <W.Clock /> */}
-            {/* <W.Weather /> */}
+            {widgets.map(w => <WidgetRenderer key={w.key} id={w.key} data={w.data}/>)}
             <button
                 style={{ position: 'absolute', bottom: 0, right: 0, zIndex: 999999 }}
-                // onClick={() => addWidget("Weather", dummyData)}
                 onClick={() => setShowSettings(!showSettings)}
             >Click</button>
         </div>

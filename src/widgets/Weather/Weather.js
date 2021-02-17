@@ -11,7 +11,7 @@ const Weather = (props) => {
     // Fetch Updated Weather or show Saved Weather
     useEffect(() => {
         async function a() {
-            const updatedW = await fetchData(id, "New Delhi");
+            const updatedW = await fetchData(id, meta.q.city);
             setW(updatedW);
         }
         a();
@@ -24,6 +24,7 @@ const Weather = (props) => {
 
     return (
         <Widget
+            id={id}
             meta={meta}
             className={classes.Weather}
             style={wStyle}

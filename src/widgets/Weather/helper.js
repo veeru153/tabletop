@@ -8,7 +8,7 @@ export const fetchData = async (id, city) => {
         const api = `http://api.openweathermap.org/data/2.5/find?q=${encodeURIComponent(city)}&units=metric&appid=${OWM_KEY}`;
         const res = await Axios.get(api);
         const data = await res.data.list[0];
-            db.collection(WIDGETS).doc(id+"").update({ params: data });
+        db.collection(WIDGETS).doc(id+"").update({ params: data });
         return data;
     } else {
         try {

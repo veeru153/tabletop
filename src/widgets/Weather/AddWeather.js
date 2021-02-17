@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { WEATHER } from '../../util/widgetTypes';
+import { WEATHER } from '../../util/widgetRegistry';
 import { ConfigContext } from '../../util/contexts';
 import { Formik } from 'formik';
 import FormTemplate from '../../containers/Settings/FormTemplate';
@@ -11,7 +11,7 @@ const AddWeather = () => {
         <Formik
             initialValues={{ city: '' }}
             onSubmit={(values, actions) => {
-                addWidget(WEATHER, values);
+                addWidget(WEATHER.type, values);
                 actions.resetForm();
             }}
         >

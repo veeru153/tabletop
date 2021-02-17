@@ -4,14 +4,7 @@ import { db, CONFIG, WIDGETS } from '../util/db';
 
 const Widget = (props) => {
     const { style : userStyle, className : userClass, id, meta } = props;
-    const [pos, setPos] = useState({ x:0, y:0 });
-    // const [data, setData] = useState({});
-
-    // const getWidgetData = async () => {
-    //     let data = await db.collection("tabletop_widgets").doc({ id: id }).get();
-    //     setData(data);
-    // }
-    // useEffect(() => getWidgetData(), []);
+    const [pos, setPos] = useState(meta.pos);
 
     const handleReposition = (rePos) => {
         setPos({ x: rePos.x, y: rePos.y });
