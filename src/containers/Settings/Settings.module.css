@@ -17,7 +17,7 @@
 
 .main {
     display: grid;
-    grid-template-rows: repeat(1, 100%);
+    grid-template-rows: repeat(1, 100vh);
     overflow-y: visible;
     transition: transform 0.4s ease;
 }
@@ -25,6 +25,7 @@
 .Settings {
     display: flex;
     flex-direction: column;
+    height: 100vh;
 }
 
 .Settings header {

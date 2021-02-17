@@ -3,11 +3,12 @@ import { NavContext } from '../../util/contexts';
 import classes from './Settings.module.css';
 
 const Option = ({ opt }) => {
-    const { pageStack, setPageStack } = useContext(NavContext);
+    const { pageStack, setPageStack, level, setLevel } = useContext(NavContext);
 
     const addPageToStack = (next) => {
         if(!next) return;
         setPageStack([...pageStack, next]);
+        setLevel(level + 1);
     }
 
     return (

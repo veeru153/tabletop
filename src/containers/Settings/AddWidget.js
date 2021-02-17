@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Settings.module.css';
 import Option from './Option';
+import AddWeather from '../../widgets/Weather/AddWeather';
 
 const AddWidget = () => {
     return (
@@ -21,7 +22,7 @@ const addWidgetNav = [
         key: 'weather',
         img: '',
         name: "Weather",
-        next: ''
+        next: <AddWeather />
     },
     {
         key: 'clock',

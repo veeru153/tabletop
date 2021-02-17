@@ -9,7 +9,8 @@ import { ConfigContext, NavContext } from '../../util/contexts';
 const Settings = () => {
     const { showSettings, setShowSettings } = useContext(ConfigContext);
     const [pageStack, setPageStack] = useState([<RootSettings />]);
-    const level = Math.max(0, pageStack.length - 1);
+    // const level = Math.max(0, pageStack.length - 1);
+    const [level, setLevel] = useState(0);
 
     // Set Level to 0 when Settings are closed/opened
     useEffect(() => {
@@ -19,7 +20,8 @@ const Settings = () => {
 
     const upOneLevel = () => {
         if(pageStack.length <= 1) return;
-        setPageStack([...pageStack.slice(0, level)]);
+        setLevel(Math.max(0, level-1));
+        setPageStack([...pageStack.slice(0, level+1)]);
     }
 
     return (
@@ -30,10 +32,10 @@ const Settings = () => {
             <div className={classes.sides}>
                 <button onClick={upOneLevel}>Up</button>
             </div> 
-            <NavContext.Provider value={{ pageStack, setPageStack }}>
+            <NavContext.Provider value={{ pageStack, setPageStack, level, setLevel }}>
                 <div 
                     className={classes.main}
-                    style={{ transform: `translateY(${-level*100}%)`}}
+                    style={{ transform: `translateY(${-level*100}vh)`}}
                 >
                     {pageStack.map(pageEl => pageEl)}
                 </div>
