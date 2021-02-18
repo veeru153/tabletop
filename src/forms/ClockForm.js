@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { CLOCK } from '../util/widgetRegistry';
+import { CLOCK } from '../widgets';
 import { ConfigContext } from '../util/contexts';
 import { Formik } from 'formik';
 import FormTemplate from '../containers/Settings/FormTemplate';

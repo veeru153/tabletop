@@ -1,10 +1,10 @@
 import React from 'react';
 import classes from './Settings.module.css';
 import Option from './Option';
-import * as fReg from '../../util/formRegistry';
+import * as forms from '../../forms';
 
 const AddWidget = () => {
-    const formList = Object.values(fReg);
+    const formList = Object.values(forms);
     return (
         <div className={classes.Settings}>
             <header>
