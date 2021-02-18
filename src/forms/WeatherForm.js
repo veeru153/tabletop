@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { WEATHER } from '../../util/widgetRegistry';
-import { ConfigContext } from '../../util/contexts';
+import { WEATHER } from '../util/widgetRegistry';
+import { ConfigContext } from '../util/contexts';
 import { Formik } from 'formik';
-import FormTemplate from '../../containers/Settings/FormTemplate';
+import FormTemplate from '../containers/Settings/FormTemplate';
 
-const AddWeather = () => {
+const WeatherForm = () => {
     const { addWidget } = useContext(ConfigContext);
 
     return (
@@ -36,4 +36,4 @@ const AddWeather = () => {
     )
 }
 
-export default AddWeather;
+export default WeatherForm;

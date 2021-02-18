@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { CLOCK } from '../../util/widgetRegistry';
-import { ConfigContext } from '../../util/contexts';
+import { CLOCK } from '../util/widgetRegistry';
+import { ConfigContext } from '../util/contexts';
 import { Formik } from 'formik';
-import FormTemplate from '../../containers/Settings/FormTemplate';
+import FormTemplate from '../containers/Settings/FormTemplate';
 
-const AddClock = () => {
+const ClockForm = () => {
     const { addWidget } = useContext(ConfigContext);
 
     return (
@@ -84,4 +84,4 @@ const tzOffsets = [
     "UTC+14:00"
 ]
 
-export default AddClock;
+export default ClockForm;

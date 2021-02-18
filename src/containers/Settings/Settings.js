@@ -20,8 +20,9 @@ const Settings = () => {
 
     const upOneLevel = () => {
         if(pageStack.length <= 1) return;
-        setPageStack([...pageStack.slice(0, level)]);
         setLevel(Math.max(0, level-1));
+        const upwardTimeout =  setTimeout(() => setPageStack(pageStack.slice(0, level)), 400);
+        return () => clearTimeout(upwardTimeout);
     }
 
     return (
