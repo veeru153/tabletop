@@ -7,12 +7,10 @@ const Clock = (props) => {
     const { id, meta, params } = props;
     const [rots, setRots] = useState({ hr: 0, min: 0, sec: 0 })
 
-    const dummyTz = "UTC+5:30";
-
     // Rotation Interval
     useEffect(() => {
         const rotInterval = setInterval(() => {
-            let dt = DateTime.local().setZone(dummyTz);
+            let dt = DateTime.local().setZone(meta.q.tz);
             let hr = dt.hour;
             let min = dt.minute;
             let sec = dt.second;
@@ -24,7 +22,7 @@ const Clock = (props) => {
         }, 1000);
         
         return () => clearInterval(rotInterval);
-    }, [])
+    }, [meta.q.tz])
 
     const rotations = {
         hr: {
@@ -40,6 +38,7 @@ const Clock = (props) => {
 
     return (
         <Widget
+            id={id}
             meta={meta}
             className={classes.Clock}
         >
@@ -64,7 +63,7 @@ const Clock = (props) => {
                     </g>
                 </svg>
             </div>
-            <div className={classes.label}>Dummy Label</div>
+            <div className={classes.label}>{meta.q.label}</div>
         </Widget>
     )
 }

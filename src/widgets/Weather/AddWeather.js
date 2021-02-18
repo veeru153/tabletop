@@ -17,7 +17,7 @@ const AddWeather = () => {
         >
             {(props) => (
                 <FormTemplate
-                    title="Add Weather Widget"
+                    title="Add Widget : Weather"
                     subtitle="Make sure you have your OpenWeatherMaps API Key in 'Secrets'!"
                 >
                     <form onSubmit={props.handleSubmit}>
@@ -26,7 +26,7 @@ const AddWeather = () => {
                             type="text"
                             placeholder="City, [Country Code]"
                             onChange={props.handleChange}
-                            value={props.values.q}
+                            value={props.values.city}
                         />
                         <button type="submit" disabled={props.isSubmitting}>Submit</button>
                     </form>

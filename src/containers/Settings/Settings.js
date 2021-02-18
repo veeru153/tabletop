@@ -14,13 +14,14 @@ const Settings = () => {
     // Set Level to 0 when Settings are closed/opened
     useEffect(() => {
         const backToRoot = setTimeout(() => setPageStack([<RootSettings />]), 400);
+        setLevel(0);
         return () => clearTimeout(backToRoot);
     }, [showSettings]);
 
     const upOneLevel = () => {
         if(pageStack.length <= 1) return;
+        setPageStack([...pageStack.slice(0, level)]);
         setLevel(Math.max(0, level-1));
-        setPageStack([...pageStack.slice(0, level+1)]);
     }
 
     return (

@@ -4,7 +4,6 @@ import cuid from 'cuid';
 import Settings from './Settings/Settings';
 import { ConfigContext } from '../util/contexts';
 import WidgetRenderer from './WidgetRenderer';
-import { Weather } from '../widgets';
 
 const Dashboard = () => {
     const [bg, setBg] = useState(defaultBgState);
@@ -44,6 +43,7 @@ const Dashboard = () => {
         }
         setWidgets([...widgets, template]);
         db.collection(WIDGETS).add(template.data, id);
+        setShowSettings(false);
     }
 
     const configHandlers = { addWidget, bg, setBg, widgets, setWidgets, showSettings, setShowSettings };
