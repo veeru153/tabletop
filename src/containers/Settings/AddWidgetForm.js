@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Settings.module.css';
 import Option from './Option';
-import * as forms from '../../forms';
+import * as forms from '../../widgetForms';
 
 const AddWidgetForm = () => {
     const formList = Object.values(forms);
