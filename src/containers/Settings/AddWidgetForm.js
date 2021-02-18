@@ -3,7 +3,7 @@ import classes from './Settings.module.css';
 import Option from './Option';
 import * as forms from '../../forms';
 
-const AddWidget = () => {
+const AddWidgetForm = () => {
     const formList = Object.values(forms);
     return (
         <div className={classes.Settings}>
@@ -18,4 +18,4 @@ const AddWidget = () => {
     )
 }
 
-export default AddWidget;
+export default AddWidgetForm;

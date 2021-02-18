@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import classes from './Settings.module.css';
 import Option from './Option';
-import AddWidget from './AddWidget';
+import AddWidget from './AddWidgetForm';
 import { ConfigContext, NavContext } from '../../util/contexts';
 
 // TODO: Update Up and Close buttons to glyphs

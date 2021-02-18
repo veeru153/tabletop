@@ -31,7 +31,7 @@ const Weather = (props) => {
         >
             <div>
                 <div className={classes.city}>{w.name}</div>
-                <div className={classes.temp}>{Math.round(w.main.feels_like)}°C</div>
+                <div className={classes.temp}>{Math.round(w.main.temp)}°C</div>
             </div>
             <div className={classes.info}>
                 <Icon id={w.weather[0].icon} size={36} />
