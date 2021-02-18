@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import classes from './Settings.module.css';
 import Option from './Option';
-import AddWidget from './AddWidgetForm';
+import rootNavRoutes from './rootNavRoutes';
 import { ConfigContext, NavContext } from '../../util/contexts';
 
 // TODO: Update Up and Close buttons to glyphs
@@ -56,37 +56,10 @@ const RootSettings = () => {
                 <h3>Control and Customise your Dashboard!</h3>
             </header>
             <section>
-                {rootNavChoices.map(choice => <Option key={choice.key} opt={choice} />)}
+                {rootNavRoutes.map(choice => <Option key={choice.key} opt={choice} />)}
             </section>
         </div>
     )
 }
-
-const rootNavChoices = [
-    { 
-        key: 'addWidget',
-        img: '', 
-        name: 'Add Widget', 
-        next: <AddWidget />
-    },
-    { 
-        key: 'removeWidget',
-        img: '', 
-        name: 'Remove Widgets', 
-        next: null
-    },
-    { 
-        key: 'config',
-        img: '', 
-        name: 'Configure', 
-        next: null
-    },
-    { 
-        key: 'secrets',
-        img: '', 
-        name: 'Secrets', 
-        next: null
-    },
-]
 
 export default Settings;

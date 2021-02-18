@@ -4,7 +4,7 @@ import Widget from '../../containers/Widget';
 import { DateTime } from 'luxon';
 
 const Clock = (props) => {
-    const { id, meta, params } = props;
+    const { id, meta } = props;
     const [rots, setRots] = useState({ hr: 0, min: 0, sec: 0 })
 
     // Rotation Interval
