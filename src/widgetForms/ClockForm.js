@@ -18,7 +18,7 @@ const ClockForm = () => {
             {(props) => (
                 <FormTemplate
                     title="Add Widget : Clock"
-                    subtitle="It's about time!"
+                    subtitle="It's about time! Note: You'll have to change the time for DST."
                 >
                     <form onSubmit={props.handleSubmit}>
                         <select 

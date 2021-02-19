@@ -12,12 +12,12 @@ function App() {
         db.collection(CONFIG).get({ keys: true })
             .then(config => {
                 if (!config || config.length === 0) {
-                    console.log("Initialised Background")
                     db.collection(CONFIG).doc('bg').set({
                         usingImg: false,
                         image: null,
                         color: '#282c34', // Default
                     })
+                    db.collection(CONFIG).doc('secrets').set({ });
                 }
             })
             .then(() => setLoaded(true));
