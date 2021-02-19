@@ -53,5 +53,29 @@
     align-items: center;
     margin: 8px;
     height: 300px;
+}
 
+.removeRow {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    background-color: rgba(132, 132, 132, 0.32);
+    backdrop-filter: blur(4.8px);
+    text-align: center;
+    border-radius: 12px;
+    margin: 12px auto;
+}
+.removeRow:not(.rowQ) {
+    justify-content: center;
+    align-items: center;
+}
+.rowQ {
+    display: flex;
+    flex-direction: column;
+}
+.rowQ div {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+}
+.rowQ div p {
+    margin: 6px 0;
 }

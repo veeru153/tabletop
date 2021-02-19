@@ -46,7 +46,16 @@ const Dashboard = () => {
         setShowSettings(false);
     }
 
-    const configHandlers = { addWidget, bg, setBg, widgets, setWidgets, showSettings, setShowSettings };
+    const removeWidget = (id) => {
+        const tempW = [...widgets];
+        const widgetToRemove = tempW.find(w => w.key === id);
+        const widgetIdx = tempW.indexOf(widgetToRemove);
+        tempW.splice(widgetIdx, 1);
+        setWidgets(tempW);
+        db.collection(WIDGETS).doc(id).delete();
+    }
+
+    const configHandlers = { addWidget, removeWidget, bg, setBg, widgets, setWidgets, showSettings, setShowSettings };
 
     return (
         <div style={styles}>

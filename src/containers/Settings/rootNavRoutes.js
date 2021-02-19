@@ -1,5 +1,6 @@
 import React from 'react';
 import AddWidgetForm from './AddWidgetForm';
+import RemoveWidgetForm from './RemoveWidgetForm';
 
 const rootNavRoutes = [
     { 
@@ -12,7 +13,7 @@ const rootNavRoutes = [
         key: 'removeWidget',
         img: '', 
         name: 'Remove Widgets', 
-        next: null
+        next: <RemoveWidgetForm />
     },
     { 
         key: 'config',
