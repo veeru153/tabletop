@@ -1,6 +1,7 @@
 import React from 'react';
 import AddWidgetForm from './AddWidgetForm';
 import RemoveWidgetForm from './RemoveWidgetForm';
+import ConfigForm from './ConfigForm';
 import SecretsForm from './SecretsForm';
 
 const rootNavRoutes = [
@@ -20,7 +21,7 @@ const rootNavRoutes = [
         key: 'config',
         img: '', 
         name: 'Configure', 
-        next: null
+        next: <ConfigForm />
     },
     { 
         key: 'secrets',

@@ -21,10 +21,16 @@ const Dashboard = () => {
         onMount();
     }, [])
 
-    // Update Background Config in DB when state is updated
-    let styles = { 
-        ...defaultStyles, 
-        background: bg.usingImg ? `url(${bg.image})` : bg.color ,
+    const imgStyles = { 
+        ...defaultStyles,
+        backgroundImage: `url(${bg.image})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+    };
+    const colorStyles  = { 
+        ...defaultStyles,
+        backgroundColor: bg.color,
     };
 
     const addWidget = (type, q) => {
@@ -58,7 +64,7 @@ const Dashboard = () => {
     const configHandlers = { addWidget, removeWidget, bg, setBg, widgets, setWidgets, showSettings, setShowSettings };
 
     return (
-        <div style={styles}>
+        <div style={bg.usingImg ? imgStyles : colorStyles}>
             <ConfigContext.Provider value={configHandlers}>
                 <Settings />
             </ConfigContext.Provider>
@@ -104,7 +110,6 @@ const defaultBgState = {
 }
 
 const defaultStyles = {
-    backgroundSize: 'contain',
     width: '100%',
     height: '100vh',
 }
