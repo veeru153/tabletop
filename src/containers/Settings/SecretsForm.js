@@ -5,13 +5,15 @@ import secretsList from './secretsList';
 import { Formik } from 'formik';
 import { db, CONFIG } from '../../util/db';
 
+// TODO: Store secrets in chrome.storage (provided by Chrome for extensions)
+
 const SecretsForm = () => {
     const [secretDoc, setSecretDoc] = useState({});
     const [loaded, setLoaded] = useState(false);
     const SECRETS = Object.entries(secretDoc);
 
     useEffect(() => {
-        async function a() {
+        async function onMount() {
             const fetchedSecretDoc = await db.collection(CONFIG).doc('secrets').get();
             for(const s in secretsList) {
                 if(!fetchedSecretDoc[s]) {
@@ -21,7 +23,7 @@ const SecretsForm = () => {
             setSecretDoc(fetchedSecretDoc);
             setLoaded(true);
         }
-        a();
+        onMount();
     }, [])
 
     const handleUpdate = async (e, values) => {

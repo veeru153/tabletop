@@ -12,13 +12,13 @@ const Dashboard = () => {
 
     // Fetch Background Data and Widgets from IndexedDB on mount
     useEffect(() => {
-        async function a() {
+        async function onMount() {
             const newBg = await db.collection(CONFIG).doc('bg').get();
             setBg(newBg);
             const w = await db.collection(WIDGETS).get({ keys: true });
             setWidgets(w);
         }
-        a();
+        onMount();
     }, [])
 
     // Update Background Config in DB when state is updated

@@ -10,11 +10,11 @@ const Weather = (props) => {
 
     // Fetch Updated Weather or show Saved Weather
     useEffect(() => {
-        async function a() {
+        async function onMount() {
             const updatedW = await fetchData(id, meta.q.city);
             setW(updatedW);
         }
-        a();
+        onMount();
     }, [])
 
     const wStyle = {
