@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import classes from './Settings.module.css';
-import FormTemplate from './FormTemplate.js';
+import classes from './Form.module.css';
+import FormTemplate from '../FormTemplate.js';
 import secretsList from './secretsList';
 import { Formik } from 'formik';
-import { db, CONFIG } from '../../util/db';
+import { db, CONFIG } from '../../../util/db';
 
-// TODO: Store secrets in chrome.storage (provided by Chrome for extensions)
+// TODO: Store secrets in chrome.storage (provided by Chrome for extensions). Also use secrets in required widgets
 
 const SecretsForm = () => {
     const [secretDoc, setSecretDoc] = useState({});
@@ -36,7 +36,7 @@ const SecretsForm = () => {
         <FormTemplate
             title="Secrets"
             subtitle="DO NOT SHARE THESE!"
-            formClasses={classes.Settings}
+            formClasses={classes.Form}
         >
             {loaded ? <Formik
                 initialValues={{...secretDoc}}
@@ -84,10 +84,6 @@ const SecretRow = (props) => {
             <button type="submit">Update</button>
         </form>
     )
-}
-
-const updateSecretHandler = () => {
-
 }
 
 export default SecretsForm;

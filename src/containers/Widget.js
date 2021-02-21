@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Draggable from 'react-draggable';
-import { db, CONFIG, WIDGETS } from '../util/db';
+import { db, WIDGETS } from '../util/db';
 
 const Widget = (props) => {
     const { style : userStyle, className : userClass, id, meta } = props;

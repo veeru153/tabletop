@@ -1,8 +1,8 @@
 import React from 'react';
-import AddWidgetForm from './AddWidgetForm';
-import RemoveWidgetForm from './RemoveWidgetForm';
-import ConfigForm from './ConfigForm';
-import SecretsForm from './SecretsForm';
+import AddWidgetForm from './forms/AddWidgetForm';
+import RemoveWidgetForm from './forms/RemoveWidgetForm';
+import ConfigForm from './forms/ConfigForm';
+import SecretsForm from './forms/SecretsForm';
 
 const rootNavRoutes = [
     { 

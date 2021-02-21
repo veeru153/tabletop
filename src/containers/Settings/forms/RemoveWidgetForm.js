@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { ConfigContext } from '../../util/contexts';
-import classes from './Settings.module.css';
-import FormTemplate from './FormTemplate.js'
+import { ConfigContext } from '../../../util/contexts';
+import classes from './Form.module.css';
+import FormTemplate from '../FormTemplate.js'
 
 
 const RemoveWidgetForm = () => {
@@ -10,7 +10,6 @@ const RemoveWidgetForm = () => {
         <FormTemplate
             title="Remove Widget"
             subtitle="Choose a Widget:"
-            // formClasses={classes.Settings}
         >
             {widgets.map(w => <WidgetRow key={w.key} id={w.key} data={w.data} />)}
         </FormTemplate>

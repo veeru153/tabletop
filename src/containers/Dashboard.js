@@ -77,32 +77,6 @@ const Dashboard = () => {
     )
 }
 
-const dummyData = {
-    clouds: { all: 0 },
-    coord: { lat: 28.6128, lon: 77.2311 },
-    dt: 1613203762,
-    id: 1261481,
-    main: {
-        feels_like: 23.43,
-        humidity: 60,
-        pressure: 1016,
-        temp: 23,
-        temp_max: 23,
-        temp_min: 23
-    },
-    name: "New Delhi",
-    rain: null,
-    snow: null,
-    sys: { country: "IN" },
-    weather: [{
-        description: "haze",
-        icon: "50d",
-        id: 721,
-        main: "Haze",
-    }],
-    wind: { speed: 1.59, deg: 256 },
-}
-
 const defaultBgState = {
     usingImg: false,
     image: null,

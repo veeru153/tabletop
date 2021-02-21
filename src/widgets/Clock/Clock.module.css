@@ -1,6 +1,7 @@
 /* Layout */
 .Clock {
     --clock-color: #dedede;
+    --clock-color-dark: black;
     background-color: black;
     position: fixed;
     width: 224px;
@@ -28,15 +29,26 @@
     stroke-width: 9;
     stroke-miterlimit: 10;
 }
+.light .circle {
+    fill: var(--clock-color);
+    stroke: var(--clock-color-dark);
+}
 
 .midCircle {
     fill: var(--clock-color);
 }
+.light .midCircle {
+    fill: var(--clock-color-dark);
+}
+
 .hourMarks {
     fill: none;
     stroke: var(--clock-color);
     stroke-width: 9;
     stroke-miterlimit: 10;
+}
+.light .hourMarks {
+    stroke: var(--clock-color-dark);
 }
 
 .hourArm {
@@ -45,6 +57,9 @@
     stroke-width: 17;
     stroke-miterlimit: 10;
 }
+.light .hourArm {
+    stroke: var(--clock-color-dark);
+}
 
 .minuteArm {
     fill: none;
@@ -52,12 +67,18 @@
     stroke-width: 11;
     stroke-miterlimit: 10;
 }
+.light .minuteArm {
+    stroke: var(--clock-color-dark);
+}
 
 .secondArm {
     fill: none;
     stroke: var(--clock-color);
     stroke-width: 4;
     stroke-miterlimit: 10;
+}
+.light .secondArm {
+    stroke: var(--clock-color-dark);
 }
 
 /* Transparent box ensuring arms center properly. */

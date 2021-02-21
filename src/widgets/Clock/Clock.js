@@ -5,7 +5,8 @@ import { DateTime } from 'luxon';
 
 const Clock = (props) => {
     const { id, meta } = props;
-    const [rots, setRots] = useState({ hr: 0, min: 0, sec: 0 })
+    const [rots, setRots] = useState({ hr: 0, min: 0, sec: 0 });
+    // const [time, setTime] = useState({ hr: 0, min: 0, sec: 0 });
 
     // Rotation Interval
     useEffect(() => {
@@ -14,6 +15,7 @@ const Clock = (props) => {
             let hr = dt.hour;
             let min = dt.minute;
             let sec = dt.second;
+            // setTime({ hr, min, sec});
             setRots({
                 hr: hr * 360 / 12 + ((min * 360 / 60) / 12),
                 min: (min * 360 / 60) + (sec * 360 / 60) / 60,
@@ -35,6 +37,9 @@ const Clock = (props) => {
             transform: `rotate(${rots.sec}deg)`
         }
     }
+
+    // const dayLight = (time.hr >= 6 && time.hr <= 19)
+    // const modeClass = dayLight ? classes.light : classes.dark;
 
     return (
         <Widget
