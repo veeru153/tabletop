@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { db, CONFIG } from './util/db';
+import * as DEFAULTS from './util/defaults';
 import Dashboard from './containers/Dashboard';
 
 // TODO: Implement User Side API Key. Store in Cache probably. Using .env in Development.
-
 
 function App() {
     const [loaded, setLoaded] = useState(false);
@@ -12,11 +12,7 @@ function App() {
         db.collection(CONFIG).get({ keys: true })
             .then(config => {
                 if (!config || config.length === 0) {
-                    db.collection(CONFIG).doc('bg').set({
-                        usingImg: false,
-                        image: null,
-                        color: '#282c34', // Default
-                    })
+                    db.collection(CONFIG).doc('bg').set(DEFAULTS.BG)
                     db.collection(CONFIG).doc('secrets').set({ });
                 }
             })
