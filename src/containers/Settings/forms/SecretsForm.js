@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import classes from './Form.module.css';
+import classes from './SecretsForm.module.css';
 import FormTemplate from '../FormTemplate.js';
 import secretsList from '../../../util/secretsList';
 import { Formik } from 'formik';
 import { cookies, SECRETS } from '../../../util/cookies';
+import { TextInput } from '../../../ui/';
 
 const SecretsForm = () => {
     const [secretDoc, setSecretDoc] = useState({});
@@ -37,7 +38,6 @@ const SecretsForm = () => {
         <FormTemplate
             title="Secrets"
             subtitle="DO NOT SHARE THESE!"
-            formClasses={classes.Form}
         >
             {loaded ? <Formik
                 initialValues={{...secretDoc}}
@@ -71,18 +71,27 @@ const SecretRow = (props) => {
     }
 
     return (
-        <form onSubmit={(e) => handleUpdate(e, props.values)}>
+        <form onSubmit={(e) => handleUpdate(e, props.values)} className={classes.secretRow}>
             <div>
                 <p>{name}</p>
-                <input
+                <TextInput
                     name={name}
                     type="password"
                     placeholder="Secret Key"
                     onChange={handleChange}
                     value={props.values[id].token}
                 />
+                {/* <input
+                    name={name}
+                    type="password"
+                    placeholder="Secret Key"
+                    onChange={handleChange}
+                    value={props.values[id].token}
+                /> */}
             </div>
-            <button type="submit">Update</button>
+            <div>
+                <button type="submit">Update</button>
+            </div>
         </form>
     )
 }

@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import classes from './ConfigForm.module.css';
+import { TextInput, Dropdown } from '../../../ui';
 
 const ImagePicker = (props) => {
     const preview = useRef();
@@ -34,29 +36,36 @@ const ImagePicker = (props) => {
                 <p>Drag one or more files to this Drop Zone ...</p>
             </div>
             <div>
-
                 <h3>Background Blend: </h3>
-                <select
-                    name="filterFn"
-                    id="filterFn"
-                    onChange={(e) => updateBlend(props, "mode", e.target.value)}
-                    style={{ textTransform: 'capitalize' }}
-                    value={props.values.blend.mode}
-                >
-                    {blendModeList.map(mode => <option key={mode} value={mode}>{mode}</option>)}
-                </select>
-                <input
-                    name="value"
-                    type="text"
-                    placeholder="Value"
-                    onChange={(e) => updateBlend(props, "color", e.target.value)}
-                    value={props.values.blend.color}
-                    disabled={props.values.blend.mode === "normal"}
-                />
+                <div className={classes.fields}>
+                    <Dropdown
+                        name="filterFn"
+                        onChange={(e) => updateBlend(props, "mode", e.target.value)}
+                        style={{ textTransform: 'capitalize' }}
+                        value={props.values.blend.mode}
+                        options={blendModeList}
+                    />
+                    <TextInput
+                        name="value"
+                        placeholder="Color (Name, HEX, RGBA)"
+                        onChange={(e) => updateBlend(props, "color", e.target.value)}
+                        value={props.values.blend.color}
+                        disabled={props.values.blend.mode === "normal"}
+                        style={styles.textInput}
+                    />
+                </div>
             </div>
         </div>
     )
 }
+
+const styles = {
+    textInput: {
+        fontSize: 22,
+        paddingBottom: 5,
+    },
+}
+
 const imgPickerStyle = {
     dropZone: {
         display: 'flex',

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ConfigContext } from '../../../util/contexts';
-import classes from './Form.module.css';
+import classes from './RemoveWIdgetForm.module.css';
 import FormTemplate from '../FormTemplate.js'
 
 

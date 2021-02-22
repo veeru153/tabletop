@@ -3,6 +3,7 @@ import { CLOCK } from '../widgets';
 import { ConfigContext } from '../util/contexts';
 import { Formik } from 'formik';
 import FormTemplate from '../containers/Settings/FormTemplate';
+import { TextInput, Dropdown, Button } from '../ui';
 
 const ClockForm = () => {
     const { addWidget } = useContext(ConfigContext);
@@ -11,6 +12,7 @@ const ClockForm = () => {
         <Formik
             initialValues={{ tz: "UTC-12:00", label: "" }}
             onSubmit={(values, actions) => {
+                if (values.tz === "Select a Timezone") return;
                 addWidget(CLOCK.type, values);
                 actions.resetForm();
             }}
@@ -20,22 +22,20 @@ const ClockForm = () => {
                     title="Add Widget : Clock"
                     subtitle="It's about time! Note: You'll have to change the time for DST."
                 >
-                    <form onSubmit={props.handleSubmit}>
-                        <select 
-                            name="tz" 
-                            id="tz"
+                    <form onSubmit={props.handleSubmit} style={styles.form}>
+                        <Dropdown
+                            name="tz"
                             onChange={(e) => props.setFieldValue("tz", e.target.value)}
-                        >
-                            {tzOffsets.map(tz => <option key={tz} value={tz}>{tz}</option>)}
-                        </select>
-                        <input
+                            options={tzOffsets}
+                        />
+                        <TextInput
                             name="label"
-                            type="text"
                             placeholder="Clock Label"
                             onChange={props.handleChange}
                             value={props.values.label}
+                            style={styles.input}
                         />
-                        <button type="submit" disabled={props.isSubmitting}>Submit</button>
+                        <Button type="submit" disabled={props.isSubmitting}>Submit</Button>
                     </form>
                 </FormTemplate>
             )}
@@ -44,6 +44,7 @@ const ClockForm = () => {
 }
 
 const tzOffsets = [
+    "Select a Timezone",
     "UTC-12:00",
     "UTC-11:00",
     "UTC-10:00",
@@ -83,5 +84,20 @@ const tzOffsets = [
     "UTC+13:00",
     "UTC+14:00"
 ]
+
+const styles = {
+    form: {
+        display: 'flex',
+        flexDirection: 'column',
+        marginTop: '24%',
+        alignItems: 'center',
+        height: '100%',
+    },
+    input: {
+        margin: '60px auto',
+        fontSize: '30px',
+        textAlign: 'center',
+    },
+}
 
 export default ClockForm;

@@ -1,0 +1,15 @@
+.TextInput {
+    all: unset;
+    border-bottom: 1px solid #acacacda;
+}
+.TextInput:hover {
+    border-bottom: 1px solid #acacac;
+}
+
+.TextInput:focus {
+    border-bottom: 1px solid #dedede;
+}
+
+.TextInput::placeholder { color: #acacacda; }
+.TextInput:hover::placeholder { color: #acacac; }
+/* .TextInput:focus::placeholder { color: #dedede; } */
