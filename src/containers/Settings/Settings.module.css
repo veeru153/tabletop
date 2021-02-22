@@ -1,0 +1,56 @@
+.wrapper {
+    z-index: 99999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.64);
+    color: lightgrey;
+    transition: transform 0.4s ease;
+    backdrop-filter: blur(4.8px);
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    transform: translateY(100%);
+    overflow: hidden;
+}
+
+.main {
+    display: grid;
+    grid-template-rows: repeat(1, 100vh);
+    overflow-y: visible;
+    transition: transform 0.4s ease;
+}
+
+.Settings {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.Settings header {
+    height: max(140px, 18vh);
+}
+
+.Settings section {
+    height: max(620px, 80vh);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.Settings section::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.option {
+    display: grid;
+    grid-template-rows: 8fr 4fr;
+    border: 1px solid white;
+    border-radius: 48px;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+    height: 300px;
+}
