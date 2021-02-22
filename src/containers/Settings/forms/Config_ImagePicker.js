@@ -4,8 +4,6 @@ const ImagePicker = (props) => {
     const preview = useRef();
     const [selectedImg, setSelectedImg] = useState(props.values.image);
 
-    // TODO: Add a Tint option to add overlay above Image
-
     useEffect(() => {
         preview.current.src = selectedImg;
         props.setFieldValue('image', selectedImg);

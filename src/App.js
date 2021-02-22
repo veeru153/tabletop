@@ -3,8 +3,6 @@ import { db, CONFIG } from './util/db';
 import * as DEFAULTS from './util/defaults';
 import Dashboard from './containers/Dashboard';
 
-// TODO: Implement User Side API Key. Store in Cache probably. Using .env in Development.
-
 function App() {
     const [loaded, setLoaded] = useState(false);
 

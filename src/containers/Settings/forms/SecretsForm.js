@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import classes from './Form.module.css';
 import FormTemplate from '../FormTemplate.js';
-import secretsList from './secretsList';
+import secretsList from '../../../util/secretsList';
 import { Formik } from 'formik';
-import { db, CONFIG } from '../../../util/db';
-
-// TODO: Store secrets in chrome.storage (provided by Chrome for extensions). Also use secrets in required widgets
+import { cookies, SECRETS } from '../../../util/cookies';
 
 const SecretsForm = () => {
     const [secretDoc, setSecretDoc] = useState({});
     const [loaded, setLoaded] = useState(false);
-    const SECRETS = Object.entries(secretDoc);
+    const secretsObj = Object.entries(secretDoc);
 
     useEffect(() => {
         async function onMount() {
-            const fetchedSecretDoc = await db.collection(CONFIG).doc('secrets').get();
+            const fetchedSecretDoc = await cookies.get(SECRETS) ?? {};
             for(const s in secretsList) {
+                if(!fetchedSecretDoc) break;
                 if(!fetchedSecretDoc[s]) {
                     fetchedSecretDoc[s] = secretsList[s];
                 }
@@ -28,7 +27,9 @@ const SecretsForm = () => {
 
     const handleUpdate = async (e, values) => {
         e.preventDefault();
-        await db.collection(CONFIG).doc('secrets').set(values);
+        // Need a better way to handle this
+        const expiryDate = new Date("2038-01-19T04:14:07");
+        cookies.set(SECRETS, values, { expires: expiryDate });
         setSecretDoc(values);
     }
 
@@ -43,7 +44,7 @@ const SecretsForm = () => {
             >
                 {(props) => (
                     <div>
-                        {SECRETS.map(s => (
+                        {secretsObj.map(s => (
                             <SecretRow 
                                 {...props} 
                                 key={s[0]} 

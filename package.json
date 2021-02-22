@@ -17,7 +17,8 @@
     "react-draggable": "^4.4.3",
     "react-feather": "^2.0.8",
     "react-rnd": "^10.2.4",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "universal-cookie": "^4.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

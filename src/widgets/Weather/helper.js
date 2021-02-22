@@ -1,7 +1,9 @@
 import Axios from 'axios';
 import { db, WIDGETS } from '../../util/db';
+import { cookies, SECRETS } from '../../util/cookies';
 
-const OWM_KEY = process.env.REACT_APP_OWM_KEY;
+const { owmKey } = cookies.get(SECRETS);
+const OWM_KEY = owmKey.token;
 
 export const fetchData = async (id, city) => {
     if(navigator.onLine) {
