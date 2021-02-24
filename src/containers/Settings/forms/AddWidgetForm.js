@@ -12,7 +12,7 @@ const AddWidgetForm = () => {
             subtitle="Choose a Widget:"
             formClasses={classes.AddWidgetForm}
         >
-            {formList.map(form => <Option key={form.key} opt={form} />)}
+            {formList.map(form => <Option key={form.key} opt={form} style={{ height: 283.75 }} />)}
         </FormTemplate>
     )
 }

@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { NavContext } from '../../util/contexts';
 import classes from './Settings.module.css';
 
-const Option = ({ opt }) => {
+const Option = (props) => {
+    const { opt } = props
     const { pageStack, setPageStack, level, setLevel } = useContext(NavContext);
 
     const addPageToStack = (next) => {
@@ -15,6 +16,7 @@ const Option = ({ opt }) => {
         <div 
             className={classes.option}
             onClick={() => addPageToStack(opt.next)}
+            style={props.style}
         >
             <div className={classes.iconContainer}>
                 {opt.icon}

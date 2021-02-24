@@ -2,10 +2,11 @@ import Axios from 'axios';
 import { db, WIDGETS } from '../../util/db';
 import { cookies, SECRETS } from '../../util/cookies';
 
-const { owmKey } = cookies.get(SECRETS);
-const OWM_KEY = owmKey.token;
 
 export const fetchData = async (id, city) => {
+    const { owmKey } = await cookies.get(SECRETS);
+    if(!owmKey) return errorW;
+    const OWM_KEY = owmKey?.token;
     if(navigator.onLine) {
         const api = `http://api.openweathermap.org/data/2.5/find?q=${encodeURIComponent(city)}&units=metric&appid=${OWM_KEY}`;
         const res = await Axios.get(api);
