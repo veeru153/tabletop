@@ -78,7 +78,7 @@ const Dashboard = () => {
                 <Settings />
             </ConfigContext.Provider>
             <div style={overlayStyles}>
-                {widgets.map(w => <WidgetRenderer key={w.key} id={w.key} data={w.data}/>)}
+                {widgets.length === 0 ? <ZeroWidgets /> : widgets.map(w => <WidgetRenderer key={w.key} id={w.key} data={w.data}/>)}
             </div>
             <button
                 className={classes.menuBtn}
@@ -86,6 +86,18 @@ const Dashboard = () => {
             >
                 <Menu size={42} color="#dedede" />
             </button>
+        </div>
+    )
+}
+
+const ZeroWidgets = () => {
+    return (
+        <div className={classes.zeroWidgets}>
+            <h1>Welcome to TableTop!</h1>
+            <h3>
+                Seems quite empty, doesn't it?<br />
+                Add Widgets by Clicking on the Menu button below.
+            </h3>
         </div>
     )
 }

@@ -1,9 +1,9 @@
 import React from 'react';
+import classes from './ConfigForm.module.css';
 
 const ColorPicker = (props) => {
     return (
-        <div>
-            <label for="bgColor">Background Color:</label>
+        <div className={classes.colorPicker}>
             <input
                 type="color"
                 id="bgColor"

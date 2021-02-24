@@ -35,7 +35,7 @@ const ImagePicker = (props) => {
                 <img 
                     alt="Preview" 
                     ref={preview} 
-                    style={{ opacity: selectedImg ? 1 : 0 }}
+                    style={{ display: selectedImg ? 'block' : 'none' }}
                 ></img>
                 <p style={{ display: selectedImg ? 'none' : 'block' }}>Drag an Image in this Dropzone</p>
             </div>

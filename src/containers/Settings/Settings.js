@@ -36,7 +36,11 @@ const Settings = () => {
                 className={classes.sides}  
                 style={{ justifyContent: 'flex-end' }}
             >
-                <button className={classes.uiBtns} style={{ margin: '0 20px' }} onClick={upOneLevel}>
+                <button 
+                    className={classes.uiBtns} 
+                    style={{ margin: '0 20px', display: (level === 0) ? 'none' : 'block' }} 
+                    onClick={upOneLevel}
+                >
                     <ArrowUp size={42} color="#dedede" />
                 </button>
             </div> 
