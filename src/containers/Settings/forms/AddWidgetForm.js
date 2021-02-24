@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Form.module.css';
+import classes from './AddWidgetForm.module.css';
 import FormTemplate from '../FormTemplate.js'
 import Option from '../Option';
 import * as widgetForms from '../../../widgetForms';
@@ -10,7 +10,7 @@ const AddWidgetForm = () => {
         <FormTemplate
             title="Add Widget"
             subtitle="Choose a Widget:"
-            formClasses={classes.Form}
+            formClasses={classes.AddWidgetForm}
         >
             {formList.map(form => <Option key={form.key} opt={form} />)}
         </FormTemplate>

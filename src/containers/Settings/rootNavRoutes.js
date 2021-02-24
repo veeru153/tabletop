@@ -4,28 +4,30 @@ import RemoveWidgetForm from './forms/RemoveWidgetForm';
 import ConfigForm from './forms/ConfigForm';
 import SecretsForm from './forms/SecretsForm';
 
+import { PlusSquare, Trash2, Settings, Key } from 'react-feather';
+
 const rootNavRoutes = [
     { 
         key: 'addWidget',
-        img: '', 
+        icon: <PlusSquare />, 
         name: 'Add Widget', 
         next: <AddWidgetForm />
     },
     { 
         key: 'removeWidget',
-        img: '', 
+        icon: <Trash2 />, 
         name: 'Remove Widgets', 
         next: <RemoveWidgetForm />
     },
     { 
         key: 'config',
-        img: '', 
+        icon: <Settings />, 
         name: 'Configure', 
         next: <ConfigForm />
     },
     { 
         key: 'secrets',
-        img: '', 
+        icon: <Key />, 
         name: 'Secrets', 
         next: <SecretsForm />
     },

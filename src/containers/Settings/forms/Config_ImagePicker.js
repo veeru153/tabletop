@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import classes from './ConfigForm.module.css';
+import { TextInput, Dropdown } from '../../../ui';
 
 const ImagePicker = (props) => {
     const preview = useRef();
@@ -29,49 +31,44 @@ const ImagePicker = (props) => {
 
     return (
         <div>
-            <div style={imgPickerStyle.dropZone} onDrop={(e) => dropHandler(e)} onDragOver={(e) => e.preventDefault()}>
-                <img alt="Preview" ref={preview} style={{ ...imgPickerStyle.img, opacity: selectedImg ? 1 : 0 }}></img>
-                <p>Drag one or more files to this Drop Zone ...</p>
+            <div className={classes.imagePickerDropzone} onDrop={(e) => dropHandler(e)} onDragOver={(e) => e.preventDefault()}>
+                <img 
+                    alt="Preview" 
+                    ref={preview} 
+                    style={{ display: selectedImg ? 'block' : 'none' }}
+                ></img>
+                <p style={{ display: selectedImg ? 'none' : 'block' }}>Drag an Image in this Dropzone</p>
             </div>
+            <p style={{ opacity: selectedImg ? 1 : 0 }}>Drag an Image in the above Dropzone to set as the background.</p>
             <div>
-
                 <h3>Background Blend: </h3>
-                <select
-                    name="filterFn"
-                    id="filterFn"
-                    onChange={(e) => updateBlend(props, "mode", e.target.value)}
-                    style={{ textTransform: 'capitalize' }}
-                    value={props.values.blend.mode}
-                >
-                    {blendModeList.map(mode => <option key={mode} value={mode}>{mode}</option>)}
-                </select>
-                <input
-                    name="value"
-                    type="text"
-                    placeholder="Value"
-                    onChange={(e) => updateBlend(props, "color", e.target.value)}
-                    value={props.values.blend.color}
-                    disabled={props.values.blend.mode === "normal"}
-                />
+                <div className={classes.fields}>
+                    <Dropdown
+                        name="filterFn"
+                        onChange={(e) => updateBlend(props, "mode", e.target.value)}
+                        style={{ textTransform: 'capitalize' }}
+                        value={props.values.blend.mode}
+                        options={blendModeList}
+                    />
+                    <TextInput
+                        name="value"
+                        placeholder="Color (Name, HEX, RGBA)"
+                        onChange={(e) => updateBlend(props, "color", e.target.value)}
+                        value={props.values.blend.color}
+                        disabled={props.values.blend.mode === "normal"}
+                        style={styles.textInput}
+                    />
+                </div>
             </div>
         </div>
     )
 }
-const imgPickerStyle = {
-    dropZone: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        border: '5px solid blue',
-        width: '200px',
-        height: '100px',
+
+const styles = {
+    textInput: {
+        fontSize: 22,
+        paddingBottom: 5,
     },
-    img: {
-        position: 'absolute',
-        width: '200px',
-        height: '100px',
-    }
 }
 
 const blendModeList = [

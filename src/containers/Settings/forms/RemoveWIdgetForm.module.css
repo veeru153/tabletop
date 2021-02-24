@@ -1,25 +1,3 @@
-.Form {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
-
-.Form header {
-    height: max(140px, 18vh);
-}
-
-.Form section {
-    height: max(620px, 80vh);
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    overflow-y: scroll;
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
-}
-.Form section::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
-}
-
 .removeRow {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -43,4 +21,20 @@
 }
 .rowQ div p {
     margin: 6px 0;
+}
+
+.deleteBtn {
+    display: flex;
+    margin: auto;
+    background: transparent;
+    border: none;
+    outline: none;
+    user-select: none;
+}
+.deleteBtn svg {
+    cursor: pointer;
+    transition: 0.2s ease-out;
+}
+.deleteBtn svg:hover {
+    stroke: rgb(255, 70, 70);
 }

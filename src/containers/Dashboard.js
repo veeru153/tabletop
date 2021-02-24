@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import classes from './Dashboard.module.css';
 import { db, CONFIG, WIDGETS } from '../util/db';
 import * as defaults from '../util/defaults';
 import cuid from 'cuid';
 import Settings from './Settings/Settings';
 import { ConfigContext } from '../util/contexts';
 import WidgetRenderer from './WidgetRenderer';
+import { Menu } from 'react-feather';
 
 const Dashboard = () => {
     const [bg, setBg] = useState(defaults.BG);
@@ -76,20 +78,28 @@ const Dashboard = () => {
                 <Settings />
             </ConfigContext.Provider>
             <div style={overlayStyles}>
-                {widgets.map(w => <WidgetRenderer key={w.key} id={w.key} data={w.data}/>)}
+                {widgets.length === 0 ? <ZeroWidgets /> : widgets.map(w => <WidgetRenderer key={w.key} id={w.key} data={w.data}/>)}
             </div>
             <button
-                style={{ position: 'absolute', bottom: 0, right: 0, zIndex: 999999 }}
+                className={classes.menuBtn}
                 onClick={() => setShowSettings(!showSettings)}
-            >Click</button>
+            >
+                <Menu size={42} color="#dedede" />
+            </button>
         </div>
     )
 }
 
-const defaultBgState = {
-    usingImg: false,
-    image: null,
-    color: '#282c34', // Default
+const ZeroWidgets = () => {
+    return (
+        <div className={classes.zeroWidgets}>
+            <h1>Welcome to TableTop!</h1>
+            <h3>
+                Seems quite empty, doesn't it?<br />
+                Add Widgets by Clicking on the Menu button below.
+            </h3>
+        </div>
+    )
 }
 
 const defaultStyles = {

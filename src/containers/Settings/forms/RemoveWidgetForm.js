@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
+import classes from './RemoveWidgetForm.module.css';
 import { ConfigContext } from '../../../util/contexts';
-import classes from './Form.module.css';
-import FormTemplate from '../FormTemplate.js'
-
+import FormTemplate from '../FormTemplate.js';
+import { MinusCircle } from 'react-feather';
 
 const RemoveWidgetForm = () => {
     const { widgets } = useContext(ConfigContext);
@@ -31,7 +31,11 @@ const WidgetRow = ({ id, data }) => {
                     </div>
                 ))}
             </div>
-            <div><button onClick={() => removeWidget(id)}>Delete</button></div>
+            <div>
+                <button className={classes.deleteBtn} onClick={() => removeWidget(id)}>
+                    <MinusCircle color="#dedede" />
+                </button>
+            </div>
         </div>
     )
 }

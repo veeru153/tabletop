@@ -1,0 +1,27 @@
+.menuBtn {
+    position: absolute; 
+    bottom: 0;
+    right: 0; 
+    z-index: 9999;
+    background-color: transparent;
+    border: none;
+    user-select: none;
+    outline: 0;
+    opacity: 0.76;
+    transition: 0.2s ease;
+}
+
+.menuBtn:hover {
+    opacity: 1;
+}
+
+.zeroWidgets {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    color: #dedede;
+    font-size: larger;
+}

@@ -3,8 +3,13 @@ import React from 'react';
 import WeatherForm from './WeatherForm';
 import ClockForm from './ClockForm';
 
-export const WEATHER    = { key: 'weather', img: '', name: 'Weather', next: <WeatherForm /> };
-export const CLOCK      = { key: 'clock', img: '', name: 'Clock', next: <ClockForm /> };
+import {
+    Cloud,
+    Clock,
+} from 'react-feather';
+
+export const WEATHER    = { key: 'weather', icon: <Cloud />, name: 'Weather', next: <WeatherForm /> };
+export const CLOCK      = { key: 'clock', icon: <Clock />, name: 'Clock', next: <ClockForm /> };
 
 
 /** Adding New Widget Form:

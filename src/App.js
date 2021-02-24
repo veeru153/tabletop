@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { db, CONFIG } from './util/db';
 import * as DEFAULTS from './util/defaults';
+import TableTop from './containers/TableTop';
 import Dashboard from './containers/Dashboard';
 
 function App() {
     const [loaded, setLoaded] = useState(false);
 
-    const initialiseApp = () => {
-        db.collection(CONFIG).get({ keys: true })
-            .then(config => {
-                if (!config || config.length === 0) {
-                    db.collection(CONFIG).doc('bg').set(DEFAULTS.BG)
-                    db.collection(CONFIG).doc('secrets').set({ });
-                }
-            })
-            .then(() => setLoaded(true));
+    const initialiseApp = async () => {
+        const config = await db.collection(CONFIG).get({ keys: true });
+        if(!config || config.length === 0) {
+            db.collection(CONFIG).doc('bg').set(DEFAULTS.BG)
+        }
+        setLoaded(true);
     }
     useEffect(() => initialiseApp(), [])
 
-    return loaded ? <Dashboard /> : <div>Loading...</div>
+    return <TableTop loaded={loaded}/>
 }
 
 export default App;
