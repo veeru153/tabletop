@@ -2,6 +2,9 @@
     display: flex;
     flex-direction: column;
 }
+.form h2 {
+    margin: 0;
+}
 
 .fields {
     display: grid;
@@ -14,14 +17,23 @@
     padding-bottom: 5px;
 }
 
-.updateBtn {
-    font-size: 24px;
-    padding: 12px 20px;
-    margin: 40px auto;
-}
-
-
 .styleSelection {
     display: grid;
     grid-template-columns: 3fr 1.5fr 1.5fr;
+}
+
+.imagePickerDropzone {
+    margin: 4px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 5px solid #dedede;
+    width: 364px;
+    height: 200px;
+}
+
+.imagePickerDropzone img {
+    width: 364px;
+    height: 200px;
 }

@@ -16,8 +16,10 @@ const Option = ({ opt }) => {
             className={classes.option}
             onClick={() => addPageToStack(opt.next)}
         >
-            <div></div>
-            <div>{opt.name}</div>
+            <div className={classes.iconContainer}>
+                {opt.icon}
+            </div>
+            <h2 style={{ textAlign: 'center' }}>{opt.name}</h2>
         </div>
     )
 }

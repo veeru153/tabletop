@@ -10,7 +10,7 @@ const ClockForm = () => {
 
     return (
         <Formik
-            initialValues={{ tz: "UTC-12:00", label: "" }}
+            initialValues={{ tz: "", label: "" }}
             onSubmit={(values, actions) => {
                 if (values.tz === "Select a Timezone") return;
                 addWidget(CLOCK.type, values);
@@ -30,12 +30,16 @@ const ClockForm = () => {
                         />
                         <TextInput
                             name="label"
-                            placeholder="Clock Label"
+                            placeholder="Clock Label (Optional)"
                             onChange={props.handleChange}
                             value={props.values.label}
                             style={styles.input}
                         />
-                        <Button type="submit" disabled={props.isSubmitting}>Submit</Button>
+                        <Button 
+                            type="submit" 
+                            disabled={["", "Select a Timezone"].includes(props.values.tz) || props.isSubmitting}
+                            style={styles.btn}
+                        >Submit</Button>
                     </form>
                 </FormTemplate>
             )}
@@ -98,6 +102,9 @@ const styles = {
         fontSize: '30px',
         textAlign: 'center',
     },
+    btn: {
+        margin: '64px auto',
+    }
 }
 
 export default ClockForm;

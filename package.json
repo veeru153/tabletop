@@ -15,7 +15,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-draggable": "^4.4.3",
-    "react-feather": "^2.0.8",
+    "react-feather": "^2.0.9",
     "react-rnd": "^10.2.4",
     "react-scripts": "3.4.3",
     "universal-cookie": "^4.0.4"

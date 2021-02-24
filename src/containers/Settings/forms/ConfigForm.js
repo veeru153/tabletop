@@ -93,7 +93,7 @@ const ConfigForm = () => {
                                 </div>
                             </div>
                         </div>
-                        <Button type="submit" className={classes.updateBtn}>Update</Button>
+                        <Button type="submit" style={styles.updateBtn}>Update</Button>
                     </form>
                 )}
             </Formik> : null}
@@ -124,6 +124,9 @@ const styles = {
         fontSize: 22,
         paddingBottom: 5,
     },
+    updateBtn: {
+        margin: '30px auto',
+    }
 }
 
 export default ConfigForm;

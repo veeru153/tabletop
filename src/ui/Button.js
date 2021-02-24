@@ -1,18 +1,12 @@
 import React from 'react';
+import classes from './Button.module.css';
 
 const Button = (props) => {
     return (
-        <button {...props} style={{...styles.btn, ...props.style}}>
+        <button {...props} disabled={props.disabled} className={classes.Button} style={props.style}>
             {props.children}
         </button>
     )
-}
-
-const styles = {
-    btn: {
-        fontSize: '24px',
-        padding: '12px 24px',
-    }
 }
 
 export default Button;

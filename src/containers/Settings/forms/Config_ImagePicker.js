@@ -31,10 +31,15 @@ const ImagePicker = (props) => {
 
     return (
         <div>
-            <div style={imgPickerStyle.dropZone} onDrop={(e) => dropHandler(e)} onDragOver={(e) => e.preventDefault()}>
-                <img alt="Preview" ref={preview} style={{ ...imgPickerStyle.img, opacity: selectedImg ? 1 : 0 }}></img>
-                <p>Drag one or more files to this Drop Zone ...</p>
+            <div className={classes.imagePickerDropzone} onDrop={(e) => dropHandler(e)} onDragOver={(e) => e.preventDefault()}>
+                <img 
+                    alt="Preview" 
+                    ref={preview} 
+                    style={{ opacity: selectedImg ? 1 : 0 }}
+                ></img>
+                <p style={{ display: selectedImg ? 'none' : 'block' }}>Drag an Image in this Dropzone</p>
             </div>
+            <p style={{ opacity: selectedImg ? 1 : 0 }}>Drag an Image in the above Dropzone to set as the background.</p>
             <div>
                 <h3>Background Blend: </h3>
                 <div className={classes.fields}>
@@ -64,23 +69,6 @@ const styles = {
         fontSize: 22,
         paddingBottom: 5,
     },
-}
-
-const imgPickerStyle = {
-    dropZone: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        border: '5px solid blue',
-        width: '200px',
-        height: '100px',
-    },
-    img: {
-        position: 'absolute',
-        width: '200px',
-        height: '100px',
-    }
 }
 
 const blendModeList = [

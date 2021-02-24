@@ -3,8 +3,7 @@ import classes from './Settings.module.css';
 import Option from './Option';
 import rootNavRoutes from './rootNavRoutes';
 import { ConfigContext, NavContext } from '../../util/contexts';
-
-// TODO: Update Up and Close buttons to glyphs
+import { ArrowUp, X } from 'react-feather';
 
 const Settings = () => {
     const { showSettings, setShowSettings } = useContext(ConfigContext);
@@ -19,7 +18,10 @@ const Settings = () => {
     }, [showSettings]);
 
     const upOneLevel = () => {
-        if(pageStack.length <= 1) return;
+        if(pageStack.length <= 1) {
+            setShowSettings(false);
+            return;
+        };
         setLevel(Math.max(0, level-1));
         const upwardTimeout =  setTimeout(() => setPageStack(pageStack.slice(0, level)), 400);
         return () => clearTimeout(upwardTimeout);
@@ -30,8 +32,13 @@ const Settings = () => {
             className={classes.wrapper}
             style={{ transform: showSettings ? "translateY(0)" : "translateY(100%)" }}
         >
-            <div className={classes.sides}>
-                <button onClick={upOneLevel}>Up</button>
+            <div 
+                className={classes.sides}  
+                style={{ justifyContent: 'flex-end' }}
+            >
+                <button className={classes.uiBtns} style={{ margin: '0 20px' }} onClick={upOneLevel}>
+                    <ArrowUp size={42} color="#dedede" />
+                </button>
             </div> 
             <NavContext.Provider value={{ pageStack, setPageStack, level, setLevel }}>
                 <div 
@@ -42,7 +49,12 @@ const Settings = () => {
                 </div>
             </NavContext.Provider>
             <div className={classes.sides}>
-                <button onClick={() => setShowSettings(false)}>Close</button>
+                <button 
+                    className={classes.uiBtns} 
+                    onClick={() => setShowSettings(false)}
+                >
+                    <X size={42} color="#dedede" />
+                </button>
             </div>
         </div>
     )

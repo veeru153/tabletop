@@ -24,14 +24,14 @@ const WeatherForm = () => {
                     <form onSubmit={props.handleSubmit} style={styles.form}>
                         <TextInput 
                             name="city"
-                            placeholder="City, [Country Code]"
+                            placeholder="City, Country Code"
                             onChange={props.handleChange}
                             value={props.values.city}
                             style={styles.input}
                         />
                         <Button 
                             type="submit" 
-                            disabled={props.isSubmitting}
+                            disabled={!props.values.city || props.isSubmitting}
                             style={styles.btn}
                         >Submit</Button>
                     </form>
@@ -55,8 +55,7 @@ const styles = {
         textAlign: 'center',
     },
     btn: {
-        fontSize: '24px',
-        padding: '12px 24px',
+        margin: '36px auto',
     }
 }
 

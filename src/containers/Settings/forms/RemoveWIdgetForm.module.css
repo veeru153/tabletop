@@ -22,3 +22,19 @@
 .rowQ div p {
     margin: 6px 0;
 }
+
+.deleteBtn {
+    display: flex;
+    margin: auto;
+    background: transparent;
+    border: none;
+    outline: none;
+    user-select: none;
+}
+.deleteBtn svg {
+    cursor: pointer;
+    transition: 0.2s ease-out;
+}
+.deleteBtn svg:hover {
+    stroke: rgb(255, 70, 70);
+}

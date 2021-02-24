@@ -4,7 +4,7 @@ import FormTemplate from '../FormTemplate.js';
 import secretsList from '../../../util/secretsList';
 import { Formik } from 'formik';
 import { cookies, SECRETS } from '../../../util/cookies';
-import { TextInput } from '../../../ui/';
+import { TextInput, Button } from '../../../ui/';
 
 const SecretsForm = () => {
     const [secretDoc, setSecretDoc] = useState({});
@@ -81,16 +81,9 @@ const SecretRow = (props) => {
                     onChange={handleChange}
                     value={props.values[id].token}
                 />
-                {/* <input
-                    name={name}
-                    type="password"
-                    placeholder="Secret Key"
-                    onChange={handleChange}
-                    value={props.values[id].token}
-                /> */}
             </div>
             <div>
-                <button type="submit">Update</button>
+                <Button style={{ margin: '8px auto'}} type="submit">Update</Button>
             </div>
         </form>
     )

@@ -2,7 +2,13 @@
     all: unset;
     border-bottom: 1px solid #acacacda;
 }
-.TextInput:hover {
+
+.TextInput:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.TextInput:not(:disabled):hover {
     border-bottom: 1px solid #acacac;
 }
 
@@ -11,5 +17,4 @@
 }
 
 .TextInput::placeholder { color: #acacacda; }
-.TextInput:hover::placeholder { color: #acacac; }
-/* .TextInput:focus::placeholder { color: #dedede; } */
+.TextInput:not(:disabled):hover::placeholder { color: #acacac; }
