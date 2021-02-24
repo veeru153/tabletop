@@ -45,7 +45,7 @@ const styles = {
     form: {
         display: 'flex',
         flexDirection: 'column',
-        marginTop: '32%',
+        marginTop: 'clamp(124px, 50%, 152px)',
         alignItems: 'center',
         height: '100%',
     },
