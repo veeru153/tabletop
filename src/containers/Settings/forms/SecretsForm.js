@@ -37,7 +37,7 @@ const SecretsForm = () => {
     return (
         <FormTemplate
             title="Secrets"
-            subtitle="DO NOT SHARE THESE!"
+            subtitle="DO NOT SHARE THESE! Reload the page when the values have been update."
         >
             {loaded ? <Formik
                 initialValues={{...secretDoc}}

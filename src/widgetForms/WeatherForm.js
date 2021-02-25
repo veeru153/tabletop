@@ -1,14 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { WEATHER } from '../widgets';
 import { ConfigContext } from '../util/contexts';
 import { Formik } from 'formik';
 import FormTemplate from '../containers/Settings/FormTemplate';
 import { TextInput, Button } from '../ui';
+import { cookies, SECRETS } from '../util/cookies';
 
 // TODO: Add an warning message that OWM Key has not been set.
 
 const WeatherForm = () => {
     const { addWidget } = useContext(ConfigContext);
+    const [apiKeyExists, setApiKeyExists] = useState(false);
+
+    useEffect(() => {
+        async function doesApiKeyExist() {
+            const { owmKey } = await cookies.get(SECRETS);
+            setApiKeyExists(owmKey && owmKey?.token);
+        }
+        doesApiKeyExist();
+    }, []);
 
     return (
         <Formik
@@ -24,16 +34,17 @@ const WeatherForm = () => {
                     subtitle="Make sure you have your OpenWeatherMaps API Key in 'Secrets'!"
                 >
                     <form onSubmit={props.handleSubmit} style={styles.form}>
-                        <TextInput 
+                        <TextInput
                             name="city"
                             placeholder="City, Country Code"
                             onChange={props.handleChange}
                             value={props.values.city}
                             style={styles.input}
                         />
-                        <Button 
-                            type="submit" 
-                            disabled={!props.values.city || props.isSubmitting}
+                        {!apiKeyExists ? <Warning /> : null}
+                        <Button
+                            type="submit"
+                            disabled={apiKeyExists && (!props.values.city || props.isSubmitting)}
                             style={styles.btn}
                         >Submit</Button>
                     </form>
@@ -43,11 +54,20 @@ const WeatherForm = () => {
     )
 }
 
+const Warning = () => {
+    return (
+        <div style={styles.Warning}>
+            <h3>No API Key provided.</h3>
+            <h4>Please add your OpenWeatherMaps API Key in 'Secrets &gt; OpenWeatherMaps Key'</h4>
+        </div>
+    )
+}
+
 const styles = {
     form: {
         display: 'flex',
         flexDirection: 'column',
-        marginTop: 'clamp(124px, 50%, 152px)',
+        justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
     },
@@ -58,6 +78,14 @@ const styles = {
     },
     btn: {
         margin: '36px auto',
+    },
+    Warning: {
+        textAlign: 'center',
+        backgroundColor: 'rgba(255,101,101,0.72)',
+        color: '#dedede',
+        padding: '2px 42px',
+        borderRadius: '60px',
+        
     }
 }
 

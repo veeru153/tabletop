@@ -35,6 +35,9 @@
     cursor: pointer;
     transition: 0.2s ease-out;
 }
-.deleteBtn svg:hover {
-    stroke: rgb(255, 70, 70);
+.deleteBtn:hover {
+    stroke: rgb(255, 70, 70, 0.8);
+}
+.deleteBtn:active {
+    stroke: rgb(255, 70, 70, 1);
 }
