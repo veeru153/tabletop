@@ -12,10 +12,10 @@ export const fetchData = async (id, city) => {
     const OWM_KEY = owmKey?.token;
     if(navigator.onLine) {
         const api = `http://api.openweathermap.org/data/2.5/find?q=${encodeURIComponent(city)}&units=metric&appid=${OWM_KEY}`;
-        const res = await Axios.get(api);
-        if(res.data.cod == 200) {
+        try {
+            const res = await Axios.get(api);
+            console.log(city, res.data);
             const data = await res.data.list[0];
-            console.log(city, data);
             if(!data || data.length === 0) {
                 errorW.name = "Error"
                 errorW.weather[0].main = "No matching location found.";
@@ -23,9 +23,8 @@ export const fetchData = async (id, city) => {
             }
             db.collection(WIDGETS).doc(id+"").update({ params: data });
             return data;
-        } else {
-            errorW.name = `Error ${res.cod}`
-            errorW.weather[0].main = res.message;
+        } catch (e) {
+            errorW.weather[0].main = e.message;
             return errorW;
         }
     } else {
