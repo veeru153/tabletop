@@ -14,7 +14,6 @@ export const fetchData = async (id, city, units) => {
         const api = `http://api.openweathermap.org/data/2.5/find?q=${encodeURIComponent(city)}&units=${units}&appid=${OWM_KEY}`;
         try {
             const res = await Axios.get(api);
-            console.log(city, res.data);
             const data = await res.data.list[0];
             if(!data || data.length === 0) {
                 errorW.name = "Error"

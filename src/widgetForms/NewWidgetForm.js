@@ -17,7 +17,7 @@ const NewWidgetForm = () => {
 
     return (
         <Formik
-            initialValues={{ city: '' }}
+            initialValues={{  }}
             onSubmit={(values, actions) => {
                 /**
                  * Add code to be performed when form is submitted. 
@@ -36,12 +36,24 @@ const NewWidgetForm = () => {
                 >
                     <form onSubmit={props.handleSubmit}>
                         {/* Add form content here */}
-                        <button type="submit" disabled={props.isSubmitting}>Submit</button>
+                        <Button 
+                            type="submit" 
+                            disabled={props.isSubmitting}
+                            style={styles.btn}
+                        >
+                            Submit
+                        </Button>
                     </form>
                 </FormTemplate>
             )}
         </Formik>
     )
+}
+
+const styles = {
+    btn: {
+        margin: '36px auto',
+    },
 }
 
 export default NewWidgetForm;

@@ -109,8 +109,10 @@ const styles = {
         color: '#dedede',
         padding: '2px 42px',
         borderRadius: '60px',
-
-    }
+    },
+    radioBtn: {
+        fontSize: '18.72px',
+    },
 }
 
 export default WeatherForm;
