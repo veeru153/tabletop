@@ -12,7 +12,7 @@ const Intro = (props) => {
             >
                 <h1>TableTop</h1>
             </div>
-            <Dashboard />
+            {props.loaded ? <Dashboard /> : null}
         </>
     )
 }

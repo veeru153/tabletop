@@ -1,4 +1,10 @@
+/* TODO: Cross check all font-sizes with build */
+
 /* No idea why h* has different font in build */
+body {
+    background-color: #282c34;
+}
+
 h1 {
     font-size: 32px;
 }

@@ -118,7 +118,7 @@ const filterFnList = [
 
 const styles = {
     radioBtn: {
-        fontSize: '1.17em',
+        fontSize: '18.72px',
     },
     textInput: {
         fontSize: 22,

@@ -7,7 +7,6 @@
 
 .Radio label {
     cursor: pointer;
-    font-size: 22px;
     background-color: rgba(255,255,255,0.32);
     color: #dedede;
     padding: 8px 16px;

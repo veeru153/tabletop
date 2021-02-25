@@ -94,5 +94,6 @@
 }
 
 .label {
+    font-size: 16px;
     color: var(--clock-color);
 }

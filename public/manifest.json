@@ -3,6 +3,8 @@
   "description": "A macOS Dock inspired New Tab override.",
   "version": "0.0.1",
   "manifest_version": 2,
+  "author": "veeru153",
+  "homepage_url": "https://github.com/veeru153/tabletop",
   "incognito": "split",
   "chrome_url_overrides": {
     "newtab": "index.html"

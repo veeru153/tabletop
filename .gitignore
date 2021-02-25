@@ -24,4 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 
 ideas.md
-src\ copy
+*.crx
+*.pem

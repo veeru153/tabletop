@@ -5,6 +5,8 @@ import { Formik } from 'formik';
 import FormTemplate from '../containers/Settings/FormTemplate';
 import { TextInput, Button } from '../ui';
 
+// TODO: Add an warning message that OWM Key has not been set.
+
 const WeatherForm = () => {
     const { addWidget } = useContext(ConfigContext);
 
