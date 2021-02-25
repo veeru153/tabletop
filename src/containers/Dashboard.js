@@ -93,11 +93,13 @@ const Dashboard = () => {
 const ZeroWidgets = () => {
     return (
         <div className={classes.zeroWidgets}>
-            <h1>Welcome to TableTop!</h1>
-            <h3>
-                Seems quite empty, doesn't it?<br />
-                Add Widgets by Clicking on the Menu button below.
-            </h3>
+            <div className={classes.headingBg}>
+                <h1>Welcome to TableTop!</h1>
+                <h3>
+                    Seems quite empty, doesn't it?<br />
+                    Add Widgets by Clicking on the Menu button below.
+                </h3>
+            </div>
         </div>
     )
 }

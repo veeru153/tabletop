@@ -40,6 +40,8 @@ const styles = {
     repoLink: {
         display: 'flex',
         flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         color: 'black',
         background: '#dedede',
         gap: 20,

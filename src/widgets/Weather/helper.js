@@ -3,7 +3,7 @@ import { db, WIDGETS } from '../../util/db';
 import { cookies, SECRETS } from '../../util/cookies';
 
 
-export const fetchData = async (id, city) => {
+export const fetchData = async (id, city, units) => {
     const { owmKey } = await cookies.get(SECRETS);
     if(!owmKey || !owmKey?.token) {
         errorW.weather[0].main = "Missing API Key";
@@ -11,7 +11,7 @@ export const fetchData = async (id, city) => {
     }
     const OWM_KEY = owmKey?.token;
     if(navigator.onLine) {
-        const api = `http://api.openweathermap.org/data/2.5/find?q=${encodeURIComponent(city)}&units=metric&appid=${OWM_KEY}`;
+        const api = `http://api.openweathermap.org/data/2.5/find?q=${encodeURIComponent(city)}&units=${units}&appid=${OWM_KEY}`;
         try {
             const res = await Axios.get(api);
             console.log(city, res.data);

@@ -25,3 +25,8 @@
     color: #dedede;
     font-size: larger;
 }
+
+.headingBg {
+    background-color: rgba(40,44,52, 0.91);
+    padding: 20px 32px;
+}
