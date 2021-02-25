@@ -1,17 +1,5 @@
 import React from 'react';
 
-import WeatherForm from './WeatherForm';
-import ClockForm from './ClockForm';
-
-import {
-    Cloud,
-    Clock,
-} from 'react-feather';
-
-export const WEATHER    = { key: 'weather', icon: <Cloud />, name: 'Weather', next: <WeatherForm /> };
-export const CLOCK      = { key: 'clock', icon: <Clock />, name: 'Clock', next: <ClockForm /> };
-
-
 /** Adding New Widget Form:
  * 1. Import your WidgetForm.
  * 2. Copy the below export and add it to the bottom of the exports.
@@ -19,3 +7,17 @@ export const CLOCK      = { key: 'clock', icon: <Clock />, name: 'Clock', next: 
  *    WidgetForm.
  */
 // export const WIDGET  = { key: 'KEY', img: 'IMAGE', name: 'NAME', next: <WidgetForm /> };
+
+import WeatherForm from './WeatherForm';
+import ClockForm from './ClockForm';
+import CalendarForm from './CalendarForm';
+
+import {
+    Cloud,
+    Clock,
+    Calendar
+} from 'react-feather';
+
+export const WEATHER    = { key: 'weather', icon: <Cloud />, name: 'Weather', next: <WeatherForm /> };
+export const CLOCK      = { key: 'clock', icon: <Clock />, name: 'Clock', next: <ClockForm /> };
+export const CALENDAR   = { key: 'calendar', icon: <Calendar />, name: 'Calendar', next: <CalendarForm /> };
