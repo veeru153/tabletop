@@ -6,12 +6,12 @@
 
 TableTop is a New Tab extension. Inspired the macOS Dock, it aims to provide a fully customisable and feature packed New Tab page.
 
-- Latest Release: [(v0.0.1)](https://github.com/veeru153/tabletop/releases/tag/v0.0.1)
+- Latest Release: [(v0.1)](https://github.com/veeru153/tabletop/releases/tag/v0.1)
 - [Changelog](CHANGELOG.md)
 
 ### Usage
 
-1. Download the [latest release (v0.0.1)](https://github.com/veeru153/tabletop/releases/tag/v0.0.1).
+1. Download the [latest release (v0.1)](https://github.com/veeru153/tabletop/releases/tag/v0.1).
 2. Extract the `tabletop` folder from the zip file and store it at a location. (You can't change the location once you load the extension into Chrome).
 3. Visit the [Extensions](chrome://extensions/) page. Turn on Developer Mode (top-right corner).
 4. Click on `Load Unpacked` (top-left corner) and navigate inside the `tabletop` folder extracted in Step 2.

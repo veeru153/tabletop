@@ -43,7 +43,10 @@ const Day = (props) => {
     return (
         <div 
             className={dayClasses}
-            style={{ backgroundColor: dt.day === day ? "tomato" : "transparent" }}
+            style={{ 
+                backgroundColor: dt.day === day ? "tomato" : "transparent",
+                color: dt.day === day ? "rgb(32,32,32)" : "#dedede"
+            }}
         >
             {day !== 0 ? day : " "}
         </div>
