@@ -29,7 +29,7 @@ const Calendar = (props) => {
             </div>
             <hr />
             <div className={classes.calContainer}>
-                {cal.map((day, i) => <Day day={day} i={i} dt={dt} startsMonday={meta.q.startsMonday} />)}
+                {cal.map((day, i) => <Day key={i} day={day} i={i} dt={dt} startsMonday={meta.q.startsMonday} />)}
             </div>
         </Widget>
     )

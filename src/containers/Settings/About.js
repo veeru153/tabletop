@@ -11,8 +11,8 @@ const About = () => {
         >
             <h2>TableTop - Own your New Tab</h2>
             <p>TableTop is a macOS Dock inspired New Tab override.</p>
-            <p>This is an open source project made ❤️ in React.</p>
-            <p>If you like this extension, please star it on GitHub. It would mean a lot to me 🥺.</p>
+            <p>This is an open source project made <span role="img" aria-label="heart">❤️</span> in React.</p>
+            <p>If you like this extension, please star it on GitHub. It would mean a lot to me <span role="img" aria-label="pleading face">🥺</span>.</p>
             <h3>How You Can Contribute?</h3>
             <p>This was created by me while I was trying out new things in React. I polished the app the best I could but there might be bugs.</p>
             <p>If you:</p>
@@ -25,6 +25,7 @@ const About = () => {
             <a 
                 href="https://github.com/veeru153/tabletop" 
                 target="_blank"
+                rel="noopener noreferrer"
                 style={{ textDecoration: 'none' }}
             >
                 <Button style={styles.repoLink}>
