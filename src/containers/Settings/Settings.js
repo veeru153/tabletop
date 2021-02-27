@@ -12,10 +12,11 @@ const Settings = () => {
 
     // Go up one level or close settings when Esc is pressed
     const onEscPress = useCallback((e) => {
-        if(!showSettings) return;
-        if(e.keyCode === 27) {
-            if(level === 0) setShowSettings(false);
-            else upOneLevel();
+        if(showSettings) {
+            if(e.key === "Escape") {
+                if(level === 0) setShowSettings(false);
+                else upOneLevel();
+            }
         }
     });
     useEffect(() => {
