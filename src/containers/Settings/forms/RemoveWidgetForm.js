@@ -26,8 +26,8 @@ const WidgetRow = ({ id, data }) => {
             <div className={classes.rowQ}>
                 {qTable.map(q => (
                     <div>
-                        <p className={classes.rowKey}>{q[0]}</p>
-                        <p className={classes.rowVal}>{q[1]}</p>
+                        <p className={classes.rowKey}>{q[0]+""}</p>
+                        <p className={classes.rowVal}>{q[1]+""}</p>
                     </div>
                 ))}
             </div>

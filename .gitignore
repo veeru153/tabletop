@@ -25,5 +25,6 @@ yarn-debug.log*
 yarn-error.log*
 
 ideas.md
+TODO.md
 *.crx
 *.pem

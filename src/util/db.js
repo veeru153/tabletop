@@ -1,6 +1,8 @@
 import Localbase from 'localbase';
 export const db = new Localbase('tabletop');
 
+db.config.debug = false;
+
 export const CONFIG = "config";
 export const WIDGETS = "widgets";
 

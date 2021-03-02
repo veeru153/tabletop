@@ -16,7 +16,6 @@ const ImagePicker = (props) => {
         const file = e.dataTransfer.files[0];
         const fr = new FileReader();
         fr.onload = () => {
-            console.log(fr.result)
             setSelectedImg(fr.result.replace(/(\r\n|\n|\r)/gm, ""))
         };
         fr.readAsDataURL(file);

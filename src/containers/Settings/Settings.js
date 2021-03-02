@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import classes from './Settings.module.css';
 import Option from './Option';
 import rootNavRoutes from './rootNavRoutes';
@@ -9,6 +9,20 @@ const Settings = () => {
     const { showSettings, setShowSettings } = useContext(ConfigContext);
     const [pageStack, setPageStack] = useState([<RootSettings />]);
     const [level, setLevel] = useState(0);
+
+    // Go up one level or close settings when Esc is pressed
+    const onEscPress = useCallback((e) => {
+        if(showSettings) {
+            if(e.key === "Escape") {
+                if(level === 0) setShowSettings(false);
+                else upOneLevel();
+            }
+        }
+    });
+    useEffect(() => {
+        document.addEventListener("keydown", onEscPress);
+        return () =>  document.removeEventListener("keydown", onEscPress);
+    }, [showSettings, level])
 
     // Set Level to 0 when Settings are closed/opened
     useEffect(() => {

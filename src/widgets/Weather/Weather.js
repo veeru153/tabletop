@@ -7,11 +7,13 @@ import { icons, backgrounds } from './assets';
 const Weather = (props) => {
     const { id, meta } = props;
     const [w, setW] = useState(defaultW);
+    const [unitsLabel, setUnitsLabel] = useState("C");
 
     // Fetch Updated Weather or show Saved Weather
     useEffect(() => {
         async function onMount() {
-            const updatedW = await fetchData(id, meta.q.city);
+            const updatedW = await fetchData(id, meta.q.city, meta.q.units);
+            if(meta.q.units === "imperial") setUnitsLabel("F");
             setW(updatedW);
         }
         onMount();
@@ -31,14 +33,14 @@ const Weather = (props) => {
         >
             <div>
                 <div className={classes.city}>{w.name}</div>
-                <div className={classes.temp}>{Math.round(w.main.temp)}°C</div>
+                <div className={classes.temp}>{Math.round(w.main.temp)}°{unitsLabel}</div>
             </div>
             <div className={classes.info}>
                 <Icon id={w.weather[0].icon} size={36} />
                 <div className={classes.condn}>{w.weather[0].main}</div>
                 <div className={classes.hl}>
-                    <div>H: {Math.round(w.main.temp_max)}°C</div>
-                    <div>L: {Math.round(w.main.temp_min)}°C</div>
+                    <div>H: {Math.round(w.main.temp_max)}°{unitsLabel}</div>
+                    <div>L: {Math.round(w.main.temp_min)}°{unitsLabel}</div>
                 </div>
             </div>
         </Widget>

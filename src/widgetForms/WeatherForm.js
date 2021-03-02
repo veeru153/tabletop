@@ -3,7 +3,7 @@ import { WEATHER } from '../widgets';
 import { ConfigContext } from '../util/contexts';
 import { Formik } from 'formik';
 import FormTemplate from '../containers/Settings/FormTemplate';
-import { TextInput, Button } from '../ui';
+import { TextInput, Button, Radio } from '../ui';
 import { cookies, SECRETS } from '../util/cookies';
 
 // TODO: Add an warning message that OWM Key has not been set.
@@ -22,7 +22,7 @@ const WeatherForm = () => {
 
     return (
         <Formik
-            initialValues={{ city: '' }}
+            initialValues={{ units: 'metric', city: '' }}
             onSubmit={(values, actions) => {
                 addWidget(WEATHER.type, values);
                 actions.resetForm();
@@ -34,6 +34,25 @@ const WeatherForm = () => {
                     subtitle="Make sure you have your OpenWeatherMaps API Key in 'Secrets'!"
                 >
                     <form onSubmit={props.handleSubmit} style={styles.form}>
+                        <div style={styles.unitsContainer}>
+                            <h3>Units: </h3>
+                            <Radio
+                                label="°C"
+                                name="metricUnits"
+                                value="metric"
+                                checked={props.values.units === "metric"}
+                                onChange={() => props.setFieldValue('units', "metric")}
+                                style={styles.radioBtn}
+                            />
+                            <Radio
+                                label="°F"
+                                name="imperialUnits"
+                                value="imperial"
+                                checked={props.values.units === "imperial"}
+                                onChange={() => props.setFieldValue('units', "imperial")}
+                                style={styles.radioBtn}
+                            />
+                        </div>
                         <TextInput
                             name="city"
                             placeholder="City, Country Code"
@@ -71,6 +90,11 @@ const styles = {
         alignItems: 'center',
         height: '100%',
     },
+    unitsContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 50,
+    },
     input: {
         margin: '60px auto',
         fontSize: '30px',
@@ -85,8 +109,10 @@ const styles = {
         color: '#dedede',
         padding: '2px 42px',
         borderRadius: '60px',
-        
-    }
+    },
+    radioBtn: {
+        fontSize: '18.72px',
+    },
 }
 
 export default WeatherForm;
