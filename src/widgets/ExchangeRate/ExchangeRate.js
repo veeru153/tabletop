@@ -11,6 +11,7 @@ const ExchangeRate = (props) => {
     useEffect(() => {
         async function onMount() {
             const newData = await fetchRate(id, base, symbol);
+            console.log(newData)
             setData(newData);
         }
         onMount();
@@ -39,8 +40,8 @@ const ExchangeRate = (props) => {
 }
 
 const getTrendColor = (trend) => {
-    if(trend == 1) return "#56b132";
-    if(trend == -1) return "#ff5151";
+    if(trend === 1) return "#56b132";
+    if(trend === -1) return "#ff5151";
     return "#dedede";
 }
 

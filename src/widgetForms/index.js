@@ -23,4 +23,4 @@ import {
 export const WEATHER    = { key: 'weather', icon: <Cloud />, name: 'Weather', next: <WeatherForm /> };
 export const CLOCK      = { key: 'clock', icon: <Clock />, name: 'Clock', next: <ClockForm /> };
 export const CALENDAR   = { key: 'calendar', icon: <Calendar />, name: 'Calendar', next: <CalendarForm /> };
-export const CURRENCY   = { key: 'exchangeRate', icon: <DollarSign />, name: 'Exchange Rate', next: <ExchangeRateForm /> };
+export const EXCHANGE   = { key: 'exchangeRate', icon: <DollarSign />, name: 'Exchange Rate', next: <ExchangeRateForm /> };
