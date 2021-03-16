@@ -11,13 +11,16 @@ import React from 'react';
 import WeatherForm from './WeatherForm';
 import ClockForm from './ClockForm';
 import CalendarForm from './CalendarForm';
+import ExchangeRateForm from './ExchangeRateForm';
 
 import {
     Cloud,
     Clock,
-    Calendar
+    Calendar,
+    DollarSign
 } from 'react-feather';
 
 export const WEATHER    = { key: 'weather', icon: <Cloud />, name: 'Weather', next: <WeatherForm /> };
 export const CLOCK      = { key: 'clock', icon: <Clock />, name: 'Clock', next: <ClockForm /> };
 export const CALENDAR   = { key: 'calendar', icon: <Calendar />, name: 'Calendar', next: <CalendarForm /> };
+export const EXCHANGE   = { key: 'exchangeRate', icon: <DollarSign />, name: 'Exchange Rate', next: <ExchangeRateForm /> };
