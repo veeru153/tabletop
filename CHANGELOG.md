@@ -1,5 +1,10 @@
 # Changelog
 
+## March 16, 2021
+
+- Widgets Added: ExchangeRate
+- Widgets Updated: Calendar (styles)
+
 ## March 2, 2021
 
 - Release v0.2.

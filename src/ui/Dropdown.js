@@ -11,8 +11,13 @@ const Dropdown = (props) => {
             onChange={props.onChange}
             style={props.style}
             value={props.value}
+            defaultValue={props.defaultValue}
         >
-            {options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+            {options.map(opt => {
+                const label = opt.label ?? opt;
+                const val = opt.val ?? opt;
+                return <option key={val} value={val}>{label}</option>
+            })}
         </select>
     )
 }

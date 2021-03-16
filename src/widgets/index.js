@@ -10,8 +10,10 @@ import React from 'react';
 
 import Weather from "./Weather/Weather";
 import Clock from "./Clock/Clock";
-import Calendar from './Calendar/Calendar';
+import Calendar from "./Calendar/Calendar";
+import ExchangeRate from "./ExchangeRate/ExchangeRate";
 
-export const WEATHER    = { type: 'weather', el: <Weather /> };
-export const CLOCK      = { type: 'clock', el: <Clock /> };
-export const CALENDAR      = { type: 'calendar', el: <Calendar /> };
+export const WEATHER        = { type: 'weather', el: <Weather /> };
+export const CLOCK          = { type: 'clock', el: <Clock /> };
+export const CALENDAR       = { type: 'calendar', el: <Calendar /> };
+export const EXCHANGE       = { type: 'exchange', el: <ExchangeRate /> };
