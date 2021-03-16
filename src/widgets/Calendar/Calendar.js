@@ -5,16 +5,22 @@ import { DateTime } from 'luxon';
 
 const Calendar = (props) => {
     const { id, meta, } = props;
-    const dt = DateTime.local();
-    const { monthLong, year } = dt;
-    const [cal, setCal] = useState([]);
     const daysArrayMon = ["M", "T", "W", "T", "F", "S", "S"];
     const daysArraySun = ["S", "M", "T", "W", "T", "F", "S"];
     const daysArray = meta.q.startsMonday ? daysArrayMon : daysArraySun;
+
+    const [dt, setDt] = useState(DateTime.local());
+    const { monthLong, year } = dt;
+    const [cal, setCal] = useState([]);
     
     useEffect(() => {
-        const tempCal = generateCal(meta.q.startsMonday, dt);
-        setCal([...daysArray, ...tempCal]);
+        const secInterval = setInterval(() => {
+            setDt(DateTime.local())
+            const tempCal = generateCal(meta.q.startsMonday, dt);
+            setCal([...daysArray, ...tempCal]);
+        }, 1000)
+
+        return () => clearInterval(secInterval);
     }, [])
 
     return (
@@ -39,13 +45,14 @@ const Day = (props) => {
     const { day, i, dt, startsMonday } = props;
     const isSunday = (!startsMonday && (i % 7 === 0)) || (startsMonday && (i % 7 === 6));
     const dayClasses = [classes.day, isSunday ? classes.sunday : ""].join(' ');
+    const dayColor = dt.day === day ? "white" : (isSunday ? "red" : "#dedede");
 
     return (
         <div 
             className={dayClasses}
             style={{ 
                 backgroundColor: dt.day === day ? "tomato" : "transparent",
-                color: dt.day === day ? "rgb(32,32,32)" : "#dedede"
+                color: dayColor,
             }}
         >
             {day !== 0 ? day : " "}

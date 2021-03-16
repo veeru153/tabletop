@@ -45,8 +45,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #dedede;
     border-radius: 20px;
     font-size: 14px;
+}
+.day:nth-child(-n+7) {
+    font-weight: bold;
 }
 .sunday {
     color: tomato;
