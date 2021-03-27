@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './TableTop.module.css';
+import classes from './Dashboard.module.css';
 import Dashboard from './Dashboard';
 
 const Intro = (props) => {

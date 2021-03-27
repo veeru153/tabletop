@@ -1,6 +1,7 @@
 export const BG = {
     usingImg: false,
-    image: null,
+    localImg: true,
+    image: null,        // Last local image used
     blend: {
         color: '#000000',
         mode: 'normal',
@@ -9,5 +10,6 @@ export const BG = {
         fn: 'none',
         value: '0'
     },
-    color: '#282c34', // Default,
+    color: '#282c34',   // Default,
 }
+

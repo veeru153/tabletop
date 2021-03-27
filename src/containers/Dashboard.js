@@ -24,16 +24,18 @@ const Dashboard = () => {
         onMount();
     }, [])
 
-    const imgStyles = { 
+    const { innerWidth: w, innerHeight: h } = window;
+
+    const imgStyles = {
         ...defaultStyles,
-        backgroundImage: `url(${bg.image})`,
+        backgroundImage: (navigator.onLine && !bg.localImg) ? `url("https://picsum.photos/${w}/${h}.webp")` : `url(${bg.image})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundColor: bg.blend.color,
-        backgroundBlendMode: bg.blend.mode
+        backgroundBlendMode: bg.blend.mode,
     };
-    const colorStyles  = { 
+    const colorStyles = {
         ...defaultStyles,
         backgroundColor: bg.color,
     };
@@ -41,17 +43,25 @@ const Dashboard = () => {
         ...defaultStyles,
         backdropFilter: bg.filter.fn === "none" ? "none" : `${bg.filter.fn}(${bg.filter.value})`,
     }
+    const fallback = {
+        backgroundColor: bg.color,
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: -1,
+    }
+    
 
     const addWidget = (type, q) => {
         const id = cuid();
         const template = {
             key: id,
             data: {
-                meta: { 
-                    pos: { x: 0, y: 0 }, 
-                    type: type, 
-                    z: widgets.length + 1, 
-                    q: q 
+                meta: {
+                    pos: { x: 0, y: 0 },
+                    type: type,
+                    z: widgets.length + 1,
+                    q: q
                 },
                 params: {}
             }
@@ -73,20 +83,26 @@ const Dashboard = () => {
     const configHandlers = { addWidget, removeWidget, bg, setBg, widgets, setWidgets, showSettings, setShowSettings };
 
     return (
-        <div style={bg.usingImg ? imgStyles : colorStyles}>
-            <ConfigContext.Provider value={configHandlers}>
-                <Settings />
-            </ConfigContext.Provider>
-            <div style={overlayStyles}>
-                {widgets.length === 0 ? <ZeroWidgets /> : widgets.map(w => <WidgetRenderer key={w.key} id={w.key} data={w.data}/>)}
+        <>
+            {/* <div style={fallback}></div> */}
+            <div className={classes.Intro} style={fallback}>
+                <h1>TableTop</h1>
             </div>
-            <button
-                className={classes.menuBtn}
-                onClick={() => setShowSettings(!showSettings)}
-            >
-                <Menu size={42} color="#dedede" />
-            </button>
-        </div>
+            <div style={bg.usingImg ? imgStyles : colorStyles}>
+                <ConfigContext.Provider value={configHandlers}>
+                    <Settings />
+                </ConfigContext.Provider>
+                <div style={overlayStyles}>
+                    {widgets.length === 0 ? <ZeroWidgets /> : widgets.map(w => <WidgetRenderer key={w.key} id={w.key} data={w.data} />)}
+                </div>
+                <button
+                    className={classes.menuBtn}
+                    onClick={() => setShowSettings(!showSettings)}
+                >
+                    <Menu size={42} color="#dedede" />
+                </button>
+            </div>
+        </>
     )
 }
 
