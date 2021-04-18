@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classes from './Dashboard.module.css';
 import { db, CONFIG, WIDGETS } from '../util/db';
-import * as defaults from '../util/defaults';
+import * as DEFAULTS from '../util/defaults';
 import cuid from 'cuid';
 import Settings from './Settings/Settings';
 import { ConfigContext } from '../util/contexts';
@@ -9,7 +9,8 @@ import WidgetRenderer from './WidgetRenderer';
 import { Menu } from 'react-feather';
 
 const Dashboard = () => {
-    const [bg, setBg] = useState(defaults.BG);
+    const [bg, setBg] = useState(DEFAULTS.BG);
+    const [meta, setMeta] = useState(DEFAULTS.META)
     const [widgets, setWidgets] = useState([]);
     const [showSettings, setShowSettings] = useState(false);
 
@@ -18,6 +19,8 @@ const Dashboard = () => {
         async function onMount() {
             const newBg = await db.collection(CONFIG).doc('bg').get();
             setBg(newBg);
+            const newMeta = await db.collection(CONFIG).doc('meta').get();
+            setMeta(newMeta);
             const w = await db.collection(WIDGETS).get({ keys: true });
             setWidgets(w);
         }
@@ -51,6 +54,12 @@ const Dashboard = () => {
         zIndex: -1,
     }
     
+    const hideZeroWidgetMsg = () => {
+        const tempMeta = { ...meta };
+        tempMeta.showZeroWidgetMsg = false;
+        setMeta(tempMeta);
+        db.collection(CONFIG).doc('meta').set(tempMeta);
+    }
 
     const addWidget = (type, q) => {
         const id = cuid();
@@ -93,7 +102,9 @@ const Dashboard = () => {
                     <Settings />
                 </ConfigContext.Provider>
                 <div style={overlayStyles}>
-                    {widgets.length === 0 ? <ZeroWidgets /> : widgets.map(w => <WidgetRenderer key={w.key} id={w.key} data={w.data} />)}
+                    {widgets.length === 0 
+                        ? <ZeroWidgets hideMsgFn={hideZeroWidgetMsg} showMsg={meta.showZeroWidgetMsg} /> 
+                        : widgets.map(w => <WidgetRenderer key={w.key} id={w.key} data={w.data} />)}
                 </div>
                 <button
                     className={classes.menuBtn}
@@ -106,14 +117,24 @@ const Dashboard = () => {
     )
 }
 
-const ZeroWidgets = () => {
+const ZeroWidgets = (props) => {
+    const { showMsg, hideMsgFn } = props;
+
+    const spanStyle = {
+        textDecoration: 'underline',
+        cursor: 'pointer',
+    }
+
+    if(!showMsg) return (<div></div>);
+
     return (
         <div className={classes.zeroWidgets}>
             <div className={classes.headingBg}>
                 <h1>Welcome to TableTop!</h1>
                 <h3>
                     Seems quite empty, doesn't it?<br />
-                    Add Widgets by Clicking on the Menu button below.
+                    Add Widgets by Clicking on the Menu button below.<br />
+                    Click <span onClick={hideMsgFn} style={spanStyle}>here</span> to get rid of this message.
                 </h3>
             </div>
         </div>

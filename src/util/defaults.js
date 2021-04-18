@@ -13,3 +13,6 @@ export const BG = {
     color: '#282c34',   // Default,
 }
 
+export const META = {
+    showZeroWidgetMsg: true,
+};
