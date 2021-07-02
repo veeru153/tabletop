@@ -1,0 +1,6 @@
+@import '../global.module.scss';
+
+.Dashboard {
+    @include fullScreen;
+    @include posFixed($z: 99);
+}

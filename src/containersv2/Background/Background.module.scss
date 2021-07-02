@@ -1,0 +1,12 @@
+@import '../global.module.scss';
+
+.Background {
+    @include fullScreen;
+    @include posFixed($z: -1);
+    background-color: #282c34;
+}
+
+.Images {
+    width: 100vw;
+    height: 100vh;
+}

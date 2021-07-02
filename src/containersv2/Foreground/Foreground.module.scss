@@ -1,0 +1,24 @@
+@import '../global.module.scss';
+
+.Foreground {
+    @include fullScreen;
+    @include posFixed($z: 999);
+}
+
+.menuBtn {
+    position: absolute; 
+    bottom: 0;
+    right: 0; 
+    z-index: 9999;
+    background-color: transparent;
+    border: none;
+    user-select: none;
+    outline: 0;
+    opacity: 0.76;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+.menuBtn:hover {
+    opacity: 1;
+}
