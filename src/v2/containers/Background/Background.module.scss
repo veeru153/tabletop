@@ -6,7 +6,16 @@
     background-color: #282c34;
 }
 
-.Images {
-    width: 100vw;
-    height: 100vh;
+.Images, .Video {
+    width: auto;
+    min-width: 100%;
+    height: auto;
+    min-height: 100%;
+}
+
+.Video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

@@ -4,6 +4,7 @@ import Page from '../../../../common/ui/PageTemplate';
 import Option from '../../../../common/ui/PageOption';
 import classes from '../Settings.module.scss';
 import { PlusSquare, Trash2, Settings, Key, Info } from 'react-feather';
+import { Wallpaper } from '@material-ui/icons';
 import { NavContext } from '../../../../common/util/contexts';
 import About from './About';
 
@@ -44,6 +45,12 @@ const rootNavRoutes = [
         key: 'config',
         icon: <Settings />, 
         name: 'Configure', 
+        // next: <ConfigForm />
+    },
+    { 
+        key: 'background',
+        icon: <Wallpaper />, 
+        name: 'Background', 
         // next: <ConfigForm />
     },
     { 
