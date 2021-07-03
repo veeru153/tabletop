@@ -1,0 +1,76 @@
+@import '../../../common/global.module.scss';
+
+.Settings {
+    @include fullScreen;
+    @include posFixed($z: 9999);
+    background-color: rgba(0, 0, 0, 0.64);
+    color: lightgrey;
+    transition: transform 0.4s ease;
+    backdrop-filter: blur(4.8px);
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    // transform: translateY(100%);
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    grid-column: 2 / 3;
+
+    header {
+        height: max(140px, 18vh);
+    }
+
+    section {
+        height: max(620px, 82vh);
+        overflow-y: scroll;
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */
+    }
+
+    section::-webkit-scrollbar { 
+        display: none;  /* Safari and Chrome */
+    }
+}
+
+.sides {
+    display: flex;
+    height: max(140px, 18vh);
+}
+
+.uiBtns {
+    background: transparent;
+    border: none;
+    user-select: none;
+    outline: none;
+    opacity: 0.8;
+    transition: 0.2s ease;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.RootSettings {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 24px;
+}
+
+.Option {
+    @include flexify($d: column);
+    cursor: pointer;
+    opacity: 0.64;
+    transition: 0.2s ease-in;
+
+    svg {
+        width: 100px;
+        height: 100px;
+        margin-top: 16px;
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}

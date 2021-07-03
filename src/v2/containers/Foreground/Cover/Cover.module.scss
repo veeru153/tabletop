@@ -1,0 +1,9 @@
+@import '../../../common/global.module.scss';
+
+.Cover {
+    @include fullScreen;
+    @include posFixed($z: 99999);
+    @include flexify;
+    background-color: #282c34;
+    color: #dedede;
+}
