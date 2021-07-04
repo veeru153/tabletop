@@ -9,8 +9,13 @@ import Settings from './Settings';
 const Foreground = () => {
     const [showSettings, setShowSettings] = useState(false);
 
+    const isForegroundNeeded = (showSettings);
+
     return (
-        <div className={classes.Foreground}>
+        <div 
+            className={classes.Foreground}
+            style={{ transform: isForegroundNeeded ? "translateY(0)" : "translateY(100%)" }}
+        >
             <button className={classes.menuBtn} onClick={() => setShowSettings(true)}>
                 <MenuRounded style={styles.menuBtn} />
             </button>

@@ -6,6 +6,7 @@ import classes from '../Settings.module.scss';
 import { PlusSquare, Trash2, Settings, Key, Info } from 'react-feather';
 import { Wallpaper } from '@material-ui/icons';
 import { NavContext } from '../../../../common/util/contexts';
+import AddWidget from './AddWidget';
 import About from './About';
 
 const RootSettings = () => {
@@ -33,7 +34,7 @@ const rootNavRoutes = [
         key: 'addWidget',
         icon: <PlusSquare />, 
         name: 'Add Widget', 
-        // next: <AddWidgetForm />
+        next: <AddWidget />
     },
     { 
         key: 'removeWidget',

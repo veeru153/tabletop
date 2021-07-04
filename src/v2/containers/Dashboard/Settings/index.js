@@ -10,7 +10,6 @@ const Settings = ({ showSettings, setShowSettings}) => {
     const [level, setLevel] = useState(pageStack.length);
 
     const upOneLevel = () => {
-        const tmpPageStack  = [...pageStack];
         if(level === 1) {
             setShowSettings(false);
             return;
@@ -26,6 +25,10 @@ const Settings = ({ showSettings, setShowSettings}) => {
         tmpPageStack.push(page)
         setPageStack(tmpPageStack);
         setLevel(tmpPageStack.length);
+    }
+
+    const close = () => {
+        setShowSettings(false);
     }
 
     const onEscPress = useCallback((e) => {
@@ -67,7 +70,7 @@ const Settings = ({ showSettings, setShowSettings}) => {
         <div className={classes.sides}>
             <button
                 className={classes.uiBtns}
-                onClick={() => setShowSettings(false)}
+                onClick={close}
             >
                 <CloseRounded style={styles.uiBtns} />
             </button>
@@ -80,7 +83,7 @@ const Settings = ({ showSettings, setShowSettings}) => {
             style={{ transform: showSettings ? "translateY(0)" : "translateY(100%)" }}
         >
             {(level > 1) ? <LeftSide /> : null}
-            <NavContext.Provider value={{ open }}>
+            <NavContext.Provider value={{ open, close }}>
                 <div 
                     className={classes.main}
                     style={{ transform: `translateY(${-(level-1)*100}vh)` }}

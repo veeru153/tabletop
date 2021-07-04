@@ -4,3 +4,20 @@
     @include fullScreen;
     @include posFixed($z: 99);
 }
+
+.menuBtn {
+    position: absolute; 
+    bottom: 0;
+    right: 0; 
+    background-color: transparent;
+    border: none;
+    user-select: none;
+    outline: 0;
+    opacity: 0.76;
+    transition: 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 1;
+    }
+}
