@@ -5,7 +5,7 @@ import Option from '../../../../common/ui/PageOption';
 import { NavContext } from '../../../../common/util/contexts';
 import * as widgets from '../../../../widgets';
 
-const AddWidgetForm = () => {
+const AddWidget = () => {
     const { open } = useContext(NavContext);
     const widgetList = Object.values(widgets);
 
@@ -25,8 +25,8 @@ const AddWidgetForm = () => {
                 }
                 return <Option {...optProps} />
             })}
-    </Page>
+        </Page>
     )
 }
 
-export default AddWidgetForm;
+export default AddWidget;

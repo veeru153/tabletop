@@ -4,7 +4,7 @@ import ClockForm from './ClockForm';
 import { Clock as ClockIcon } from 'react-feather';
 
 export default {
-    id: 'clock',
+    type: 'clock',
     name: 'Clock',
     icon: <ClockIcon />,
     form: <ClockForm />,

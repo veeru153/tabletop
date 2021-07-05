@@ -17,7 +17,7 @@ const ClockForm = () => {
             initialValues={values}
             onSubmit={(values, actions) => {
                 if (values.tz === "Select a Timezone") return;
-                addWidget(widget.id, values);
+                addWidget(widget.type, values);
                 close();
                 actions.resetForm();
             }}

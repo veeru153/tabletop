@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { db, WIDGETS } from '../common/util/db';
 import Background from './Background';
 import Dashboard from './Dashboard';
 
@@ -7,6 +8,14 @@ import { ConfigContext } from '../common/util/contexts';
 
 const TableTop = () => {
     const [widgets, setWidgets] = useState([]);
+
+    useEffect(() => {
+        async function onMount() {
+            const w = await db.collection(WIDGETS).get();
+            setWidgets(w);
+        }
+        onMount();
+    }, [])
 
     const addWidget = (type, params) => {
         const id = cuid();
@@ -23,6 +32,7 @@ const TableTop = () => {
             }
         }
         setWidgets([...widgets, template]);
+        db.collection(WIDGETS).add(template, id);
     }
 
     return (

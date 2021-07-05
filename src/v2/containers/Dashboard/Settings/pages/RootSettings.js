@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-// import Page from '../PageTemplate';
 import Page from '../../../../common/ui/PageTemplate';
 import Option from '../../../../common/ui/PageOption';
 import classes from '../Settings.module.scss';
@@ -7,6 +6,7 @@ import { PlusSquare, Trash2, Settings, Key, Info } from 'react-feather';
 import { Wallpaper } from '@material-ui/icons';
 import { NavContext } from '../../../../common/util/contexts';
 import AddWidget from './AddWidget';
+import Secrets from './Secrets';
 import About from './About';
 
 const RootSettings = () => {
@@ -58,7 +58,7 @@ const rootNavRoutes = [
         key: 'secrets',
         icon: <Key />, 
         name: 'Secrets', 
-        // next: <SecretsForm />
+        next: <Secrets />
     },
     { 
         key: 'about',

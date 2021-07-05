@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import classes from './SecretsForm.module.css';
-import FormTemplate from '../FormTemplate.js';
-import secretsList from '../../../util/secretsList';
+import classes from './Secrets.module.scss';
+import secretsList from '../../../../common/util/secretsList';
 import { Formik } from 'formik';
-import { cookies, SECRETS } from '../../../util/cookies';
-import { TextInput, Button } from '../../../ui/';
+import { cookies, SECRETS } from '../../../../common/util/cookies';
+import { TextInput, Button, Page } from '../../../../common/ui';
 
-const SecretsForm = () => {
+const Secrets = () => {
     const [secretDoc, setSecretDoc] = useState({});
     const [loaded, setLoaded] = useState(false);
     const secretsObj = Object.entries(secretDoc);
@@ -35,7 +34,7 @@ const SecretsForm = () => {
     }
 
     return (
-        <FormTemplate
+        <Page
             title="Secrets"
             subtitle="DO NOT SHARE THESE! Reload the page when the values have been updates."
         >
@@ -56,7 +55,7 @@ const SecretsForm = () => {
                     </div>
                 )}
             </Formik> : <div>Loading...</div>}
-        </FormTemplate>
+        </Page>
     )
 }
 
@@ -89,4 +88,4 @@ const SecretRow = (props) => {
     )
 }
 
-export default SecretsForm;
+export default Secrets;

@@ -1,5 +1,48 @@
 import Axios from 'axios';
+import { db, WIDGETS } from '../../common/util/db';
+import { cookies, SECRETS } from '../../common/util/cookies';
 
+
+export const fetchData = async (id, params) => {
+    const { units, city } = params;
+    const { owmKey } = await cookies.get(SECRETS);
+
+    if(!owmKey) {
+        errorW.weather[0].main = "Missing API Key";
+        return errorW;
+    }
+
+    const OWM_KEY = owmKey?.token;
+
+    const api = `http://api.openweathermap.org/data/2.5/find?q=${encodeURIComponent(city)}&units=${units}&appid=${OWM_KEY}`;
+
+    if(navigator.onLine) {
+        try {
+            const res = await Axios.get(api);
+            const data = await res.data.list[0];
+
+            if(!data || data.length === 0) {
+                errorW.name = "Error"
+                errorW.weather[0].main = "No matching location found.";
+                return errorW;
+            }
+
+            db.collection(WIDGETS).doc(id).update({ content: { data, params }});
+            return data;
+        } catch (e) {
+            errorW.weather[0].main = e.message;
+            return errorW;
+        }
+    } else {
+        try {
+            const savedW = await db.collection(WIDGETS).doc(id).get();
+            return savedW.content.data;
+        } catch (e) {
+            errorW.weather[0].description = e;
+            return errorW;
+        }
+    }
+}
 
 export const defaultW = {
     clouds: { all: 0 },
