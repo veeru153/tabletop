@@ -80,7 +80,7 @@ const Settings = ({ showSettings, setShowSettings}) => {
     return (
         <div 
             className={classes.Settings}
-            style={{ transform: showSettings ? "translateY(0)" : "translateY(100%)" }}
+            // style={{ transform: showSettings ? "translateY(0)" : "translateY(100%)" }}
         >
             {(level > 1) ? <LeftSide /> : null}
             <NavContext.Provider value={{ open, close }}>

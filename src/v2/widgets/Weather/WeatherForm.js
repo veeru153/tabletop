@@ -12,13 +12,13 @@ const WeatherForm = () => {
     const { close } = useContext(NavContext);
     const [apiKeyExists, setApiKeyExists] = useState(false);
 
-    // useEffect(() => {
-    //     async function doesApiKeyExist() {
-    //         const { owmKey } = await cookies.get(SECRETS);
-    //         setApiKeyExists(owmKey && owmKey?.token);
-    //     }
-    //     doesApiKeyExist();
-    // }, []);
+    useEffect(() => {
+        async function doesApiKeyExist() {
+            const { owmKey } = await cookies.get(SECRETS);
+            setApiKeyExists(owmKey && owmKey?.token);
+        }
+        doesApiKeyExist();
+    }, []);
 
     const values = { 
         units: 'metric', 

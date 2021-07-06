@@ -3,10 +3,8 @@
 .Settings {
     @include fullScreen;
     @include posFixed($z: 9999);
-    background-color: rgba(0, 0, 0, 0.64);
     color: lightgrey;
     transition: transform 0.4s ease;
-    backdrop-filter: blur(4.8px);
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     overflow: hidden;

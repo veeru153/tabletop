@@ -3,6 +3,9 @@
 .Foreground {
     @include fullScreen;
     @include posFixed($z: 999);
+    transition: transform 0.4s ease;
+    backdrop-filter: blur(4.8px);
+    background-color: rgba(0, 0, 0, 0.64);
 }
 
 .menuBtn {
