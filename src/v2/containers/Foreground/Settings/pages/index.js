@@ -1,35 +1,11 @@
-import React, { useContext } from 'react';
-import Page from '../../../../common/ui/PageTemplate';
-import Option from '../../../../common/ui/PageOption';
-import classes from '../Settings.module.scss';
+import React from 'react';
 import { PlusSquare, Trash2, Settings, Key, Info } from 'react-feather';
 import { Wallpaper } from '@material-ui/icons';
-import { NavContext } from '../../../../common/util/contexts';
 import AddWidget from './AddWidget';
 import Secrets from './Secrets';
 import About from './About';
 
-const RootSettings = () => {
-    const { open } = useContext(NavContext);
-
-    return (
-        <Page 
-            title="Settings" 
-            subtitle="Control and Customise your Dashboard!"
-            className={classes.RootSettings}
-        >
-            {rootNavRoutes.map(r => (
-                <Option 
-                    key={r.key} 
-                    name={r.name} 
-                    icon={r.icon} 
-                    next={() => open(r.next)} 
-                />))}
-        </Page>
-    )
-}
-
-const rootNavRoutes = [
+const settingsNavRoutes = [
     { 
         key: 'addWidget',
         icon: <PlusSquare />, 
@@ -68,4 +44,4 @@ const rootNavRoutes = [
     },
 ];
 
-export default RootSettings;
+export default settingsNavRoutes;

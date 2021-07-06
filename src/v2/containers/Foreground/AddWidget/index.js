@@ -1,95 +1,40 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useContext } from 'react';
 import classes from './AddWidget.module.scss';
-import { ArrowUp, X } from 'react-feather';
-import RootAddWidget from './RootAddWidget';
+import PageShell from '../PageShell';
+import { Page, Option } from '../../../common/ui'
 import { NavContext } from '../../../common/util/contexts';
+import * as widgets from '../../../widgets';
 
-// Container for all Settings and config pages
+
 const AddWidget = ({ showAddWidget, setShowAddWidget}) => {
-    const [pageStack, setPageStack] = useState([<RootAddWidget />, ]);
-    const [level, setLevel] = useState(pageStack.length);
-
-    const upOneLevel = () => {
-        if(level === 1) {
-            setShowAddWidget(false);
-            return;
-        }
-        setLevel(Math.max(0, level-1));
-        const upwardTimeout =  setTimeout(() => setPageStack(pageStack.slice(0, level-1)), 400);
-        return () => clearTimeout(upwardTimeout);
-    }
-
-    const open = (page) => {
-        if(!page) return;
-        const tmpPageStack  = [...pageStack];
-        tmpPageStack.push(page)
-        setPageStack(tmpPageStack);
-        setLevel(tmpPageStack.length);
-    }
-
-    const close = () => {
-        setShowAddWidget(false);
-    }
-
-    const onEscPress = useCallback((e) => {
-        if(showAddWidget) {
-            if(e.key === "Escape") {
-                if(level === 1) setShowAddWidget(false);
-                else upOneLevel();
-            }
-        }
-    });
-    useEffect(() => {
-        document.addEventListener("keydown", onEscPress);
-        return () =>  document.removeEventListener("keydown", onEscPress);
-    }, [showAddWidget, level])
-
-    // Set Level to 0 when Settings are closed/opened
-    useEffect(() => {
-        const backToRoot = setTimeout(() => setPageStack([<RootAddWidget />]), 400);
-        setLevel(1);
-        return () => clearTimeout(backToRoot);
-    }, [showAddWidget]);
-
-    const LeftSide = () => (
-        <div
-            className={classes.sides}
-            style={{ justifyContent: 'flex-end' }}
-        >
-            <button
-                className={classes.uiBtns}
-                style={{ margin: '0 20px', display: (level === 0) ? 'none' : 'block' }}
-                onClick={upOneLevel}
-            >
-                <ArrowUp size={42} color="#dedede" />
-            </button>
-        </div>
+    return (
+        <PageShell visibility={showAddWidget} setVisibility={setShowAddWidget}>
+            <RootAddWidget />
+        </PageShell>
     )
+}
 
-    const RightSide = () => (
-        <div className={classes.sides}>
-            <button
-                className={classes.uiBtns}
-                onClick={close}
-            >
-                <X size={42} color="#dedede" />
-            </button>
-        </div>
-    )
+const RootAddWidget = () => {
+    const { open } = useContext(NavContext);
+    const widgetList = Object.values(widgets);
 
     return (
-        <div className={classes.AddWidget}>
-            {(level > 1) ? <LeftSide /> : null}
-            <NavContext.Provider value={{ open, close }}>
-                <div 
-                    className={classes.main}
-                    style={{ transform: `translateY(${-(level-1)*100}vh)` }}
-                >
-                    {pageStack.map(page => page)}
-                </div>
-            </NavContext.Provider>
-            <RightSide />
-        </div>
+        <Page 
+            title="Add Widget"
+            subtitle="Choose a Widget:"
+            className={classes.RootAddWidget}
+        >
+            {widgetList.map(w => {
+                const { id, name, icon, form } = w;
+                const optProps = {
+                    key: id,
+                    name,
+                    icon,
+                    next: () => open(form),
+                }
+                return <Option {...optProps} />
+            })}
+        </Page>
     )
 }
 
