@@ -1,34 +1,34 @@
 import React from 'react';
-import { PlusSquare, Trash2, Settings, Key, Info } from 'react-feather';
-import { Wallpaper } from '@material-ui/icons';
+import { PlusSquare, Trash2, Tool, Key, Info, Image } from 'react-feather';
 import AddWidget from './AddWidget';
+import Background from './Background';
 import Secrets from './Secrets';
 import About from './About';
 
 const settingsNavRoutes = [
-    { 
-        key: 'addWidget',
-        icon: <PlusSquare />, 
-        name: 'Add Widget', 
-        next: <AddWidget />
-    },
-    { 
-        key: 'removeWidget',
-        icon: <Trash2 />, 
-        name: 'Remove Widgets', 
-        // next: <RemoveWidgetForm />
-    },
+    // { 
+    //     key: 'addWidget',
+    //     icon: <PlusSquare />, 
+    //     name: 'Add Widget', 
+    //     next: <AddWidget />
+    // },
+    // { 
+    //     key: 'removeWidget',
+    //     icon: <Trash2 />, 
+    //     name: 'Remove Widgets', 
+    //     // next: <RemoveWidgetForm />
+    // },
     { 
         key: 'config',
-        icon: <Settings />, 
+        icon: <Tool />, 
         name: 'Configure', 
         // next: <ConfigForm />
     },
     { 
         key: 'background',
-        icon: <Wallpaper />, 
+        icon: <Image />, 
         name: 'Background', 
-        // next: <ConfigForm />
+        next: <Background />
     },
     { 
         key: 'secrets',

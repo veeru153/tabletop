@@ -9,7 +9,7 @@ const Dashboard = ({ widgets, setShowSettings, setShowAddWidget }) => {
 
     return (
         <div className={classes.Dashboard}>
-            {widgets.map(w => <WidgetRenderer key={w.key} w={w} />)}
+            {widgets && widgets.map(w => <WidgetRenderer key={w.key} w={w} />)}
             <Toolbar {...toolbarProps} />
         </div>
     )

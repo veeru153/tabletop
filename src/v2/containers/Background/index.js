@@ -4,7 +4,7 @@ import Images from './Images';
 import Video from './Video';
 
 // Handles background images and videos provided by the user
-const Background = () => {
+const Background = ({ bg }) => {
     return (
         <div className={classes.Background}>
             <Images />
