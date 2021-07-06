@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import classes from './Settings.module.scss';
-import { ArrowUpwardRounded, CloseRounded } from '@material-ui/icons';
-import RootSettings from './pages/RootSettings';
+import classes from './AddWidget.module.scss';
+import { ArrowUp, X } from 'react-feather';
+import RootAddWidget from './RootAddWidget';
 import { NavContext } from '../../../common/util/contexts';
 
 // Container for all Settings and config pages
-const Settings = ({ showSettings, setShowSettings}) => {
-    const [pageStack, setPageStack] = useState([<RootSettings />, ]);
+const AddWidget = ({ showAddWidget, setShowAddWidget}) => {
+    const [pageStack, setPageStack] = useState([<RootAddWidget />, ]);
     const [level, setLevel] = useState(pageStack.length);
 
     const upOneLevel = () => {
         if(level === 1) {
-            setShowSettings(false);
+            setShowAddWidget(false);
             return;
         }
         setLevel(Math.max(0, level-1));
@@ -28,13 +28,13 @@ const Settings = ({ showSettings, setShowSettings}) => {
     }
 
     const close = () => {
-        setShowSettings(false);
+        setShowAddWidget(false);
     }
 
     const onEscPress = useCallback((e) => {
-        if(showSettings) {
+        if(showAddWidget) {
             if(e.key === "Escape") {
-                if(level === 1) setShowSettings(false);
+                if(level === 1) setShowAddWidget(false);
                 else upOneLevel();
             }
         }
@@ -42,14 +42,14 @@ const Settings = ({ showSettings, setShowSettings}) => {
     useEffect(() => {
         document.addEventListener("keydown", onEscPress);
         return () =>  document.removeEventListener("keydown", onEscPress);
-    }, [showSettings, level])
+    }, [showAddWidget, level])
 
     // Set Level to 0 when Settings are closed/opened
     useEffect(() => {
-        const backToRoot = setTimeout(() => setPageStack([<RootSettings />]), 400);
+        const backToRoot = setTimeout(() => setPageStack([<RootAddWidget />]), 400);
         setLevel(1);
         return () => clearTimeout(backToRoot);
-    }, [showSettings]);
+    }, [showAddWidget]);
 
     const LeftSide = () => (
         <div
@@ -61,7 +61,7 @@ const Settings = ({ showSettings, setShowSettings}) => {
                 style={{ margin: '0 20px', display: (level === 0) ? 'none' : 'block' }}
                 onClick={upOneLevel}
             >
-                <ArrowUpwardRounded style={styles.uiBtns} />
+                <ArrowUp size={42} color="#dedede" />
             </button>
         </div>
     )
@@ -72,16 +72,13 @@ const Settings = ({ showSettings, setShowSettings}) => {
                 className={classes.uiBtns}
                 onClick={close}
             >
-                <CloseRounded style={styles.uiBtns} />
+                <X size={42} color="#dedede" />
             </button>
         </div>
     )
 
     return (
-        <div 
-            className={classes.Settings}
-            style={{ transform: showSettings ? "translateY(0)" : "translateY(100%)" }}
-        >
+        <div className={classes.AddWidget}>
             {(level > 1) ? <LeftSide /> : null}
             <NavContext.Provider value={{ open, close }}>
                 <div 
@@ -96,11 +93,4 @@ const Settings = ({ showSettings, setShowSettings}) => {
     )
 }
 
-const styles = {
-    uiBtns: {
-        fontSize: 46,
-        color: '#dedede',
-    }
-}
-
-export default Settings;
+export default AddWidget;

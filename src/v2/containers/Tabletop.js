@@ -9,6 +9,7 @@ import { ConfigContext } from '../common/util/contexts';
 const TableTop = () => {
     const [widgets, setWidgets] = useState([]);
     const [showSettings, setShowSettings] = useState(false);
+    const [showAddWidget, setShowAddWidget] = useState(false);
 
     useEffect(() => {
         async function onMount() {
@@ -36,8 +37,8 @@ const TableTop = () => {
         db.collection(WIDGETS).add(template, id);
     }
 
-    const dashboardProps = { widgets, setShowSettings }
-    const foregroundProps = { showSettings, setShowSettings }
+    const dashboardProps = { widgets, setShowSettings, setShowAddWidget }
+    const foregroundProps = { showSettings, setShowSettings, showAddWidget, setShowAddWidget }
 
     return (
         <ConfigContext.Provider value={{ addWidget }}>

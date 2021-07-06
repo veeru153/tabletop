@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
-import classes from '../Settings.module.scss';
-import Page from '../../../../common/ui/PageTemplate';
-import Option from '../../../../common/ui/PageOption';
-import { NavContext } from '../../../../common/util/contexts';
-import * as widgets from '../../../../widgets';
+import classes from './AddWidget.module.scss';
+import { Page, Option  } from '../../../common/ui'
+import { NavContext } from '../../../common/util/contexts';
+import * as widgets from '../../../widgets';
 
 const AddWidget = () => {
     const { open } = useContext(NavContext);
@@ -13,7 +12,7 @@ const AddWidget = () => {
         <Page 
             title="Add Widget"
             subtitle="Choose a Widget:"
-            className={classes.RootSettings}
+            className={classes.RootAddWidget}
         >
             {widgetList.map(w => {
                 const { id, name, icon, form } = w;

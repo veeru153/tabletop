@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import classes from './Settings.module.scss';
 import { ArrowUpwardRounded, CloseRounded } from '@material-ui/icons';
+import { X, ArrowUp } from 'react-feather';
 import RootSettings from './pages/RootSettings';
 import { NavContext } from '../../../common/util/contexts';
 
 // Container for all Settings and config pages
-const Settings = ({ showSettings, setShowSettings}) => {
+const Settings = ({ showSettings, setShowSettings }) => {
     const [pageStack, setPageStack] = useState([<RootSettings />, ]);
     const [level, setLevel] = useState(pageStack.length);
 
@@ -61,7 +62,7 @@ const Settings = ({ showSettings, setShowSettings}) => {
                 style={{ margin: '0 20px', display: (level === 0) ? 'none' : 'block' }}
                 onClick={upOneLevel}
             >
-                <ArrowUpwardRounded style={styles.uiBtns} />
+                <ArrowUp size={42} color="#dedede" />
             </button>
         </div>
     )
@@ -72,16 +73,13 @@ const Settings = ({ showSettings, setShowSettings}) => {
                 className={classes.uiBtns}
                 onClick={close}
             >
-                <CloseRounded style={styles.uiBtns} />
+                <X size={42} color="#dedede" />
             </button>
         </div>
     )
 
     return (
-        <div 
-            className={classes.Settings}
-            // style={{ transform: showSettings ? "translateY(0)" : "translateY(100%)" }}
-        >
+        <div className={classes.Settings}>
             {(level > 1) ? <LeftSide /> : null}
             <NavContext.Provider value={{ open, close }}>
                 <div 
@@ -94,13 +92,6 @@ const Settings = ({ showSettings, setShowSettings}) => {
             <RightSide />
         </div>
     )
-}
-
-const styles = {
-    uiBtns: {
-        fontSize: 46,
-        color: '#dedede',
-    }
 }
 
 export default Settings;

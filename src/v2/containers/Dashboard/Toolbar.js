@@ -1,34 +1,38 @@
 import React, { useState } from 'react';
 import classes from './Dashboard.module.scss';
-import { MenuRounded, AddRounded, EditRounded } from '@material-ui/icons';
-import { Menu, Edit2, Plus } from 'react-feather';
+import { Menu, Edit2, Plus, ChevronUp, ChevronDown, Settings } from 'react-feather';
 
-const Toolbar = ({ setShowSettings }) => {
+const Toolbar = ({ setShowSettings, setShowAddWidget }) => {
     const [expandToolbar, setExpandToolbar] = useState(false);
-    const btnStyle = { transform: expandToolbar ? 'translateY(0)' : 'translateY(500%)' };
+    const menuIcon = expandToolbar ? <ChevronDown size={36} color="#dedede" /> : <ChevronUp size={36} color="#dedede" />
     
     const toolbarOptions = [
         {
-            onClick: () => { },
+            onMouseOver: () => setExpandToolbar(true),
+            icon: menuIcon,
+        },
+        {
+            onClick: () => setShowAddWidget(true),
             icon: <Plus size={40} color="#dedede" />,
-            style: btnStyle,
         },
         {
             onClick: () => { },
             icon: <Edit2 size={30} color="#dedede" />,
-            style: btnStyle,
         },
         {
             onClick: () => setShowSettings(true),
-            onMouseOver: () => setExpandToolbar(true),
-            icon: <Menu size={36} color="#dedede" />
+            icon: <Settings size={36} color="#dedede" />
         },
     ]
+
+    const n = toolbarOptions.length;
+    const dy = ((n-1)/n) * 100;
 
     return (
         <div
             className={classes.toolbar}
             onMouseLeave={() => setExpandToolbar(false)}
+            style={{ transform: expandToolbar ? 'translateY(0)' : `translateY(${dy}%)` }}
         >
             {toolbarOptions.map(t => <ToolbarBtn {...t} />)}
         </div>
@@ -37,27 +41,13 @@ const Toolbar = ({ setShowSettings }) => {
 
 
 const ToolbarBtn = (props) => {
-    const { icon, style } = props;
-    const btnProps = { ...props };
+    const { icon } = props;
 
     return (
-        <button 
-            className={classes.toolbarBtn} 
-            style={style}
-            {...btnProps}
-        >
+        <button className={classes.toolbarBtn} {...props} >
             {icon}
         </button>
     )
 }
-
-const styles = {
-    toolbarBtn: {
-        fontSize: 46,
-        color: '#dedede',
-    }
-}
-
-
 
 export default Toolbar;

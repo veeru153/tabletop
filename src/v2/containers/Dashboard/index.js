@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import classes from './Dashboard.module.scss';
-import { MenuRounded } from '@material-ui/icons';
 import WidgetRenderer from '../../common/util/WidgetRenderer';
 import Toolbar from './Toolbar';
-import Settings from './Settings';
 
 // Handles widget placement
-const Dashboard = ({ widgets, setShowSettings }) => {
-    const toolbarProps = { setShowSettings };
+const Dashboard = ({ widgets, setShowSettings, setShowAddWidget }) => {
+    const toolbarProps = { setShowSettings, setShowAddWidget };
 
     return (
         <div className={classes.Dashboard}>
