@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import Draggable from 'react-draggable';
-import { db, WIDGETS } from '../common/util/db';
+import { WIDGETS } from '../common/util/db';
 
 const Widget = (props) => {
     const { id, meta, style : userStyle, className : userClass, } = props;
     const [pos, setPos] = useState(meta.pos);
 
-    const handleReposition = (rePos) => {
+    const handleReposition = async (rePos) => {
         setPos({ x: rePos.x, y: rePos.y });
         const updatedMeta = {...meta, pos: { x: rePos.x, y: rePos.y }}
-        db.collection(WIDGETS).doc(id).update({ meta: updatedMeta })
+        const wData = await WIDGETS.getItem(id);
+        wData.meta = updatedMeta;
+        await WIDGETS.setItem(id, wData);
     }
 
     return (

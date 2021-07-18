@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import classes from './Background.module.scss';
 import { BG } from '../../../../common/util/defaults';
-import { db, CONFIG } from '../../../../common/util/db';
+import { CONFIG } from '../../../../common/util/db';
 import { Formik } from 'formik';
 import { ConfigContext } from '../../../../common/util/contexts';
 import ColorPicker from './Background_ColorPicker';
@@ -17,7 +17,8 @@ const Background = () => {
     useEffect(() => {
         async function onMount() {
             // const bgData = await db.collection(CONFIG).doc('bg').get();
-            // setBgConfig({ ...BG, ...bgData });
+            const bgData = await CONFIG.getItem('bg2');
+            setBgConfig({ ...BG, ...bgData });
             setLoaded(true);
         }
         onMount();
@@ -37,10 +38,10 @@ const Background = () => {
         >
             {loaded ? <Formik
                 initialValues={bgConfig}
-                onSubmit={(values) => {
-                    // setBg(values);
+                onSubmit={async (values) => {
+                    setBg(values);
                     console.log(values);
-                    // db.collection(CONFIG).doc('bg').set(values);
+                    await CONFIG.setItem('bg2', values);
                 }}
             >
                 {(props) => (

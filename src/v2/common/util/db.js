@@ -1,11 +1,19 @@
-import Localbase from 'localbase';
-export const db = new Localbase('tabletop');
+import localforage from 'localforage';
 
-// db.config.debug = false;
+const _NAME = 'tabletop';
+const _CONFIG = "config";
+const _WIDGETS = "widgets";
 
-export const CONFIG = "config";
-export const WIDGETS = "widgets";
+const _DRIVER = localforage.INDEXEDDB;
 
-// No idea why these don't work :/
-// export const config = db.collection(CONFIG);
-// export const widgets = db.collection(WIDGETS);
+export const WIDGETS = localforage.createInstance({
+    name: _NAME,
+    storeName: _WIDGETS,
+    driver: _DRIVER,
+})
+
+export const CONFIG = localforage.createInstance({
+    name: _NAME,
+    storeName: _CONFIG,
+    driver: _DRIVER,
+})

@@ -7,8 +7,7 @@ import Video from './Video';
 const Background = ({ bg }) => {
     return (
         <div className={classes.Background}>
-            <Images />
-            {/* <Video /> */}
+            {bg.type !== 0 ? (bg.type === 1 ? <Images /> : <Video />) : <div></div>}
         </div>
     )
 }

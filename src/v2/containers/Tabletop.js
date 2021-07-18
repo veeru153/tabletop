@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { db, WIDGETS } from '../common/util/db';
+import { WIDGETS, CONFIG } from '../common/util/db';
 import * as DEFAULTS from '../common/util/defaults';
 import Background from './Background';
 import Dashboard from './Dashboard';
@@ -16,14 +16,18 @@ const TableTop = () => {
 
     useEffect(() => {
         async function onMount() {
-            const w = await db.collection(WIDGETS).get();
+            const w = [];
+            await WIDGETS.iterate(val => { w.push(val) });
             setWidgets(w);
+
+            const bg = await CONFIG.getItem('bg2');
+            setBg(bg);
             setLoaded(true);
         }
         onMount();
     }, [])
 
-    const addWidget = (type, params) => {
+    const addWidget = async (type, params) => {
         const id = cuid();
         const template = {
             key: id,
@@ -38,7 +42,7 @@ const TableTop = () => {
             }
         }
         setWidgets([...widgets, template]);
-        db.collection(WIDGETS).add(template, id);
+        await WIDGETS.setItem(id, template);
     }
 
     const dashboardProps = { widgets, setShowSettings, setShowAddWidget }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classes from './Background.module.scss';
-import { db, CONFIG } from '../../../../common/util/db';
+import { CONFIG } from '../../../../common/util/db';
 import { TextInput, Dropdown, Radio, Button } from '../../../../common/ui';
 import { PlusCircle, MinusCircle } from "react-feather"
 
@@ -10,14 +10,14 @@ const VideoPicker = (props) => {
 
     useEffect(() => {
         async function onMount() {
-            const videoSrcs = await db.collection(CONFIG).doc('videoSrcs').get();
+            const videoSrcs = await CONFIG.getItem('videoSrcs');
             setSources(videoSrcs[0]);
         }
         onMount();
     }, [])
 
     useEffect(() => {
-        db.collection(CONFIG).doc('videoSrcs').set({ 0: sources });
+        CONFIG.setItem('videoSrcs', { 0: sources });
     }, [sources]);
 
     const addSrc = () => {

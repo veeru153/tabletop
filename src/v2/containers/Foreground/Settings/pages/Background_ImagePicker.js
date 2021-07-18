@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classes from './Background.module.scss';
-import { db, CONFIG } from '../../../../common/util/db';
+import { CONFIG } from '../../../../common/util/db';
 import { TextInput, Dropdown, Radio } from '../../../../common/ui';
 import { PlusCircle, MinusCircle } from "react-feather"
 
@@ -13,7 +13,8 @@ const ImagePicker = (props) => {
 
     useEffect(() => {
         async function onMount() {
-            const imgSrcs = await db.collection(CONFIG).doc('imageSrcs').get();
+            const imgSrcs = await CONFIG.getItem('imageSrcs');
+            if(imgSrcs[0].length > 0) setSection(1);
             setSources(imgSrcs[0]);
         }
         onMount();
@@ -24,7 +25,7 @@ const ImagePicker = (props) => {
     }, [localImg])
 
     useEffect(() => {
-        db.collection(CONFIG).doc('imageSrcs').set({ 0: sources });
+        CONFIG.setItem('imageSrcs', { 0: sources });
     }, [sources]);
 
     const addSrc = () => {

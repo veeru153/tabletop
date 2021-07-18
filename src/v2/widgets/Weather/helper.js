@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { db, WIDGETS } from '../../common/util/db';
+import { WIDGETS } from '../../common/util/db';
 import { cookies, SECRETS } from '../../common/util/cookies';
 
 
@@ -27,7 +27,9 @@ export const fetchData = async (id, params) => {
                 return errorW;
             }
 
-            db.collection(WIDGETS).doc(id).update({ content: { data, params }});
+            const wData = await WIDGETS.getItem(id);
+            wData.content = { data, params };
+            await WIDGETS.setItem(id, wData);
             return data;
         } catch (e) {
             errorW.weather[0].main = e.message;
@@ -35,7 +37,7 @@ export const fetchData = async (id, params) => {
         }
     } else {
         try {
-            const savedW = await db.collection(WIDGETS).doc(id).get();
+            const savedW = await WIDGETS.getItem(id);
             return savedW.content.data;
         } catch (e) {
             errorW.weather[0].description = e;
