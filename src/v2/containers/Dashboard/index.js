@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import classes from './Dashboard.module.scss';
 import WidgetRenderer from '../../common/util/WidgetRenderer';
+import { ConfigContext } from '../../common/util/contexts';
 import Toolbar from './Toolbar';
 
 // Handles widget placement
 const Dashboard = ({ widgets, setShowSettings, setShowAddWidget }) => {
-    const toolbarProps = { setShowSettings, setShowAddWidget };
+    const { editMode, setEditMode } = useContext(ConfigContext);
+    const toolbarProps = { setShowSettings, setShowAddWidget, editMode, setEditMode };
 
     return (
         <div className={classes.Dashboard}>

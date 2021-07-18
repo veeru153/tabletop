@@ -13,19 +13,27 @@ const TableTop = () => {
     const [widgets, setWidgets] = useState([]);
     const [showSettings, setShowSettings] = useState(false);
     const [showAddWidget, setShowAddWidget] = useState(false);
+    const [editMode, setEditMode] = useState(false);
 
     useEffect(() => {
         async function onMount() {
-            const w = [];
-            await WIDGETS.iterate(val => { w.push(val) });
-            setWidgets(w);
-
-            const bg = await CONFIG.getItem('bg2');
-            setBg(bg);
+            updateWidgets();
+            updateBg();
             setLoaded(true);
         }
         onMount();
     }, [])
+
+    const updateWidgets = async () => {
+        const w = [];
+        await WIDGETS.iterate(val => { w.push(val) });
+        setWidgets(w);
+    }
+
+    const updateBg = async () => {
+        const bg = await CONFIG.getItem('bg2');
+        setBg(bg);
+    }
 
     const addWidget = async (type, params) => {
         const id = cuid();
@@ -45,11 +53,17 @@ const TableTop = () => {
         await WIDGETS.setItem(id, template);
     }
 
+    const removeWidget = async (id) => {
+        await WIDGETS.removeItem(id);
+        updateWidgets();
+    }
+
     const dashboardProps = { widgets, setShowSettings, setShowAddWidget }
     const foregroundProps = { showSettings, setShowSettings, showAddWidget, setShowAddWidget }
+    const configCtxProps = { addWidget, setBg, editMode, setEditMode, removeWidget }
 
     return (
-        <ConfigContext.Provider value={{ addWidget, setBg }}>
+        <ConfigContext.Provider value={configCtxProps}>
             {loaded && <Background bg={bg} />}
             <Dashboard {...dashboardProps} />
             <Foreground {...foregroundProps} />

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classes from './Dashboard.module.scss';
 import { Menu, Edit2, Plus, ChevronUp, ChevronDown, Settings } from 'react-feather';
 
-const Toolbar = ({ setShowSettings, setShowAddWidget }) => {
+const Toolbar = ({ setShowSettings, setShowAddWidget, editMode, setEditMode }) => {
     const [expandToolbar, setExpandToolbar] = useState(false);
     const menuIcon = expandToolbar ? <ChevronDown size={36} color="#dedede" /> : <ChevronUp size={36} color="#dedede" />
     
@@ -16,7 +16,7 @@ const Toolbar = ({ setShowSettings, setShowAddWidget }) => {
             icon: <Plus size={40} color="#dedede" />,
         },
         {
-            onClick: () => { },
+            onClick: () => setEditMode(!editMode),
             icon: <Edit2 size={30} color="#dedede" />,
         },
         {
