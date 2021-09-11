@@ -1,48 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import classes from './Weather.module.scss';
 import Widget from '../../containers/Widget';
-import { icons, backgrounds } from './assets';
+import { icons } from './assets';
 import { defaultW, fetchData } from './helper';
 
 const Weather = ({ id, meta, content }) => {
     const { params, data } = content;
     const [w, setW] = useState(defaultW);
     const [unitsLabel, setUnitsLabel] = useState("C");
+    const [error, setError] = useState(null);
 
     // Fetch Updated Weather or show Saved Weather
     useEffect(() => {
         async function onMount() {
-            const updatedW = await fetchData(id, params);
-            if(params.units === "imperial") setUnitsLabel("F");
-            setW(updatedW);
+            try {
+                const updatedW = await fetchData(id, params);
+                if(params.units === "imperial") setUnitsLabel("F");
+                setW(updatedW);
+            } catch (err) {
+                setError(err);
+            }
         }
         onMount();
     }, [])
-
-    const wStyle = {
-        backgroundImage: `url(${backgrounds[w.weather[0].icon]})`,
-        color: (/.*d$/).test(w.weather[0].icon) ? 'black' : 'white'
-    }
 
     return (
         <Widget
             id={id}
             meta={meta}
             className={classes.Weather}
-            style={wStyle}
         >
-            <div>
-                <div className={classes.city}>{w.name}</div>
-                <div className={classes.temp}>{Math.round(w.main.temp)}°{unitsLabel}</div>
-            </div>
-            <div className={classes.info}>
-                <Icon id={w.weather[0].icon} size={36} />
-                <div className={classes.condn}>{w.weather[0].main}</div>
-                <div className={classes.hl}>
-                    <div>H: {Math.round(w.main.temp_max)}°{unitsLabel}</div>
-                    <div>L: {Math.round(w.main.temp_min)}°{unitsLabel}</div>
+            <div className={classes.temp}>
+                <div className={classes.current}>
+                    {error ? "Error" : `${Math.round(w.main.temp)}°${unitsLabel}`}
                 </div>
+                <div>{error ? 0 : Math.round(w.main.temp_max)}°{unitsLabel}</div>
+                <div>{error ? 0 : Math.round(w.main.temp_min)}°{unitsLabel}</div>
             </div>
+            <Icon id={error ? error.icon : w.weather[0].icon} size={82} />
+            <div className={classes.city}>{error ? error.message : w.name}</div>
         </Widget>
     )
 }
@@ -58,7 +54,7 @@ const Icon = ({ id, size }) => {
 
     return (
         <div style={styles}>
-            <img src={icons[id]} style={{ width: '100%', height: '100%' }} alt={icons[id]} />
+            <img src={icons[id]} style={{ width: '100%', height: '100%' }} alt={icons[id]} draggable="false" />
         </div>
     )
 }

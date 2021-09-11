@@ -9,6 +9,7 @@ const Secrets = () => {
     const [secretDoc, setSecretDoc] = useState({});
     const [loaded, setLoaded] = useState(false);
     const secretsObj = Object.entries(secretDoc);
+    const [clicked, setClicked] = useState(null);
 
     useEffect(() => {
         async function onMount() {
@@ -25,18 +26,20 @@ const Secrets = () => {
         onMount();
     }, [])
 
-    const handleUpdate = async (e, values) => {
+    const handleUpdate = async (e, id, values) => {
         e.preventDefault();
         // Need a better way to handle this
         const expiryDate = new Date("2038-01-19T04:14:07");
         cookies.set(SECRETS, values, { expires: expiryDate });
         setSecretDoc(values);
+        setClicked(id);
+        setTimeout(() => { setClicked(null); }, 1000);
     }
 
     return (
         <Page
             title="Secrets"
-            subtitle="DO NOT SHARE THESE! Reload the page when the values have been updates."
+            subtitle="DO NOT SHARE THESE! Reload the page when the values have been updated."
         >
             {loaded ? <Formik
                 initialValues={{...secretDoc}}
@@ -48,6 +51,7 @@ const Secrets = () => {
                                 {...props} 
                                 key={s[0]} 
                                 id={s[0]} 
+                                updated={clicked === s[0]}
                                 name={s[1].name} 
                                 handleUpdate={handleUpdate}
                             />
@@ -60,7 +64,7 @@ const Secrets = () => {
 }
 
 const SecretRow = (props) => {
-    const { id, name, handleUpdate } = props;
+    const { id, name, handleUpdate, updated } = props;
     const secretObj = {...props.values[id]};
 
     const handleChange = (e) => {
@@ -70,9 +74,9 @@ const SecretRow = (props) => {
     }
 
     return (
-        <form onSubmit={(e) => handleUpdate(e, props.values)} className={classes.secretRow}>
+        <form onSubmit={(e) => handleUpdate(e, id, props.values)} className={classes.secretRow}>
             <div>
-                <p>{name}</p>
+                <p>{name} <span style={{ display: updated ? "inline-block" : "none", color: "#74eb34" }}>- Updated!</span></p>
                 <TextInput
                     name={name}
                     type="password"
@@ -82,7 +86,7 @@ const SecretRow = (props) => {
                 />
             </div>
             <div>
-                <Button style={{ margin: '8px auto'}} type="submit">Update</Button>
+                <Button style={{ margin: '8px auto' }} type="submit">Update</Button>
             </div>
         </form>
     )

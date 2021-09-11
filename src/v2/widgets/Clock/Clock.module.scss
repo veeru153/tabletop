@@ -2,11 +2,11 @@
 .Clock {
     --clock-color: #dedede;
     --clock-color-dark: black;
-    background-color: black;
+    background-color: rgba(0,0,0,0.56);
     position: fixed;
-    width: 224px;
-    height: 224px;
-    border-radius: 48px;
+    width: 168px;
+    height: 168px;
+    padding: 28px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,8 +15,8 @@
 }
 
 .clockbox {
-    width: 188px;
-    height: 188px;
+    width: 150px;
+    height: 150px;
 
     svg {
         width: 100%;
@@ -103,6 +103,7 @@
 }
 
 .label {
-    font-size: 16px;
+    font-size: 22px;
+    margin: 8px 0 16px;
     color: var(--clock-color);
 }

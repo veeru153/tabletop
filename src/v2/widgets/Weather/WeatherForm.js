@@ -111,10 +111,9 @@ const styles = {
     },
     Warning: {
         textAlign: 'center',
-        backgroundColor: 'rgba(255,101,101,0.72)',
+        backgroundColor: 'rgba(255,97,69,0.32)',
         color: '#dedede',
         padding: '2px 42px',
-        borderRadius: '60px',
     },
     radioBtn: {
         fontSize: '18.72px',
