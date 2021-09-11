@@ -22,9 +22,9 @@ Most of it works straight out of the box. You might need to supply additional in
 
 ### Key Features
 
-- Add widgets for the content you wih to see.
+- Add widgets for the content you wish to see.
 - Move around widgets and place them the way you like.
-- Modify the background (solid color or use a local image).
+- Modify the background (solid color, images, or online videos).
 
 ## Future Plans
 

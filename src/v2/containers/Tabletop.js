@@ -58,7 +58,7 @@ const TableTop = () => {
         updateWidgets();
     }
 
-    const dashboardProps = { widgets, setShowSettings, setShowAddWidget }
+    const dashboardProps = { widgets, setShowSettings, setShowAddWidget, filter: bg.filter }
     const foregroundProps = { showSettings, setShowSettings, showAddWidget, setShowAddWidget }
     const configCtxProps = { addWidget, setBg, editMode, setEditMode, removeWidget }
 

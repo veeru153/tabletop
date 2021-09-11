@@ -57,7 +57,7 @@ const ImagePicker = (props) => {
         props.setFieldValue('blend', tempBlend);
     }
 
-    const onlineImagesProps = { sources, setCurrSrc, addSrc, deleteSrc };
+    const onlineImagesProps = { sources, currSrc, setCurrSrc, addSrc, deleteSrc };
 
     return (
         <div>

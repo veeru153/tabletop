@@ -7,7 +7,7 @@ import Video from './Video';
 const Background = ({ bg }) => {
     return (
         <div className={classes.Background}>
-            {bg.type !== 0 ? (bg.type === 1 ? <Images /> : <Video />) : <div></div>}
+            {bg.type !== 0 ? (bg.type === 1 ? <Images blend={bg.blend} /> : <Video />) : <div></div>}
         </div>
     )
 }

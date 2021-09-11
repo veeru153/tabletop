@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CONFIG } from '../../common/util/db';
 import classes from './Background.module.scss';
 
-const Images = () => {
+const Images = ({ blend }) => {
     const [src, setSrc] = useState("");
 
     useEffect(() => {
@@ -17,7 +17,11 @@ const Images = () => {
     return (
         <div 
             className={classes.Images}
-            style={{ backgroundImage: `url(${src})` }}
+            style={{ 
+                backgroundImage: `url(${src})`,
+                backgroundBlendMode: blend.mode ?? "normal",
+                backgroundColor: blend.color ?? "rgba(0,0,0,0)",
+            }}
         ></div>
     )
 }

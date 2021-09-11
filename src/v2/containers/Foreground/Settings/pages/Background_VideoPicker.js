@@ -34,7 +34,7 @@ const VideoPicker = (props) => {
 
     return (
         <div className={classes.videoPicker}>
-            <span>Falls back to Local Image</span>
+            <span>EXPERIMENTAL: Falls back to Local Image</span>
             <div className={classes.inputArea}>
                 <TextInput
                     name="value"
