@@ -45,10 +45,11 @@ const Day = (props) => {
     const { day, i, dt, startsMonday } = props;
     const isSunday = (!startsMonday && (i % 7 === 0)) || (startsMonday && (i % 7 === 6));
     const dayClasses = [classes.day, isSunday ? classes.sunday : ""].join(' ');
-    const dayColor = dt.day === day ? "white" : (isSunday ? "tomato" : "#dedede");
+    const dayColor = (isSunday ? "tomato" : "#dedede");
     // const dayColor = dt.day === day ? "white" : "#dedede";
     const isDay = ["M", "T", "W", "T", "F", "S", "S"].includes(day);
     const isActive = (isDay || dt.day == day);
+
     return (
         <div 
             className={dayClasses}

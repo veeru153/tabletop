@@ -1,6 +1,6 @@
 import React from 'react';
 import { PlusSquare, Trash2, Tool, Key, Info, Image } from 'react-feather';
-import AddWidget from './AddWidget';
+import Configure from './Configure';
 import Background from './Background';
 import Secrets from './Secrets';
 import About from './About';
@@ -18,12 +18,12 @@ const settingsNavRoutes = [
     //     name: 'Remove Widgets', 
     //     // next: <RemoveWidgetForm />
     // },
-    // { 
-    //     key: 'config',
-    //     icon: <Tool />, 
-    //     name: 'Configure', 
-    //     // next: <ConfigForm />
-    // },
+    { 
+        key: 'config',
+        icon: <Tool />, 
+        name: 'Configure', 
+        next: <Configure />
+    },
     { 
         key: 'background',
         icon: <Image />, 
