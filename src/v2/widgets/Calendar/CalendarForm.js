@@ -23,7 +23,7 @@ const CalendarForm = () => {
                     subtitle="Don't get outdated ;)"
                 >
                     <form onSubmit={props.handleSubmit} style={styles.form}>
-                        <div style={styles.container}>
+                        <div style={styles.formRow}>
                             <h3>First Day of the Week:</h3>
                             <Radio
                                 label="Monday"
@@ -62,7 +62,7 @@ const styles = {
         alignItems: 'center',
         height: '100%',
     },
-    container: {
+    formRow: {
         display: 'flex',
         flexDirection: 'row',
         gap: 50,

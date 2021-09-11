@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import { ConfigContext, NavContext } from '../../common/util/contexts';
 import { Formik } from 'formik';
-import { TextInput, Dropdown, Button, Page } from '../../common/ui';
+import { TextInput, Dropdown, Button, Page, Radio } from '../../common/ui';
 import widget from './';
 
 const ClockForm = () => {
     const { addWidget } = useContext(ConfigContext);
     const { close } = useContext(NavContext);
     const values = {
+        digital: true,
+        military: true,
         tz: "",
         label: "",
     }
@@ -28,6 +30,44 @@ const ClockForm = () => {
                     subtitle="It's about time! Note: You'll have to change the time for DST."
                 >
                     <form onSubmit={props.handleSubmit} style={styles.form}>
+                        <div style={styles.formRow}>
+                            <h3>Type:</h3>
+                            <Radio
+                                label="Digital"
+                                name="digital"
+                                value="true"
+                                checked={props.values.digital}
+                                onChange={() => props.setFieldValue('digital', true)}
+                                style={styles.radioBtn}
+                            />
+                            <Radio
+                                label="Analog"
+                                name="analog"
+                                value="false"
+                                checked={!props.values.digital}
+                                onChange={() => props.setFieldValue('digital', false)}
+                                style={styles.radioBtn}
+                            />
+                        </div>
+                        <div style={styles.formRow}>
+                            <h3>Format:</h3>
+                            <Radio
+                                label="24-Hour"
+                                name="24"
+                                value="true"
+                                checked={props.values.military}
+                                onChange={() => props.setFieldValue('military', true)}
+                                style={styles.radioBtn}
+                            />
+                            <Radio
+                                label="12-Hour"
+                                name="12"
+                                value="false"
+                                checked={!props.values.military}
+                                onChange={() => props.setFieldValue('military', false)}
+                                style={styles.radioBtn}
+                            />
+                        </div>
                         <Dropdown
                             name="tz"
                             onChange={(e) => props.setFieldValue("tz", e.target.value)}
@@ -98,17 +138,28 @@ const styles = {
     form: {
         display: 'flex',
         flexDirection: 'column',
-        marginTop: '24%',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
         height: '100%',
     },
     input: {
-        margin: '60px auto',
         fontSize: '30px',
         textAlign: 'center',
     },
     btn: {
         margin: '64px auto',
+    },
+    formRow: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        width: '100%',
+    },
+    radioBtn: {
+        fontSize: '18.72px',
+    },
+    dropdown: {
+        margin: '18px auto',
     }
 }
 

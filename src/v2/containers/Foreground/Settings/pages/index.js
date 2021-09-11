@@ -18,12 +18,12 @@ const settingsNavRoutes = [
     //     name: 'Remove Widgets', 
     //     // next: <RemoveWidgetForm />
     // },
-    { 
-        key: 'config',
-        icon: <Tool />, 
-        name: 'Configure', 
-        // next: <ConfigForm />
-    },
+    // { 
+    //     key: 'config',
+    //     icon: <Tool />, 
+    //     name: 'Configure', 
+    //     // next: <ConfigForm />
+    // },
     { 
         key: 'background',
         icon: <Image />, 

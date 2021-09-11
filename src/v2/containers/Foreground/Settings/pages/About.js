@@ -22,17 +22,19 @@ const About = () => {
                 <li><p>have an idea for a widget or functionality,</p></li>
             </ul>
             <p>please fork the repository and send a PR.</p>
-            <a 
-                href="https://github.com/veeru153/tabletop" 
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: 'none' }}
-            >
-                <Button style={styles.repoLink}>
-                    <img src={GitHubLogo} alt="GitHub Mark" />
-                    <p>GitHub Repository</p>
-                </Button>
-            </a>
+            <div style={styles.repoLinkDiv}>
+                <a 
+                    href="https://github.com/veeru153/tabletop" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: 'none' }}
+                >
+                    <Button style={{ display: 'flex' }}>
+                        <img src={GitHubLogo} alt="GitHub Mark" />
+                        <p>GitHub Repository</p>
+                    </Button>
+                </a>
+            </div>
         </PageTemplate>
     )
 }
