@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import classes from './Background.module.scss';
 import { CONFIG } from '../../../../common/util/db';
 import { TextInput, Dropdown, Radio } from '../../../../common/ui';
-import { PlusCircle, MinusCircle } from "react-feather"
+import { PlusCircle, MinusCircle } from "react-feather";
 
 const ImagePicker = (props) => {
     const [section, setSection] = useState(0);      // Local = 0, Online = 1

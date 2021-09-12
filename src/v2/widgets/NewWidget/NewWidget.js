@@ -1,5 +1,5 @@
 import React from 'react';
-import Widget from '../../../containers/Widget';
+import Widget from '../../containers/Widget';
 
 /** Instructions on use:
  * 1. DO NOT USE NewWidget DIRECTLY! Make a copy of NewWidget and edit that.
@@ -10,7 +10,7 @@ import Widget from '../../../containers/Widget';
 
 
 const NewWidget = (props) => {
-    const { id, meta, params, } = props;
+    const { id, meta, content } = props;
 
     return (
         <Widget

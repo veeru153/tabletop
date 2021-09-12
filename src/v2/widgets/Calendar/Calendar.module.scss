@@ -1,4 +1,4 @@
-.Calendar {
+.CalendarMonth {
     background-color: rgb(0, 0, 0, 0.56);
     color: #dedede;
     position: fixed;
@@ -16,42 +16,85 @@
         width: 86%;
         margin: 6px 0;
     }
+
+    .header {
+        width: 76%;
+        margin-top: 4px;
+        display: flex;
+        flex-direction: row;
+        text-transform: uppercase;
+        font-size: calc(1.28 * 18px);
+    }
+    .year {
+        flex-grow: 1;
+        text-align: end;
+        color: tomato;
+    }
     
-}
-
-.header {
-    width: 76%;
-    margin-top: 4px;
-    display: flex;
-    flex-direction: row;
-    text-transform: uppercase;
-    font-size: calc(1.28 * 18px);
-}
-.year {
-    flex-grow: 1;
-    text-align: end;
-    color: tomato;
-}
-
-.calContainer { 
-    width: 88%;
-    height: 68%;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    gap: 8px;
-    margin-bottom: 8px;
-}
-
-.day {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #dedede;
-    font-size: calc(1.24 * 16px);
-
-    &:nth-child(-n+7) {
-        font-weight: bold;
-        opacity: 100%;
+    .calContainer { 
+        width: 88%;
+        height: 68%;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+    
+    .day {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #dedede;
+        font-size: calc(1.24 * 16px);
+    
+        &:nth-child(-n+7) {
+            font-weight: bold;
+            opacity: 100%;
+        }
     }
 }
+
+.CalendarDate {
+    background-color: rgb(0, 0, 0, 0.56);
+    color: #dedede;
+    position: fixed;
+    width: 186px;
+    height: 224px;
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-evenly;
+    align-items: center;
+    user-select: none;
+    transform: scale(2);
+
+    hr {
+        width: 86%;
+        margin: 6px 0;
+    }
+
+    .header {
+        width: 76%;
+        margin: 6px 4px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        text-transform: uppercase;
+        font-size: calc(1.28 * 18px);
+    }
+    .year {
+        text-align: end;
+        color: tomato;
+    }
+    .date {
+        margin: auto;
+        font-size: 100px;
+        text-align: center;
+    }
+
+    .weekday {
+        text-align: center;
+        font-size: 28px;
+    }
+}
+

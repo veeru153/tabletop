@@ -10,7 +10,7 @@ const CalendarForm = () => {
 
     return (
         <Formik
-            initialValues={{ startsMonday: true }}
+            initialValues={{ startsMonday: true, daily: true }}
             onSubmit={(values, actions) => {
                 addWidget(widget.type, values);
                 close();
@@ -24,6 +24,25 @@ const CalendarForm = () => {
                 >
                     <form onSubmit={props.handleSubmit} style={styles.form}>
                         <div style={styles.formRow}>
+                            <h3>Type:</h3>
+                            <Radio
+                                label="Daily"
+                                name="daily"
+                                value={props.values.daily}
+                                checked={props.values.daily}
+                                onChange={() => props.setFieldValue('daily', true)}
+                                style={styles.radioBtn}
+                            />
+                            <Radio
+                                label="Monthly"
+                                name="monthly"
+                                value={!props.values.daily}
+                                checked={!props.values.daily}
+                                onChange={() => props.setFieldValue('daily', false)}
+                                style={styles.radioBtn}
+                            />
+                        </div>
+                        <div style={{ ...styles.formRow, visibility: props.values.daily ? "hidden" : "visible" }}>
                             <h3>First Day of the Week:</h3>
                             <Radio
                                 label="Monday"
@@ -31,7 +50,9 @@ const CalendarForm = () => {
                                 value={props.values.startsMonday}
                                 checked={props.values.startsMonday}
                                 onChange={() => props.setFieldValue('startsMonday', true)}
-                                style={styles.radioBtn}
+                                style={{ ...styles.radioBtn, display: props.values.daily ? "none" : "block" }}
+                                // Need to hide radio btns - parent visibilty delays hiding - 
+                                // reason unknown.
                             />
                             <Radio
                                 label="Sunday"
@@ -39,7 +60,7 @@ const CalendarForm = () => {
                                 value={!props.values.startsMonday}
                                 checked={!props.values.startsMonday}
                                 onChange={() => props.setFieldValue('startsMonday', false)}
-                                style={styles.radioBtn}
+                                style={{ ...styles.radioBtn, display: props.values.daily ? "none" : "block" }}
                             />
                         </div>
                         <Button 
