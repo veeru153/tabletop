@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { CONFIG } from '../../common/util/db';
 import classes from './Background.module.scss';
 
-const Images = ({ blend }) => {
-    const [src, setSrc] = useState("");
+const Images = ({ blend, local }) => {
+    const [src, setSrc] = useState(BASE_IMG);
 
     useEffect(() => {
         async function onMount() {
             const urls = await CONFIG.getItem('imageSrcs');
-            const i = Math.floor(Math.random() * urls[0].length);
-            setSrc(urls[0][i]);
+            urls[0].push(local);
+            if(urls[0].length > 0) {
+                const i = Math.floor(Math.random() * urls[0].length);
+                setSrc(urls[0][i]);
+            }
         }
         onMount();
     }, [])
@@ -25,5 +28,7 @@ const Images = ({ blend }) => {
         ></div>
     )
 }
+
+const BASE_IMG = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=";
 
 export default Images;

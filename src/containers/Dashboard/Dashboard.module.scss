@@ -3,6 +3,7 @@
 .Dashboard {
     @include fullScreen;
     @include posFixed($z: 99);
+    @include flexify($d: column)
 }
 
 .toolbar {
@@ -32,4 +33,12 @@
     &:hover {
         opacity: 1;
     }
+}
+
+.zeroWidgetMessage {
+    color: #dedede;
+    font-size: larger;
+    background-color: rgba(0,0,0,0.64);
+    padding: 36px 52px;
+    text-align: center;
 }

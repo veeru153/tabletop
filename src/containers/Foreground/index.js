@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './Foreground.module.scss';
-import Cover from './Cover';
 import Settings from './Settings';
 import AddWidget from './AddWidget';
 
@@ -16,16 +15,8 @@ const Foreground = ({ showSettings, setShowSettings, showAddWidget, setShowAddWi
         >
             {showSettings && <Settings showSettings={showSettings} setShowSettings={setShowSettings} />}
             {showAddWidget && <AddWidget showAddWidget={showAddWidget} setShowAddWidget={setShowAddWidget} />}
-            {/* <Cover /> */}
         </div>
     )
-}
-
-const styles = {
-    menuBtn: {
-        fontSize: 46, 
-        color: '#dedede',
-    }
 }
 
 export default Foreground;

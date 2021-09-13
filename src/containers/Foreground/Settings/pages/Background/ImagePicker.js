@@ -14,8 +14,10 @@ const ImagePicker = (props) => {
     useEffect(() => {
         async function onMount() {
             const imgSrcs = await CONFIG.getItem('imageSrcs');
-            if(imgSrcs[0].length > 0) setSection(1);
-            setSources(imgSrcs[0]);
+            if(imgSrcs) {
+                if(imgSrcs[0].length > 0) setSection(1);
+                setSources(imgSrcs[0]);
+            }
         }
         onMount();
     }, [])

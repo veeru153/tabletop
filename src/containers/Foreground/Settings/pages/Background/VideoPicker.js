@@ -11,7 +11,7 @@ const VideoPicker = (props) => {
     useEffect(() => {
         async function onMount() {
             const videoSrcs = await CONFIG.getItem('videoSrcs');
-            setSources(videoSrcs[0]);
+            videoSrcs && setSources(videoSrcs[0]);
         }
         onMount();
     }, [])

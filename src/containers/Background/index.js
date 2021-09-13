@@ -6,8 +6,11 @@ import Video from './Video';
 // Handles background images and videos provided by the user
 const Background = ({ bg }) => {
     return (
-        <div className={classes.Background}>
-            {bg.type !== 0 ? (bg.type === 1 ? <Images blend={bg.blend} /> : <Video />) : <div></div>}
+        <div className={classes.Background} style={{ backgroundColor: bg.color }}>
+            {bg.type !== 0 ? (bg.type === 1 ? 
+                <Images blend={bg.blend} local={bg.image} /> : 
+                <Video />) : <div></div>
+            }
         </div>
     )
 }

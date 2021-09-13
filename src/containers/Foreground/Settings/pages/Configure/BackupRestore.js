@@ -1,9 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import { Button, Accordion } from '../../../../../common/ui';
 import { WIDGETS, CONFIG } from '../../../../../common/util/db';
-import { DateTime } from 'luxon'
+import { ConfigContext, NavContext } from '../../../../../common/util/contexts';
+import { DateTime } from 'luxon';
 
 const BackupRestore = () => {
+    const { reload } = useContext(ConfigContext);
+    const { close } = useContext(NavContext);
     const fileInput = useRef(null);
 
     const generateBackup = async () => {
@@ -42,8 +45,10 @@ const BackupRestore = () => {
             const backup = JSON.parse(e.target.result);
             console.log(backup);
             
-            restoreWidgets(backup.widgets);
-            restoreConfig(backup.config);
+            await restoreWidgets(backup.widgets);
+            await restoreConfig(backup.config);
+            close();
+            reload("Restoring from Backup...");
         }
         reader.readAsText(e.target.files[0]);
     }
