@@ -1,6 +1,7 @@
 .Accordion {
     width: 100%;
-    margin: 0 auto 16px;
+    margin: 0 auto;
+    padding-bottom: 16px;
     color: #dedede;
 
     h2 {
@@ -9,7 +10,7 @@
 
     hr {
         width: 100%;
-        margin: 6px auto 14px;
+        margin: 0 auto 14px;
     }
 }
 
@@ -20,6 +21,7 @@
     align-items: center;
     position: sticky;
     cursor: pointer;
+    padding-bottom: 6px;
 }
 
 .content {

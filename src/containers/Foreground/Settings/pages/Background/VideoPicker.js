@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classes from './Background.module.scss';
-import { CONFIG } from '../../../../common/util/db';
-import { TextInput, Dropdown, Radio, Button } from '../../../../common/ui';
+import { CONFIG } from '../../../../../common/util/db';
+import { TextInput } from '../../../../../common/ui';
 import { PlusCircle, MinusCircle } from "react-feather"
 
 const VideoPicker = (props) => {

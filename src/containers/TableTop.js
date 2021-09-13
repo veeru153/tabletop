@@ -31,7 +31,7 @@ const TableTop = () => {
     }
 
     const updateBg = async () => {
-        const bg = await CONFIG.getItem('bg2');
+        const bg = await CONFIG.getItem('bg');
         setBg(bg);
     }
 

@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import classes from './Background.module.scss';
-import { BG } from '../../../../common/util/defaults';
-import { CONFIG } from '../../../../common/util/db';
+import { BG } from '../../../../../common/util/defaults';
+import { CONFIG } from '../../../../../common/util/db';
 import { Formik } from 'formik';
-import { ConfigContext } from '../../../../common/util/contexts';
-import ColorPicker from './Background_ColorPicker';
-import ImagePicker from './Background_ImagePicker';
-import VideoPicker from './Background_VideoPicker';
-import { TextInput, Dropdown, Button, Radio, Page } from '../../../../common/ui';
+import { ConfigContext } from '../../../../../common/util/contexts';
+import ColorPicker from './ColorPicker';
+import ImagePicker from './ImagePicker';
+import VideoPicker from './VideoPicker';
+import { TextInput, Dropdown, Button, Radio, Page } from '../../../../../common/ui';
 
 const Background = () => {
     const [bgConfig, setBgConfig] = useState(BG);
@@ -17,7 +17,7 @@ const Background = () => {
     useEffect(() => {
         async function onMount() {
             // const bgData = await db.collection(CONFIG).doc('bg').get();
-            const bgData = await CONFIG.getItem('bg2');
+            const bgData = await CONFIG.getItem('bg');
             setBgConfig({ ...BG, ...bgData });
             setLoaded(true);
         }
@@ -41,7 +41,7 @@ const Background = () => {
                 onSubmit={async (values) => {
                     setBg(values);
                     console.log(values);
-                    await CONFIG.setItem('bg2', values);
+                    await CONFIG.setItem('bg', values);
                 }}
             >
                 {(props) => (
