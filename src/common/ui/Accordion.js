@@ -11,13 +11,13 @@ const Accordion = ({ title, children, className : userClasses, style : userStyle
                 <h2>{title}</h2>
                 {expanded ? <ChevronUp /> : <ChevronDown />}
             </div>
-            <hr />
             <div 
                 className={`${classes.content} ${userClasses}`}
-                style={{ ...userStyles, maxHeight: expanded ? '100%' : '0px' }}
+                style={{ ...userStyles, display: expanded ? 'block' : 'none' }}
             >
                 {children}
             </div>
+            <hr />
         </div>
     )
 }

@@ -29,9 +29,9 @@ const About = () => {
                     rel="noopener noreferrer"
                     style={{ textDecoration: 'none' }}
                 >
-                    <Button style={{ display: 'flex' }}>
+                    <Button style={{ display: 'inline-flex' }}>
                         <img src={GitHubLogo} alt="GitHub Mark" />
-                        <p>GitHub Repository</p>
+                        <p style={{ margin: "auto 0 auto 18px" }}>GitHub Repository</p>
                     </Button>
                 </a>
             </div>

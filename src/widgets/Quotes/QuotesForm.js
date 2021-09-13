@@ -22,7 +22,7 @@ const QuotesForm = () => {
             className={classes.QuotesForm}
         >
             <form onSubmit={handleSubmit} style={styles.form}>
-                <div>
+                <div style={{ width: "100%" }}>
                     <h3>Tag Guide:</h3> 
                     <h4>- <code>table,top</code> finds quotes matching tags "table" AND "top"</h4>
                     <h4>- <code>table|top</code> finds quotes matching tags "table" OR "top"</h4>
