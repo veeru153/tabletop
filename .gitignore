@@ -26,5 +26,6 @@ yarn-error.log*
 
 ideas.md
 TODO.md
+ignore
 *.crx
 *.pem

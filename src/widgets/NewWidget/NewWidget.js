@@ -10,7 +10,7 @@ import Widget from '../../containers/Widget';
 
 
 const NewWidget = (props) => {
-    const { id, meta, } = props;
+    const { id, meta, content } = props;
 
     return (
         <Widget
