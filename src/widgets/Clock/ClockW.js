@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import Clock_Analog from './ClockW_Analog';
-import Clock_Digital from './ClockW_Digital';
+import React from 'react';
+import ClockAnalog from './ClockW_Analog';
+import ClockDigital from './ClockW_Digital';
 
 const Clock = (props) => {
-    const { id, meta, content } = props;
-
-    if(content.params.digital) return <Clock_Digital {...props} />
-    return <Clock_Analog {...props} />
+    if(props.content.params.digital) return <ClockDigital {...props} />
+    return <ClockAnalog {...props} />
 }
 
 export default Clock;

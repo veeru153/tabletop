@@ -20,21 +20,13 @@ const Widget = (props) => {
         await WIDGETS.setItem(id, wData);
     }
 
-    const EditWidget = () => {
-        return (
-            <div className={classes.EditWidget}>
-                <X
-                    className={classes.closeBtn}
-                    onClick={() => removeWidget(id)}
-                />
-            </div>
-        )
-    }
 
     const styles = {
         cursor: editMode ? (grabbed ? 'grabbing' : 'grab') : 'default',
         ...userStyle,
     }
+
+    const editWidgetProps = { id, removeWidget };
 
     return (
         <Draggable
@@ -49,10 +41,21 @@ const Widget = (props) => {
                 className={userClass} 
                 style={styles}
             >
-                {editMode && <EditWidget />}
+                {editMode && <EditWidget {...editWidgetProps} />}
                 {props.children}
             </div>
         </Draggable>
+    )
+}
+
+const EditWidget = ({ id, removeWidget }) => {
+    return (
+        <div className={classes.EditWidget}>
+            <X
+                className={classes.closeBtn}
+                onClick={() => removeWidget(id)}
+            />
+        </div>
     )
 }
 

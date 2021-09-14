@@ -40,7 +40,6 @@ const Background = () => {
                 initialValues={bgConfig}
                 onSubmit={async (values) => {
                     setBg(values);
-                    console.log(values);
                     await CONFIG.setItem('bg', values);
                 }}
             >

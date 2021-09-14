@@ -16,7 +16,7 @@ export const fetchData = async (id, params) => {
     const { units, city } = params;
     const { owmKey } = await cookies.get(SECRETS);
 
-    if(!owmKey && owmKey.token.length == 0) {
+    if(!owmKey && owmKey.token.length === 0) {
         throw new WeatherException("Missing API Key");
     }
 

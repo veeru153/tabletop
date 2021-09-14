@@ -31,7 +31,7 @@ const ImagePicker = (props) => {
     }, [sources]);
 
     const addSrc = () => {
-        if(currSrc.length == 0 || sources.includes(currSrc.trim())) return;
+        if(currSrc.length === 0 || sources.includes(currSrc.trim())) return;
         setSources([...sources, currSrc.trim()]);
         setCurrSrc("");
     }
@@ -70,7 +70,7 @@ const ImagePicker = (props) => {
                         label="Local"
                         name="local"
                         value={0}
-                        checked={section == 0}
+                        checked={section === 0}
                         onChange={() => setSection(0)}
                         style={styles.radioBtn}
                     />
@@ -80,7 +80,7 @@ const ImagePicker = (props) => {
                         label="Online"
                         name="online"
                         value={1}
-                        checked={section == 1}
+                        checked={section === 1}
                         onChange={() => setSection(1)}
                         style={styles.radioBtn}
                     />
@@ -137,7 +137,7 @@ const LocalImagePicker = (props) => {
 const OnlineImageSection = ({ sources, currSrc, setCurrSrc, addSrc, deleteSrc, }) => {
     return (
         <div className={classes.imagePicker}>
-            <span>Falls back to Local Image</span>
+            <span style={{ fontSize: 16 }}>Falls back to Local Image</span>
             <div className={classes.inputArea}>
                 <TextInput
                     name="value"

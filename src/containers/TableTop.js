@@ -35,12 +35,17 @@ const TableTop = () => {
 
     const init = async () => {
         const emptyConfig = await CONFIG.length() == 0;
-        if(!emptyConfig) return;
+        if(!emptyConfig) {
+            const _meta = CONFIG.getItem('meta');
+            const compatible = _meta && (_meta?.version ?? 0 >= DEFAULTS.META.compatiblilty);
+            if(compatible) return Promise.resolve();
+        }
 
-        CONFIG.setItem('bg', DEFAULTS.BG);
-        CONFIG.setItem('imageSrcs', DEFAULTS.IMAGESRCS);
-        CONFIG.setItem('videoSrcs', DEFAULTS.VIDEOSRCS);
-        CONFIG.setItem('meta', DEFAULTS.META);
+        await WIDGETS.clear();
+        await CONFIG.setItem('bg', DEFAULTS.BG);
+        await CONFIG.setItem('imageSrcs', DEFAULTS.IMAGESRCS);
+        await CONFIG.setItem('videoSrcs', DEFAULTS.VIDEOSRCS);
+        await CONFIG.setItem('meta', DEFAULTS.META);
         return Promise.resolve();
     }
 
@@ -82,8 +87,12 @@ const TableTop = () => {
     }
 
     const removeWidget = async (id) => {
-        await WIDGETS.removeItem(id);
-        updateWidgets();
+        try {
+            await WIDGETS.removeItem(id);
+            updateWidgets();
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     const clearWidgets = async () => {

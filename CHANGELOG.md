@@ -1,5 +1,14 @@
 # Changelog
 
+## September 14, 2021
+
+- Release v1.0.
+- Revamped extension design.
+- Added ability to create backups and restore from those backups.
+- Added ability to add links to Images and Videos (experimental) for backgrounds.
+- Widgets Added: Quotes, Calendar (Daily), Clock (Digital)
+- Widgets Removed: ExchangeRate
+
 ## March 16, 2021
 
 - Release v0.3.

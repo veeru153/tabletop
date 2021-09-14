@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import classes from './Background.module.scss';
 import { CONFIG } from '../../../../../common/util/db';
 import { TextInput } from '../../../../../common/ui';
@@ -21,7 +21,7 @@ const VideoPicker = (props) => {
     }, [sources]);
 
     const addSrc = () => {
-        if(currSrc.length == 0 || sources.includes(currSrc.trim())) return;
+        if(currSrc.length === 0 || sources.includes(currSrc.trim())) return;
         setSources([...sources, currSrc.trim()]);
         setCurrSrc("");
     }
@@ -34,7 +34,7 @@ const VideoPicker = (props) => {
 
     return (
         <div className={classes.videoPicker}>
-            <span>EXPERIMENTAL: Falls back to Local Image</span>
+            <span style={{ fontSize: 16 }}>EXPERIMENTAL: Falls back to Local Image</span>
             <div className={classes.inputArea}>
                 <TextInput
                     name="value"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import classes from './Page.module.scss';
 
 // Container for all Settings and config pages

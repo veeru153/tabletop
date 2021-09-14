@@ -6,10 +6,10 @@ const General = () => {
     const { clearWidgets, hideZeroWidgetMsg, allowWidgetReposWithoutEdit, showCoverOnStart, meta } = useContext(ConfigContext);
     const [clearConfirm, setClearConfirm] = useState(false);
 
-    const handleShowCoverOnStart = () => {
-        if(meta.showCoverOnStart) showCoverOnStart(false);
-        else showCoverOnStart();
-    }
+    // const handleShowCoverOnStart = () => {
+    //     if(meta.showCoverOnStart) showCoverOnStart(false);
+    //     else showCoverOnStart();
+    // }
 
     const handleZeroWidgetMsg = () => {
         if(meta.showZeroWidgetMsg) hideZeroWidgetMsg();

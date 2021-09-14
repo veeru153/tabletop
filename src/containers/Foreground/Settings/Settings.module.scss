@@ -8,6 +8,9 @@
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     overflow: hidden;
+
+    h3 { font-size: 18.72px; }
+    h4, span, p { font-size: 16px; }
 }
 
 .page {

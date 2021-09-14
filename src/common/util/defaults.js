@@ -11,6 +11,8 @@ export const IMAGESRCS = { 0: [] };
 export const VIDEOSRCS = { 0: [] };
 
 export const META = {
+    version: 1,
+    compatiblilty: 1,
     showZeroWidgetMsg: true,
     showCoverOnStart: true,
     allowWidgetReposWithoutEdit: false,

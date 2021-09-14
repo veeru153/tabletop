@@ -18,6 +18,7 @@
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: 1.24fr 0.76fr;
     width: 100%;
+    font-size: 16px;
 
     .current {
         grid-row: 1 / 3;

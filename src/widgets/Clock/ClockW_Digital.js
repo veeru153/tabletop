@@ -9,7 +9,7 @@ const Clock = ({ id, meta, content }) => {
     // const [time, setTime] = useState({ hr: "00", min: "00", sec: "00" });
     const [time, setTime] = useState({ hr: "00", min: "00" });
     const [am, setAm] = useState(true);
-    const { military } = params;
+
     useEffect(() => {
         const secInterval = setInterval(() => {
             let dt = DateTime.local().setZone(params.tz);
