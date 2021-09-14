@@ -8,18 +8,22 @@ const Toolbar = ({ setShowSettings, setShowAddWidget, editMode, setEditMode }) =
     
     const toolbarOptions = [
         {
+            key: "Expand Toolbar",
             onMouseOver: () => setExpandToolbar(true),
             icon: menuIcon,
         },
         {
+            key: "Add Widget",
             onClick: () => setShowAddWidget(true),
             icon: <Plus size={40} color="#dedede" />,
         },
         {
+            key: "Edit Widgets",
             onClick: () => setEditMode(!editMode),
             icon: <Edit2 size={30} color="#dedede" />,
         },
         {
+            key: "Settings",
             onClick: () => setShowSettings(true),
             icon: <Settings size={36} color="#dedede" />
         },

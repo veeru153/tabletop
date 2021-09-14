@@ -84,7 +84,7 @@ const PageShell = ({ visibility, setVisibility, children }) => {
                     className={classes.main}
                     style={{ transform: `translateY(${-(level-1)*100}vh)` }}
                 >
-                    {pageStack.map(page => page)}
+                    {pageStack.map((page, i) => React.cloneElement(page, { key: i }))}
                 </div>
             </NavContext.Provider>
             <RightSide />

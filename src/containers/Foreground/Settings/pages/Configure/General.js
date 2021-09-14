@@ -3,15 +3,20 @@ import { Button, Accordion, Checkbox } from '../../../../../common/ui';
 import { ConfigContext } from '../../../../../common/util/contexts';
 
 const General = () => {
-    const { clearWidgets, hideZeroWidgetMsg, allowWidgetReposWithoutEdit, meta } = useContext(ConfigContext);
+    const { clearWidgets, hideZeroWidgetMsg, allowWidgetReposWithoutEdit, showCoverOnStart, meta } = useContext(ConfigContext);
     const [clearConfirm, setClearConfirm] = useState(false);
+
+    const handleShowCoverOnStart = () => {
+        if(meta.showCoverOnStart) showCoverOnStart(false);
+        else showCoverOnStart();
+    }
 
     const handleZeroWidgetMsg = () => {
         if(meta.showZeroWidgetMsg) hideZeroWidgetMsg();
         else hideZeroWidgetMsg(false);
     }
 
-    const handleWidgetRepos = () => {
+    const handleWidgetReposition = () => {
         allowWidgetReposWithoutEdit(!meta.allowWidgetReposWithoutEdit);
     }
 
@@ -28,13 +33,17 @@ const General = () => {
 
     return (
             <Accordion title="General">
+                {/* <Checkbox
+                    checked={meta.showCoverOnStart}
+                    onClick={handleShowCoverOnStart}
+                >Show Cover on Start</Checkbox> */}
                 <Checkbox
                     checked={meta.showZeroWidgetMsg}
                     onClick={handleZeroWidgetMsg}
                 >Show Zero Widget message</Checkbox>
                 <Checkbox
                     checked={meta.allowWidgetReposWithoutEdit}
-                    onClick={handleWidgetRepos}
+                    onClick={handleWidgetReposition}
                 >Allow widget repositioning outside of Edit Mode</Checkbox>
                 <div style={styles.row}>
                     <Button 

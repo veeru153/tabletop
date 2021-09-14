@@ -16,17 +16,19 @@ const TableTop = () => {
     const [showSettings, setShowSettings] = useState(false);
     const [showAddWidget, setShowAddWidget] = useState(false);
     const [editMode, setEditMode] = useState(false);
-    const [showCover, setShowCover] = useState(false);
+    // TODO: Find a way to hide the cover on start without hardcoding it.
+    // const [showCover, setShowCover] = useState(meta.showCoverOnStart);
+    const [showCover, setShowCover] = useState(true);
     const [coverMsg, setCoverMsg] = useState(null);
 
     useEffect(() => {
         async function onMount() {
             init();
+            await updateMeta();
             await updateWidgets();
             await updateBg();
-            await updateMeta();
             setLoaded(true);
-            // setShowCover(false);
+            setShowCover(false);
         }
         onMount();
     }, [])
@@ -101,6 +103,12 @@ const TableTop = () => {
         setTimeout(() => setCoverMsg(null), 4000);
     }
 
+    const showCoverOnStart = (val = true) => {
+        const _meta = { ...meta, showCoverOnStart: val };
+        setMeta(_meta);
+        CONFIG.setItem('meta', _meta);
+    }
+
     const hideZeroWidgetMsg = (val = true) => {
         const _meta = { ...meta, showZeroWidgetMsg: !val };
         setMeta(_meta);
@@ -116,7 +124,7 @@ const TableTop = () => {
     const dashboardProps = { widgets, setShowSettings, setShowAddWidget, filter: bg.filter, showZeroWidgetMsg: meta.showZeroWidgetMsg, hideZeroWidgetMsg };
     const foregroundProps = { showSettings, setShowSettings, showAddWidget, setShowAddWidget };
     const coverProps = { showCover, coverMsg, bgColor: bg.color, showCoverOnStart: meta.showCoverOnStart };
-    const configCtxProps = { addWidget, setBg, editMode, setEditMode, removeWidget, reload, clearWidgets, hideZeroWidgetMsg, meta, allowWidgetReposWithoutEdit };
+    const configCtxProps = { addWidget, setBg, editMode, setEditMode, removeWidget, reload, clearWidgets, hideZeroWidgetMsg, meta, allowWidgetReposWithoutEdit, showCoverOnStart };
 
     return (
         <ConfigContext.Provider value={configCtxProps}>
