@@ -1,0 +1,54 @@
+@import '../../common/global.module.scss';
+
+.Dashboard {
+    @include fullScreen;
+    @include posFixed($z: 99);
+    @include flexify($d: column)
+}
+
+.toolbar {
+    @include flexify($d: column);
+    row-gap: 8px;
+    position: absolute; 
+    bottom: 0;
+    right: 0; 
+    padding: 0 3px 3px 0;
+    transition: 0.2s ease;
+}
+
+.toolbarBtn {
+    @include flexify;
+    background-color: rgba(0, 0, 0, 0.64);
+    border-radius: 160px;
+    padding: 4px;
+    border: none;
+    user-select: none;
+    outline: 0;
+    opacity: 0.76;
+    transition: 0.2s ease;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.zeroWidgetMessage {
+    color: #dedede;
+    font-size: larger;
+    background-color: rgba(0,0,0,0.64);
+    padding: 36px 52px;
+    text-align: center;
+
+    span {
+        transition: all 0.2s ease;
+        text-decoration: underline;
+        cursor: pointer;
+
+        &:hover {
+            color: tomato;
+        }
+    }
+}

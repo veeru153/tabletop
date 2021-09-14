@@ -1,0 +1,133 @@
+/* Layout */
+.ClockAnalog {
+    --clock-color: #dedede;
+    --clock-color-dark: black;
+    background-color: rgba(0,0,0,0.56);
+    position: fixed;
+    width: 168px;
+    height: 168px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+
+    .clockbox {
+        width: 150px;
+        height: 150px;
+    
+        svg {
+            width: 100%;
+        }
+    }
+    
+    /* Clock styles */
+    .circle {
+        fill: none;
+        stroke: var(--clock-color);
+        stroke-width: 9;
+        stroke-miterlimit: 10;
+    }
+    
+    .midCircle {
+        fill: var(--clock-color);
+    }
+    
+    .hourMarks {
+        fill: none;
+        stroke: var(--clock-color);
+        stroke-width: 9;
+        stroke-miterlimit: 10;
+    }
+    
+    .hourArm {
+        fill: none;
+        stroke: var(--clock-color);
+        stroke-width: 17;
+        stroke-miterlimit: 10;
+    }
+    
+    .minuteArm {
+        fill: none;
+        stroke: var(--clock-color);
+        stroke-width: 11;
+        stroke-miterlimit: 10;
+    }
+    
+    .secondArm {
+        fill: none;
+        stroke: var(--clock-color);
+        stroke-width: 4;
+        stroke-miterlimit: 10;
+    }
+    
+    .light {
+        .circle {
+            fill: var(--clock-color);
+            stroke: var(--clock-color-dark);
+        }
+    
+        .midCircle {
+            fill: var(--clock-color-dark);
+        }
+    
+        .hourMarks {
+            stroke: var(--clock-color-dark);
+        }
+    
+        .hourArm {
+            stroke: var(--clock-color-dark);
+        }
+    
+        .minuteArm {
+            stroke: var(--clock-color-dark);
+        }
+    
+        .secondArm {
+            stroke: var(--clock-color-dark);
+        }
+    }
+    
+    /* Transparent box ensuring arms center properly. */
+    .sizingBox {
+        fill: none;
+    }
+    
+    /* Make all arms rotate around the same center point. */
+    /* Optional: Use transition for animation. */
+    .hand {
+        transform-origin: 300px 300px;
+        transition: transform .5s ease-in-out;
+    }
+
+    .label {
+        font-size: 22px;
+        margin: 8px 0 16px;
+        color: var(--clock-color);
+    }
+}
+
+.ClockDigital {
+    background-color: rgba(0,0,0,0.56);
+    position: fixed;
+    width: 196px;
+    height: 90px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    color: #dedede;
+    font-size: 52px;
+
+    span {
+        font-size: 24px;
+    }
+
+    .label {
+        font-size: 24px;
+        margin: 8px;
+    }
+}

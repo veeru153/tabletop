@@ -1,0 +1,88 @@
+@import '../../common/global.module.scss';
+
+.Quotes {
+    background-color: rgba(0,0,0,0.56);
+    position: fixed;
+    width: 196px;
+    height: 90px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    color: #dedede;
+    row-gap: 24px;
+    font-size: 20px;
+}
+
+.author {
+    text-align: right;
+    font-size: 14px;
+    width: 100%;
+}
+
+
+
+.QuotesForm {
+    h3 { font-size: 18.72px; }
+    h4 { font-size: 16px; }
+    
+    .inputArea {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 10px;
+        width: 100%;
+        
+        input {
+            width: 100%;
+        }
+    
+        svg {
+            color: rgba(222, 222, 222, 0.64);
+            transition: 0.2s ease;
+            cursor: pointer;
+    
+            &:hover {
+                color: rgba(222, 222, 222);
+            }
+        }
+    }
+    
+    .tagList {
+        @include flexify($d: column, $j: flex-start);
+        row-gap: 8px;
+        height: 226px;
+        max-width: 720px;
+        border: 1px solid #dedede;
+        padding: 12px;
+        overflow-y: scroll;
+        user-select: text;
+    }
+    
+    .tags {
+        display: grid;
+        grid-template-columns: 20fr 1fr;
+        align-items: center;
+        column-gap: 5px;
+        width: 100%;
+    
+        p {
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    
+        span {
+            @include flexify;
+        }
+    
+        svg {
+            transition: 0.2s ease;
+            &:hover {
+                color: tomato;
+            }
+        }
+    }
+}

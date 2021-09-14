@@ -1,38 +1,51 @@
 import Axios from 'axios';
-import { db, WIDGETS } from '../../util/db';
-import { cookies, SECRETS } from '../../util/cookies';
+import { WIDGETS } from '../../common/util/db';
+import { cookies, SECRETS } from '../../common/util/cookies';
 
+class WeatherException {
+    name = "Error";
+    message = "Error";
+    icon = "50n";
 
-export const fetchData = async (id, city, units) => {
-    const { owmKey } = await cookies.get(SECRETS);
-    if(!owmKey || !owmKey?.token) {
-        errorW.weather[0].main = "Missing API Key";
-        return errorW;
+    constructor(message) {
+        this.message = message;
     }
+}
+
+export const fetchData = async (id, params) => {
+    const { units, city } = params;
+    const { owmKey } = await cookies.get(SECRETS);
+
+    if(!owmKey && owmKey.token.length === 0) {
+        throw new WeatherException("Missing API Key");
+    }
+
     const OWM_KEY = owmKey?.token;
+
+    const api = `http://api.openweathermap.org/data/2.5/find?q=${encodeURIComponent(city)}&units=${units}&appid=${OWM_KEY}`;
+
     if(navigator.onLine) {
-        const api = `http://api.openweathermap.org/data/2.5/find?q=${encodeURIComponent(city)}&units=${units}&appid=${OWM_KEY}`;
         try {
             const res = await Axios.get(api);
             const data = await res.data.list[0];
+
             if(!data || data.length === 0) {
-                errorW.name = "Error"
-                errorW.weather[0].main = "No matching location found.";
-                return errorW;
+                throw new WeatherException("Location Not Found");
             }
-            db.collection(WIDGETS).doc(id+"").update({ params: data });
+
+            const wData = await WIDGETS.getItem(id);
+            wData.content = { data, params };
+            await WIDGETS.setItem(id, wData);
             return data;
         } catch (e) {
-            errorW.weather[0].main = e.message;
-            return errorW;
+            throw new WeatherException("Check API Key");
         }
     } else {
         try {
-            const savedW = await db.collection(WIDGETS).doc(id+"").get();
-            return savedW.params;
+            const savedW = await WIDGETS.getItem(id);
+            return savedW.content.data;
         } catch (e) {
-            errorW.weather[0].description = e;
-            return errorW;
+            throw new WeatherException("Offline")
         }
     }
 }
@@ -56,10 +69,4 @@ export const defaultW = {
     sys: { country: "Loading..." },
     weather: [{ id: 701, main: "Loading...", description: "Loading...", icon: "50n" }],
     wind: { speed: 0, deg: 0 },
-}
-
-const errorW = {
-    ...defaultW,
-    name: "Error",
-    weather: [{ id: 701, main: "An Error Occured", description: "Error", icon: "50n" }]
 }

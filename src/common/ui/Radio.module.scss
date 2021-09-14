@@ -1,0 +1,34 @@
+.Radio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0;
+
+    label {
+        cursor: pointer;
+        background-color: rgba(255,255,255,0.32);
+        color: #dedede;
+        padding: 8px 16px;
+        border-radius: 4px;
+        transition: 0.3s ease;
+
+        &:not(.active):hover {
+            transform: scale(1.1);
+        }
+
+        &.active {
+            background-color: white;
+            color: #383838;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+        }
+    }
+
+    input {
+        position: absolute;
+        appearance: none;
+        width: inherit;
+        height: inherit;
+    }
+}
