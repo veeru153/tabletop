@@ -38,7 +38,6 @@ const TableTop = () => {
         if(!emptyConfig) {
             const _meta = await CONFIG.getItem('meta');
             const compatible = _meta && (_meta?.version ?? 0 >= DEFAULTS.META.compatiblilty);
-            console.log(_meta, compatible);
             if(compatible) return Promise.resolve();
         }
 
