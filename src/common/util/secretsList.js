@@ -1,5 +1,5 @@
 const SECRETS = {
-    owmKey: { name: 'OpenWeatherMaps Key', token: '' },
+    owmKey: { name: 'OpenWeatherMaps', token: '' },
 }
 
 export default SECRETS;

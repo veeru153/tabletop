@@ -1,6 +1,7 @@
-import React, { useRef, useContext } from 'react';
-import { Button, Accordion } from '../../../../../common/ui';
+import React, { useState, useRef, useContext } from 'react';
+import { Button, Accordion, Checkbox } from '../../../../../common/ui';
 import { WIDGETS, CONFIG } from '../../../../../common/util/db';
+import { cookies, SECRETS } from '../../../../../common/util/cookies';
 import { ConfigContext, NavContext } from '../../../../../common/util/contexts';
 import { DateTime } from 'luxon';
 
@@ -8,6 +9,8 @@ const BackupRestore = () => {
     const { reload } = useContext(ConfigContext);
     const { close } = useContext(NavContext);
     const fileInput = useRef(null);
+    const [backupLocal, setBackupLocal] = useState(false);
+    const [backupSecrets, setBackupSecrets] = useState(false);
 
     const generateBackup = async () => {
         const backup = {
@@ -23,10 +26,12 @@ const BackupRestore = () => {
             backup.config[key] = val;
             console.log(`Backed up: Configuration - ${key}`);
         });
-        
-        // Removing Local Image
-        backup.config.bg.image = "";
-        // Maybe TODO: Allow users to select if they want to backup local image
+        if(!backupLocal) backup.config.bg.image = "";
+
+        if(backupSecrets) {
+            const fetchedSecretDoc = await cookies.get(SECRETS) ?? {};
+            backup['secrets'] = { ...fetchedSecretDoc };
+        }
 
         const backupStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backup, null, 2));
         const downloadAnchorNode = document.createElement('a');
@@ -43,10 +48,11 @@ const BackupRestore = () => {
         const reader = new FileReader();
         reader.onload = async (e) => {
             const backup = JSON.parse(e.target.result);
-            console.log(backup);
             
             await restoreWidgets(backup.widgets);
             await restoreConfig(backup.config);
+            backup.secrets && await restoreSecrets(backup.secrets);
+
             close();
             reload("Restoring from Backup...");
         }
@@ -72,9 +78,22 @@ const BackupRestore = () => {
         return Promise.all(config.map(c => _setConfig(c)));
     }
 
+    const restoreSecrets = async (values) => {
+        const expiryDate = new Date("2038-01-19T04:14:07");
+        cookies.set(SECRETS, values, { expires: expiryDate });
+    }
+
     return (
             <Accordion title="Backup & Restore">
-                <h3 style={styles.label}>Backups will NOT include Secret Tokens and Local Image.</h3>
+                <h3 style={styles.label}>Backups will NOT include Secret Tokens.</h3>
+                <Checkbox
+                    checked={backupLocal}
+                    onClick={() => setBackupLocal(!backupLocal)}
+                >Backup Local Image (Results in slower and larger backups.)</Checkbox>
+                <Checkbox
+                    checked={backupSecrets}
+                    onClick={() => setBackupSecrets(!backupSecrets)}
+                >Backup Secrets (For personal use only. Do not share this backup.)</Checkbox>
                 <div style={styles.BackupRestore}>
                     <Button onClick={generateBackup}>Backup</Button>
                     <Button onClick={openFilePicker}>Restore</Button>

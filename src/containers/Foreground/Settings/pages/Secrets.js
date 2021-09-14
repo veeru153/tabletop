@@ -76,7 +76,7 @@ const SecretRow = (props) => {
     return (
         <form onSubmit={(e) => handleUpdate(e, id, props.values)} className={classes.secretRow}>
             <div>
-                <p>{name} <span style={{ display: updated ? "inline-block" : "none", color: "#74eb34" }}>- Updated!</span></p>
+                <p>{name}</p>
                 <TextInput
                     name={name}
                     type="password"
@@ -86,7 +86,14 @@ const SecretRow = (props) => {
                 />
             </div>
             <div>
-                <Button style={{ margin: '8px auto' }} type="submit">Update</Button>
+                <Button 
+                    style={{ 
+                        margin: '8px auto',
+                        backgroundColor: updated ? "#17ad49" : "",
+                        color: updated ? "#383838" : "",
+                    }} 
+                    type="submit"
+                >Update</Button>
             </div>
         </form>
     )

@@ -5,7 +5,7 @@ import { TextInput, Dropdown, Radio } from '../../../../../common/ui';
 import { PlusCircle, MinusCircle } from "react-feather";
 
 const ImagePicker = (props) => {
-    const [section, setSection] = useState(0);      // Local = 0, Online = 1
+    const [section, setSection] = useState(-1);      // Local = 0, Online = 1
     const [localImg, setLocalImg] = useState(props.values.image);
     const [sources, setSources] = useState([]);
     const [currSrc, setCurrSrc] = useState("");

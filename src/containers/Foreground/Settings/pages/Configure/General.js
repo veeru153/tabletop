@@ -37,7 +37,14 @@ const General = () => {
                     onClick={handleWidgetRepos}
                 >Allow widget repositioning outside of Edit Mode</Checkbox>
                 <div style={styles.row}>
-                    <Button onClick={handleClearWidgets} style={{ margin: 0 }}>Clear All Widgets</Button>
+                    <Button 
+                        onClick={handleClearWidgets} 
+                        style={{ 
+                            margin: 0,
+                            backgroundColor: clearConfirm ? "tomato" : "",
+                            color: clearConfirm ? "black" : "",
+                        }}
+                    >Clear All Widgets</Button>
                     <h4 style={{ display: clearConfirm ? "block" : "none", margin: 0 }}>Are you sure? Click again to Confirm.</h4>
                 </div>
             </Accordion>
