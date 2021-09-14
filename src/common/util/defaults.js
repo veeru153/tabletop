@@ -13,4 +13,5 @@ export const VIDEOSRCS = { 0: [] };
 export const META = {
     showZeroWidgetMsg: true,
     showCoverOnStart: true,
+    allowWidgetReposWithoutEdit: false,
 }

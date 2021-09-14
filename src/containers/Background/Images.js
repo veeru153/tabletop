@@ -8,7 +8,7 @@ const Images = ({ blend, local }) => {
     useEffect(() => {
         async function onMount() {
             const urls = await CONFIG.getItem('imageSrcs');
-            urls[0].push(local);
+            if(local.length > 0) urls[0].push(local);
             if(urls[0].length > 0) {
                 const i = Math.floor(Math.random() * urls[0].length);
                 setSrc(urls[0][i]);

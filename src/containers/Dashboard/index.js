@@ -10,8 +10,6 @@ const Dashboard = ({ widgets, setShowSettings, setShowAddWidget, filter, showZer
     const toolbarProps = { setShowSettings, setShowAddWidget, editMode, setEditMode };
     const filterS = filter.fn === "none" ? filter.fn : `${filter.fn}(${filter.value})`;
 
-    console.log(hideZeroWidgetMsg);
-
     const dashStyles = {
         backdropFilter: filterS,
         display: (widgets.length < 1) ? 'flex' : 'block',
@@ -27,18 +25,13 @@ const Dashboard = ({ widgets, setShowSettings, setShowAddWidget, filter, showZer
 }
 
 const ZeroWidgetMsg = ({ hideZeroWidgetMsg }) => {
-    const spanStyle = {
-        textDecoration: 'underline',
-        cursor: 'pointer',
-    }
-
     return (
         <div className={classes.zeroWidgetMessage}>
             <h1>Welcome to TableTop!</h1>
             <h3>
                 Seems quite empty, doesn't it?<br />
                 Add Widgets by Clicking on the Menu button below.<br />
-                Click <span onClick={hideZeroWidgetMsg} style={spanStyle}>here</span> to get rid of this message.
+                Click <span onClick={hideZeroWidgetMsg}>here</span> to get rid of this message.
             </h3>
         </div>
     )

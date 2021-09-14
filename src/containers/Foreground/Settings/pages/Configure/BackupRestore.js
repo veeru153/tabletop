@@ -97,7 +97,7 @@ const styles = {
         gap: 24,
     },
     label: {
-        marginTop: 4
+        marginTop: 0
     }
 }
 

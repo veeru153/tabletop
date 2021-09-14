@@ -41,4 +41,14 @@
     background-color: rgba(0,0,0,0.64);
     padding: 36px 52px;
     text-align: center;
+
+    span {
+        transition: all 0.2s ease;
+        text-decoration: underline;
+        cursor: pointer;
+
+        &:hover {
+            color: tomato;
+        }
+    }
 }
