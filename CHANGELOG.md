@@ -9,6 +9,9 @@
 - Widgets Added: Quotes, Calendar (Daily), Clock (Digital)
 - Widgets Removed: ExchangeRate
 
+- NOTE: Not backward compatible with v0.x.
+  - Previous configuration will be replaced with the newer configuration removing all widgets and settings. Secrets will persist.
+
 ## March 16, 2021
 
 - Release v0.3.
