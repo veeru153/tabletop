@@ -49,7 +49,7 @@ const ClockForm = () => {
                                 style={styles.radioBtn}
                             />
                         </div>
-                        <div style={styles.formRow}>
+                        {props.values.digital && <div style={styles.formRow}>
                             <h3>Format:</h3>
                             <Radio
                                 label="24-Hour"
@@ -67,7 +67,7 @@ const ClockForm = () => {
                                 onChange={() => props.setFieldValue('military', false)}
                                 style={styles.radioBtn}
                             />
-                        </div>
+                        </div>}
                         <Dropdown
                             name="tz"
                             onChange={(e) => props.setFieldValue("tz", e.target.value)}

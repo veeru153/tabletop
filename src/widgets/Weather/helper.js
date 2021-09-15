@@ -22,7 +22,7 @@ export const fetchData = async (id, params) => {
 
     const OWM_KEY = owmKey?.token;
 
-    const api = `http://api.openweathermap.org/data/2.5/find?q=${encodeURIComponent(city)}&units=${units}&appid=${OWM_KEY}`;
+    const api = `https://api.openweathermap.org/data/2.5/find?q=${encodeURIComponent(city)}&units=${units}&appid=${OWM_KEY}`;
 
     if(navigator.onLine) {
         try {
