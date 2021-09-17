@@ -1,0 +1,14 @@
+.Checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 16px;
+    cursor: pointer;
+    margin: 1em 8px;
+
+    h4 {
+        margin: 0.33em 0;
+        font-size: 16px;
+    }
+    h3 { font-size: 18.72px; }
+}

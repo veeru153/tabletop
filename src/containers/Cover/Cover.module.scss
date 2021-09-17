@@ -1,0 +1,15 @@
+@import '../../common/global.module.scss';
+
+.Cover {
+    @include fullScreen;
+    @include posFixed($z: 99999);
+    @include flexify($d: column);
+    background-color: #282c34;
+    color: #dedede;
+    transition: all 0.4s ease;
+
+    h1, h3 {
+        mix-blend-mode: exclusion;
+        color: white;
+    }
+}

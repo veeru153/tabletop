@@ -1,0 +1,30 @@
+.Accordion {
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 16px;
+    color: #dedede;
+
+    h2 {
+        margin: 8px 0;
+    }
+
+    hr {
+        width: 100%;
+        margin: 0 auto 14px;
+    }
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    cursor: pointer;
+    padding-bottom: 6px;
+}
+
+.content {
+    overflow: hidden;
+    margin: 8px 0 24px;
+}

@@ -1,0 +1,22 @@
+@import '../../common/global.module.scss';
+
+.Background {
+    @include fullScreen;
+    @include posFixed($z: -1);
+    background-color: #282c34;
+}
+
+.Images, .Video {
+    width: auto;
+    min-width: 100%;
+    height: auto;
+    min-height: 100%;
+    background-size: cover;
+}
+
+.Video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,20 @@
+.TextInput {
+    all: unset;
+    border-bottom: 1px solid #acacacda;
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    &:not(:disabled):hover {
+        border-bottom: 1px solid #acacac;
+    }
+
+    &:focus {
+        border-bottom: 1px solid #dedede;
+    }
+
+    &::placeholder { color: #acacacda; }
+    &:not(:disabled):hover::placeholder { color: #acacac; }
+}

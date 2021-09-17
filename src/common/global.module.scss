@@ -1,0 +1,18 @@
+@mixin fullScreen{
+    width: 100vw;
+    height: 100vh;
+}
+
+@mixin posFixed($z: 1) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: $z;
+}
+
+@mixin flexify($d: row, $j: center, $a: center) {
+    display: flex;
+    flex-direction: $d;
+    justify-content: $j;
+    align-items: $a;
+}
