@@ -7,7 +7,7 @@ const About = () => {
     return (
         <PageTemplate
             title="About"
-            subtitle="TableTop (v1)"
+            subtitle="TableTop (v1.0)"
         >
             <h2>TableTop - Own your New Tab</h2>
             <p>TableTop is a macOS Dock inspired New Tab override.</p>

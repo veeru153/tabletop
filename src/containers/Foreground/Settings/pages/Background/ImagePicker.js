@@ -117,7 +117,7 @@ const LocalImagePicker = (props) => {
 
     useEffect(() => {
         preview.current.src = selectedImg;
-    }, []);
+    }, [selectedImg]);
 
     return (
         <React.Fragment>

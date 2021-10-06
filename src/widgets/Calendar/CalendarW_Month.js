@@ -48,7 +48,7 @@ const Day = (props) => {
     const dayColor = (isSunday ? "tomato" : "#dedede");
     // const dayColor = dt.day === day ? "white" : "#dedede";
     const isDay = ["M", "T", "W", "T", "F", "S", "S"].includes(day);
-    const isActive = (isDay || dt.day == day);
+    const isActive = (isDay || day == dt.day);
 
     return (
         <div 
@@ -73,6 +73,13 @@ const generateCal = (startsMonday, dt) => {
     for(let i=1; i<=35; i++) {
         if(i < firstDay || dayPtr > daysInMonth) continue;
         tempCal[i-1] = dayPtr;
+        dayPtr++;
+    }
+
+    const lastDayAdded = dayPtr;
+
+    while(dayPtr <= daysInMonth) {
+        tempCal[(dayPtr % lastDayAdded)] = dayPtr;
         dayPtr++;
     }
 

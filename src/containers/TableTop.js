@@ -18,7 +18,7 @@ const TableTop = () => {
     const [editMode, setEditMode] = useState(false);
     // TODO: Find a way to hide the cover on start without hardcoding it.
     // const [showCover, setShowCover] = useState(meta.showCoverOnStart);
-    const [showCover, setShowCover] = useState(true);
+    const [showCover, setShowCover] = useState(false);
     const [coverMsg, setCoverMsg] = useState(null);
 
     useEffect(() => {
@@ -37,7 +37,7 @@ const TableTop = () => {
         const emptyConfig = await CONFIG.length() == 0;
         if(!emptyConfig) {
             const _meta = await CONFIG.getItem('meta');
-            const compatible = _meta && (_meta?.version ?? 0 >= DEFAULTS.META.compatiblilty);
+            const compatible = _meta && (_meta?.version ?? 0 >= DEFAULTS.META.compatibility);
             if(compatible) return Promise.resolve();
         }
 
