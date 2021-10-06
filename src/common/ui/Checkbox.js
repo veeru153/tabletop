@@ -20,14 +20,21 @@ const Checkbox = ({ children, checked : controlledCheck, onClick : clicked, clas
 
     return (
         <div 
-            className={`${classes.Checkbox} ${userClasses}`}
+            className={`${classes.Checkbox} ${userClasses ?? ""}`}
             style={userStyles}
             onClick={handleCheck}
         >
-            {checked ? <CheckSquare /> : <Square />}
+            {checked ? <CheckSquare style={styles.checkbox} /> : <Square style={styles.checkbox} />}
             <h4>{children}</h4>
         </div>
     )
 }
 
 export default Checkbox;
+
+const styles = {
+    checkbox: {
+        minWidth: 24,
+        minHeight: 24,
+    }
+}
