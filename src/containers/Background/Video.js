@@ -5,12 +5,6 @@ import classes from './Background.module.scss';
 const Video = () => {
     const [src, setSrc] = useState("");
 
-    // const id = "LavishSillyGodwit";
-    // const id = "AcidicHandyCygnet";
-    // const url = `https://giant.gfycat.com/${id}.webm`
-    // const url = `https://giant.gfycat.com/LavishSillyGodwit.webm`
-    // 
-
     useEffect(() => {
         async function onMount() {
             const urls = await CONFIG.getItem('videoSrcs');
