@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import Draggable from 'react-draggable';
-import { WIDGETS } from '../common/util/db';
 import { ConfigContext } from '../common/util/contexts';
 import { X } from 'react-feather';
 import classes from './Widget.module.scss';

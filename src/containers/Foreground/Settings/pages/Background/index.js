@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import classes from './Background.module.scss';
-import { BG } from '../../../../../common/util/defaults';
-import { CONFIG } from '../../../../../common/util/db';
 import { Formik } from 'formik';
 import { ConfigContext } from '../../../../../common/util/contexts';
 import ColorPicker from './ColorPicker';
@@ -10,7 +8,8 @@ import VideoPicker from './VideoPicker';
 import { TextInput, Dropdown, Button, Radio, Page } from '../../../../../common/ui';
 
 const Background = () => {
-    const [bgConfig, setBgConfig] = useState(BG);
+    const { bg } = useContext(ConfigContext);
+    const [bgConfig, setBgConfig] = useState(bg);
     const [loaded, setLoaded] = useState(false);
     const { setBg } = useContext(ConfigContext);
 
@@ -36,8 +35,8 @@ const Background = () => {
             {loaded ? <Formik
                 initialValues={bgConfig}
                 onSubmit={async (values) => {
+                    if(values.type == 2) return;
                     setBg(values);
-                    await CONFIG.setItem('bg', values);
                 }}
             >
                 {(props) => (
@@ -72,7 +71,7 @@ const Background = () => {
                                             name="videoSrcs"
                                             value={props.values.type}
                                             checked={props.values.type === 2}
-                                            onChange={() => {}}
+                                            onChange={() => props.setFieldValue('type', 2)}
                                             style={styles.radioBtn}
                                         />
                                     </div>

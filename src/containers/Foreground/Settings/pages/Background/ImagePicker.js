@@ -3,7 +3,7 @@ import classes from './Background.module.scss';
 import { TextInput, Dropdown, Radio } from '../../../../../common/ui';
 
 const ImagePicker = (props) => {
-    const [section, setSection] = useState(-1);      // Local = 0, Online = 1
+    const [section, setSection] = useState(1);      // Local = 0, Online = 1
 
     const updateBlend = async (props, type, val) => {
         const tempBlend = props.values.blend;
@@ -65,7 +65,7 @@ const ImagePicker = (props) => {
 const LocalImagePicker = () => {
     return (
         <React.Fragment>
-            <p>Only displayed when Online images can't be displayed or there are no sources in the Online collection. Falls back to Color.</p>
+            <p>Local images only available in extension.</p>
         </React.Fragment>
     )
 }
@@ -73,7 +73,7 @@ const LocalImagePicker = () => {
 const OnlineImageSection = () => {
     return (
         <div className={classes.imagePicker}>
-            <span style={{ fontSize: 16 }}>Sets a random image on the website (Images sourced from picsum.photos). Custom links only available in the extension.</span>
+            <span style={{ fontSize: 16 }}>Sets a random image on the website (Images sourced from <a style={styles.link} href="https://picsum.photos/">Lorem Picsum</a>). Custom links only available in extension.</span>
         </div>
     )
 }
@@ -86,6 +86,10 @@ const styles = {
     radioBtn: {
         fontSize: '18.72px',
     },
+    link: {
+        color: "#dedede",
+        textDecoration: "underline",
+    }
 }
 
 const blendModeList = [

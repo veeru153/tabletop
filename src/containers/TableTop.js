@@ -5,6 +5,7 @@ import Dashboard from './Dashboard';
 import Foreground from './Foreground';
 import Cover from './Cover';
 import IntroWidgets from '../introWidgets/list';
+import cuid from 'cuid';
 import { ConfigContext } from '../common/util/contexts';
 
 const TableTop = () => {
@@ -29,7 +30,7 @@ const TableTop = () => {
     }, [])
 
     const addWidget = async (type, params) => {
-        const id = widgets.length;
+        const id = cuid();
         const template = {
             key: id,
             meta: {
@@ -47,9 +48,10 @@ const TableTop = () => {
     }
 
     const removeWidget = async (id) => {
-        const w = [...widgets];
-        w.splice(id, 1);
-        setWidgets(w);
+        const _widgets = [...widgets];
+        const idx = _widgets.findIndex(w => w.key == id);
+        _widgets.splice(idx, 1);
+        setWidgets(_widgets);
         return Promise.resolve();
     }
 
@@ -71,7 +73,7 @@ const TableTop = () => {
     const dashboardProps = { widgets, setShowSettings, setShowAddWidget, filter: bg.filter, showZeroWidgetMsg: meta.showZeroWidgetMsg, hideZeroWidgetMsg };
     const foregroundProps = { showSettings, setShowSettings, showAddWidget, setShowAddWidget };
     const coverProps = { showCover, coverMsg, bgColor: bg.color, showCoverOnStart: meta.showCoverOnStart };
-    const configCtxProps = { addWidget, setBg, editMode, setEditMode, removeWidget, clearWidgets, hideZeroWidgetMsg, meta, allowWidgetReposWithoutEdit };
+    const configCtxProps = { addWidget, bg, setBg, editMode, setEditMode, removeWidget, clearWidgets, hideZeroWidgetMsg, meta, allowWidgetReposWithoutEdit };
 
     return (
         <ConfigContext.Provider value={configCtxProps}>
