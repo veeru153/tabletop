@@ -14,10 +14,6 @@ const Widget = (props) => {
 
     const handleReposition = async (rePos) => {
         setPos({ x: rePos.x, y: rePos.y });
-        const updatedMeta = { ...meta, pos: { x: rePos.x, y: rePos.y } }
-        const wData = await WIDGETS.getItem(id);
-        wData.meta = updatedMeta;
-        await WIDGETS.setItem(id, wData);
     }
 
 

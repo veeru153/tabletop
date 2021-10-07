@@ -4,14 +4,14 @@ import Background from './Background';
 import Dashboard from './Dashboard';
 import Foreground from './Foreground';
 import Cover from './Cover';
-import cuid from 'cuid';
+import IntroWidgets from '../introWidgets/list';
 import { ConfigContext } from '../common/util/contexts';
 
 const TableTop = () => {
     const [bg, setBg] = useState(DEFAULTS.BG);
     const [meta, setMeta] = useState(DEFAULTS.META);
     const [loaded, setLoaded] = useState(false);
-    const [widgets, setWidgets] = useState([]);
+    const [widgets, setWidgets] = useState(IntroWidgets);
     const [showSettings, setShowSettings] = useState(false);
     const [showAddWidget, setShowAddWidget] = useState(false);
     const [editMode, setEditMode] = useState(false);
@@ -29,7 +29,7 @@ const TableTop = () => {
     }, [])
 
     const addWidget = async (type, params) => {
-        const id = cuid();
+        const id = widgets.length;
         const template = {
             key: id,
             meta: {
@@ -47,7 +47,10 @@ const TableTop = () => {
     }
 
     const removeWidget = async (id) => {
-        widgets.splice(id, 1);
+        const w = [...widgets];
+        w.splice(id, 1);
+        setWidgets(w);
+        return Promise.resolve();
     }
 
     const clearWidgets = async () => {

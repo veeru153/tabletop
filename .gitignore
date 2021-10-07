@@ -30,3 +30,5 @@ ignore
 *.crx
 *.pem
 *.sh
+dist
+dist-web

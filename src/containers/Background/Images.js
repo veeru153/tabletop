@@ -8,12 +8,9 @@ const Images = ({ blend, local }) => {
     useEffect(() => {
         async function onMount() {
             if(navigator.onLine) {
-                const urls = await CONFIG.getItem('imageSrcs');
-                if(local.length > 0) urls[0].push(local);
-                if(urls[0].length > 0) {
-                    const i = Math.floor(Math.random() * urls[0].length);
-                    setSrc(urls[0][i]);
-                }
+                const { width, height } = window.screen;
+                const url = `https://picsum.photos/${width}/${height}`;
+                setSrc(url);
             } else {
                 setSrc(local);
             }
