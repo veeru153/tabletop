@@ -85,26 +85,8 @@ const BackupRestore = () => {
 
     return (
             <Accordion title="Backup & Restore">
-                <h3 style={styles.label}>Backups will NOT include Secret Tokens.</h3>
-                <Checkbox
-                    checked={backupLocal}
-                    onClick={() => setBackupLocal(!backupLocal)}
-                >Backup Local Image (Results in slower and larger backups.)</Checkbox>
-                <Checkbox
-                    checked={backupSecrets}
-                    onClick={() => setBackupSecrets(!backupSecrets)}
-                >Backup Secrets (For personal use only. Do not share this backup.)</Checkbox>
-                <div style={styles.BackupRestore}>
-                    <Button onClick={generateBackup}>Backup</Button>
-                    <Button onClick={openFilePicker}>Restore</Button>
-                    <input 
-                        ref={fileInput} 
-                        type="file" 
-                        accept="application/json" 
-                        onChange={restoreFromFile}
-                        style={{ display: 'none' }} 
-                    />
-                </div>
+                <h3 style={styles.label}>Backup and Restore your configurations in seconds.</h3>
+                <p>Migrate your data from one device to another or synchronise your configurations across browsers with ease.</p>
             </Accordion>
     )
 }

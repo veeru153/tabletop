@@ -16,9 +16,6 @@ const Background = () => {
 
     useEffect(() => {
         async function onMount() {
-            // const bgData = await db.collection(CONFIG).doc('bg').get();
-            const bgData = await CONFIG.getItem('bg');
-            setBgConfig({ ...BG, ...bgData });
             setLoaded(true);
         }
         onMount();
@@ -75,7 +72,7 @@ const Background = () => {
                                             name="videoSrcs"
                                             value={props.values.type}
                                             checked={props.values.type === 2}
-                                            onChange={() => props.setFieldValue('type', 2)}
+                                            onChange={() => {}}
                                             style={styles.radioBtn}
                                         />
                                     </div>
