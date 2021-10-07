@@ -1,4 +1,4 @@
-const colors = ["#e27d60", "#c38d93", "#282c34", "#41b3a3", "#e8a87c", "#bc986a", "#8d8741", ]
+const colors = ["#e27d60", "#c38d93", "#282c34", "#41b3a3", "#e8a87c", "#bc986a", "#8d8741", "#869895", "#557375", "#223835", "#544646", "#985258", "#151515", "#001c44", "#0c5776", "#2d99ae"]
 const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
 export const BG = {

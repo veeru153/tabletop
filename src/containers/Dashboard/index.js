@@ -30,7 +30,7 @@ const ZeroWidgetMsg = ({ hideZeroWidgetMsg }) => {
             <h1>Welcome to TableTop!</h1>
             <h3>
                 Seems quite empty, doesn't it?<br />
-                Add Widgets by Clicking on the Menu button below.<br />
+                Add Widgets by clicking on the Menu button below.<br />
                 Click <span onClick={hideZeroWidgetMsg}>here</span> to get rid of this message.
             </h3>
         </div>

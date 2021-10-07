@@ -2,17 +2,17 @@ import React from 'react';
 import PageTemplate from '../../../../common/ui/PageTemplate';
 import Button from '../../../../common/ui/Button';
 import GitHubLogo from '../../../../common/assets/GitHub-Mark-64px.png';
-
+import { Heart, GitHub } from 'react-feather';
 const About = () => {
     return (
         <PageTemplate
             title="About"
-            subtitle="TableTop (v1.0)"
+            subtitle="Additional Information for the Curious"
         >
             <h2>TableTop - Own your New Tab</h2>
             <p>TableTop is a macOS Dock inspired New Tab override.</p>
-            <p>This is an open source project made with <span role="img" aria-label="heart">❤️</span> in React.</p>
-            <p>If you like this extension, please star it on GitHub. It would mean a lot to me <span role="img" aria-label="pleading face">🥺</span>.</p>
+            <p>This is an open source project made with <Heart size={18} /> in React.</p>
+            <p>If you like this extension, please star it on GitHub. It would mean a lot to me.</p>
             <h3>How You Can Contribute?</h3>
             <p>This was created by me while I was trying out new things in React. I polished the app the best I could but there might be bugs.</p>
             <p>If you:</p>
@@ -30,7 +30,8 @@ const About = () => {
                     style={{ textDecoration: 'none' }}
                 >
                     <Button style={{ display: 'inline-flex' }}>
-                        <img src={GitHubLogo} alt="GitHub Mark" />
+                        {/* <img src={GitHubLogo} alt="GitHub Mark" /> */}
+                        <GitHub size={32} />
                         <p style={{ margin: "auto 0 auto 18px" }}>GitHub Repository</p>
                     </Button>
                 </a>

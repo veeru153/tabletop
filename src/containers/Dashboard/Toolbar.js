@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classes from './Dashboard.module.scss';
-import { Menu, Edit2, Plus, ChevronUp, ChevronDown, Settings } from 'react-feather';
+import { GitHub, Edit2, Plus, ChevronUp, ChevronDown, Settings } from 'react-feather';
 
 const Toolbar = ({ setShowSettings, setShowAddWidget, editMode, setEditMode }) => {
     const [expandToolbar, setExpandToolbar] = useState(false);
@@ -11,6 +11,11 @@ const Toolbar = ({ setShowSettings, setShowAddWidget, editMode, setEditMode }) =
             key: "Expand Toolbar",
             onMouseOver: () => setExpandToolbar(true),
             icon: menuIcon,
+        },
+        {
+            key: "GitHub",
+            onClick: () => window.open("https://github.com/veeru153/tabletop", "_blank"),
+            icon: <GitHub size={34} color="#dedede" />
         },
         {
             key: "Add Widget",

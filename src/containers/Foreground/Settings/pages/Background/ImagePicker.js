@@ -1,56 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import classes from './Background.module.scss';
-import { CONFIG } from '../../../../../common/util/db';
 import { TextInput, Dropdown, Radio } from '../../../../../common/ui';
-import { PlusCircle, MinusCircle } from "react-feather";
 
 const ImagePicker = (props) => {
-    const [section, setSection] = useState(-1);      // Local = 0, Online = 1
-    const [localImg, setLocalImg] = useState(props.values.image);
-    const [sources, setSources] = useState([]);
-    const [currSrc, setCurrSrc] = useState("");
-
-
-    useEffect(() => {
-        async function onMount() {
-            const imgSrcs = await CONFIG.getItem('imageSrcs');
-            if(imgSrcs) {
-                if(imgSrcs[0].length > 0) setSection(1);
-                setSources(imgSrcs[0]);
-            }
-        }
-        onMount();
-    }, [])
-
-    useEffect(() => {
-        props.setFieldValue('image', localImg);
-    }, [localImg])
-
-    useEffect(() => {
-        CONFIG.setItem('imageSrcs', { 0: sources });
-    }, [sources]);
-
-    const addSrc = () => {
-        if(currSrc.length === 0 || sources.includes(currSrc.trim())) return;
-        setSources([...sources, currSrc.trim()]);
-        setCurrSrc("");
-    }
-
-    const deleteSrc = (idx) => {
-        const tempSrcs = [...sources];
-        tempSrcs.splice(idx, 1);
-        setSources(tempSrcs);
-    }
-
-    const dropHandler = (e) => {
-        e.preventDefault();
-        const file = e.dataTransfer.files[0];
-        const fr = new FileReader();
-        fr.onload = () => {
-            setLocalImg(fr.result.replace(/(\r\n|\n|\r)/gm, ""))
-        };
-        fr.readAsDataURL(file);
-    }
+    const [section, setSection] = useState(1);      // Local = 0, Online = 1
 
     const updateBlend = async (props, type, val) => {
         const tempBlend = props.values.blend;
@@ -58,8 +11,6 @@ const ImagePicker = (props) => {
         if (type === 'color') tempBlend.color = val;
         props.setFieldValue('blend', tempBlend);
     }
-
-    const onlineImagesProps = { sources, currSrc, setCurrSrc, addSrc, deleteSrc };
 
     return (
         <div>
@@ -86,7 +37,7 @@ const ImagePicker = (props) => {
                     />
                 </div>
             </div>
-            {section === 0 ? <LocalImagePicker selectedImg={localImg} dropHandler={dropHandler} /> : <OnlineImageSection { ...onlineImagesProps } />}
+            {section === 0 ? <LocalImagePicker /> : <OnlineImageSection />}
             <div>
                 <h3>Background Blend: </h3>
                 <div className={classes.fields}>
@@ -111,55 +62,18 @@ const ImagePicker = (props) => {
     )
 }
 
-const LocalImagePicker = (props) => {
-    const { selectedImg, dropHandler } = props;
-    const preview = useRef();
-
-    useEffect(() => {
-        preview.current.src = selectedImg;
-    }, [selectedImg]);
-
+const LocalImagePicker = () => {
     return (
         <React.Fragment>
-            <p>Only displayed when Online images can't be displayed or there are no sources in the Online collection. Falls back to Color.</p>
-            <div className={classes.imagePickerDropzone} onDrop={(e) => dropHandler(e)} onDragOver={(e) => e.preventDefault()}>
-                <img
-                    alt="Preview"
-                    ref={preview}
-                    style={{ display: selectedImg ? 'block' : 'none' }}
-                ></img>
-                <p style={{ display: selectedImg ? 'none' : 'block' }}>Drag an Image in this Dropzone</p>
-            </div>
+            <p>Local images only available in extension.</p>
         </React.Fragment>
     )
 }
 
-const OnlineImageSection = ({ sources, currSrc, setCurrSrc, addSrc, deleteSrc, }) => {
+const OnlineImageSection = () => {
     return (
         <div className={classes.imagePicker}>
-            <span style={{ fontSize: 16 }}>Falls back to Local Image</span>
-            <div className={classes.inputArea}>
-                <TextInput
-                    name="value"
-                    placeholder="Image URL"
-                    value={currSrc}
-                    onChange={(e) => setCurrSrc(e.target.value)}
-                    style={styles.textInput}
-                />
-                <PlusCircle size={36} onClick={addSrc} />
-            </div>
-            <div className={classes.sourceList}>
-                {sources.map((s, i) => <ImageSrc key={i} idx={i} src={s} deleteSrc={deleteSrc} />)}
-            </div>
-        </div>
-    )
-}
-
-const ImageSrc = ({ idx, src, deleteSrc }) => {
-    return (
-        <div className={classes.source}>
-            <p>{src}</p>
-            <span><MinusCircle size={24} onClick={() => deleteSrc(idx)} /></span>
+            <span style={{ fontSize: 16 }}>Sets a random image on the website (Images sourced from <a style={styles.link} href="https://picsum.photos/">Lorem Picsum</a>). Custom links only available in extension.</span>
         </div>
     )
 }
@@ -172,6 +86,10 @@ const styles = {
     radioBtn: {
         fontSize: '18.72px',
     },
+    link: {
+        color: "#dedede",
+        textDecoration: "underline",
+    }
 }
 
 const blendModeList = [

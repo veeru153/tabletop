@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { CONFIG } from '../../common/util/db';
 import classes from './Background.module.scss';
 
 const Images = ({ blend, local }) => {
