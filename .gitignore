@@ -1,0 +1,9 @@
+node_modules
+build
+dist
+dist-web
+release
+src
+
+*.sh
+*.env
