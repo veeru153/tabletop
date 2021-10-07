@@ -29,5 +29,6 @@ TODO.md
 ignore
 *.crx
 *.pem
+*.sh
 /dist
 /dist-web
