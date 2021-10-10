@@ -16,3 +16,9 @@
     justify-content: $j;
     align-items: $a;
 }
+
+@mixin hideScrollbar {
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
