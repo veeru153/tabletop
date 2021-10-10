@@ -16,7 +16,7 @@ const Tut1 = (props) => {
                 padding: 28,
             }}
         >
-            <h2>What does it do?</h2>
+            <h2 style={{ fontSize: 23 }}>What does it do?</h2>
             <h4 style={{ margin: '10px 0' }}>TableTop provides you the power to customise your new tab the way you want.</h4>
             <div style={{ width: '100%' }}>
                 You can:

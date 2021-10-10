@@ -18,14 +18,25 @@ const Tut2 = (props) => {
                 alignItems: 'start',
             }}
         >
-            <h2 style={{ margin: '14px 0' }}>What is a Widget?</h2>
-            <p style={{ margin: '4px 0' }} >Everything on this screen is a widget.</p>
-            <h2 style={{ margin: '14px 0' }}>How do I make one?</h2>
-            <p style={{ display: 'flex', alignItems: 'center', margin: '4px 0' }}>
+            <h2 style={styles.h2}>What is a Widget?</h2>
+            <p style={styles.p} >Everything on this screen is a widget.</p>
+            <h2 style={styles.h2}>How do I make one?</h2>
+            <p style={{ display: 'flex', alignItems: 'center', ...styles.p }}>
                 Open the toolbar by hovering over <ChevronUp /> and click on <Plus /> to get started.
             </p>
         </Widget>
     )
+}
+
+const styles = {
+    h2: {
+        margin: '14px 0',
+        fontSize: 23,
+    },
+    p: {
+        margin: '4px 0',
+        fontSize: 15,
+    }
 }
 
 export default {
