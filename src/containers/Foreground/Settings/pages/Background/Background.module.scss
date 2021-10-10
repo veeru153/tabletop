@@ -64,6 +64,7 @@
 
     .sourceList {
         @include flexify($d: column, $j: flex-start);
+        @include hideScrollbar;
         row-gap: 8px;
         height: 226px;
         max-width: 720px;
@@ -71,6 +72,11 @@
         padding: 12px;
         overflow-y: scroll;
         user-select: text;
+    }
+
+    .sourceList::-webkit-scrollbar {
+        width: 0;
+        height: 0;
     }
 
     .inputArea {
