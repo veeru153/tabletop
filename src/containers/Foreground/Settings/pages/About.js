@@ -11,7 +11,7 @@ const About = () => {
             subtitle="TableTop (v1.0)"
         >
             <h2>TableTop - Own your New Tab</h2>
-            <p>TableTop is a macOS Dock inspired New Tab override.</p>
+            <p>TableTop is a New Tab override extension inspired by the macOS Dashboard.</p>
             <p>This is an open source project made with <Heart size={18} /> in React.</p>
             <p>If you like this extension, please star it on GitHub. It would mean a lot to me.</p>
             <h3>How You Can Contribute?</h3>
