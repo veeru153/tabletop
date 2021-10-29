@@ -2,7 +2,7 @@
 
 ## Introduction
 
-TableTop is a New Tab extension. Inspired the macOS Dock, it aims to provide a fully customisable and feature packed New Tab page.
+TableTop is a New Tab extension. Inspired the macOS Dashboard, it aims to provide a fully customisable and feature packed New Tab page.
 
 - Latest Release: [(v1.0)](https://github.com/veeru153/tabletop/releases/tag/v1.0)
 - [Changelog](CHANGELOG.md)

@@ -1,6 +1,6 @@
 {
   "name": "TableTop",
-  "description": "A macOS Dock inspired New Tab override.",
+  "description": "A New Tab override inspired by the macOS Dashboard.",
   "version": "0.3",
   "manifest_version": 2,
   "author": "veeru153",

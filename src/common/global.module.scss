@@ -1,4 +1,4 @@
-@mixin fullScreen{
+@mixin fullScreen {
     width: 100vw;
     height: 100vh;
 }
@@ -15,4 +15,10 @@
     flex-direction: $d;
     justify-content: $j;
     align-items: $a;
+}
+
+@mixin hideScrollbar {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
