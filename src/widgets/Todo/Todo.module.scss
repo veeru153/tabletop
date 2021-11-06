@@ -1,0 +1,32 @@
+.Todo {
+    background-color: rgba(0, 0, 0, 0.56);
+    color: #dedede;
+    position: fixed;
+    width: 280px;
+    height: 356px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+
+    p {
+        margin: 0;
+        font-size: 28px;
+    }
+}
+
+.listItem {
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+}

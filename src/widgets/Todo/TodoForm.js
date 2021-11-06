@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ConfigContext, NavContext } from '../../common/util/contexts';
-import widget from './';
+import widget from '.';
 // ^^^^^ Required Imports ^^^^^^
 import { Formik } from 'formik';                        // Form management library
 import { Button, Page } from '../../common/ui';         // TableTop UI components
@@ -13,7 +13,7 @@ import { Button, Page } from '../../common/ui';         // TableTop UI component
  * 5. Remove all template comments from NewWidget before sending PR.
  */
 
-const NewWidgetForm = () => {
+const TodoForm = () => {
     const { addWidget } = useContext(ConfigContext);    // Adds Widget to the Dashboard
     const { close } = useContext(NavContext);           // Closes page
 
@@ -57,4 +57,4 @@ const styles = {
     },
 }
 
-export default NewWidgetForm;
+export default TodoForm;
