@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import Draggable from 'react-draggable';
 import { WIDGETS } from '../common/util/db';
 import { ConfigContext } from '../common/util/contexts';
-import { X } from 'react-feather';
+import { X, Edit } from 'react-feather';
 import classes from './Widget.module.scss';
 
 const Widget = (props) => {
@@ -10,7 +10,7 @@ const Widget = (props) => {
     const [pos, setPos] = useState(meta.pos);
     const [grabbed, setGrabbed] = useState(false);
 
-    const { editMode, removeWidget, meta : appMeta } = useContext(ConfigContext);
+    const { editMode, setModifyWidget, removeWidget, meta : appMeta } = useContext(ConfigContext);
 
     const handleReposition = async (rePos) => {
         setPos({ x: rePos.x, y: rePos.y });
@@ -26,7 +26,7 @@ const Widget = (props) => {
         ...userStyle,
     }
 
-    const editWidgetProps = { id, removeWidget };
+    const editWidgetProps = { id, removeWidget, setModifyWidget };
 
     return (
         <Draggable
@@ -48,13 +48,11 @@ const Widget = (props) => {
     )
 }
 
-const EditWidget = ({ id, removeWidget }) => {
+const EditWidget = ({ id, removeWidget, setModifyWidget }) => {
     return (
         <div className={classes.EditWidget}>
-            <X
-                className={classes.closeBtn}
-                onClick={() => removeWidget(id)}
-            />
+            <X onClick={() => removeWidget(id)} />
+            <Edit onClick={() => setModifyWidget(id)} />
         </div>
     )
 }

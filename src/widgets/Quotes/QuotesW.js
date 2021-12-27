@@ -27,6 +27,10 @@ const Quotes = ({ id, meta, content }) => {
             id={id}
             meta={meta}
             className={classes.Quotes}
+            style={{
+                backgroundColor: 'rgba(255,0,0,0.4)',
+                borderRadius: 20
+            }}
         >
             {/* <div>{time.hr}:{time.min}:{time:sec} <span style={{ display: params.military ? "none" : "inline-block" }}>{am ? "AM" : "PM"}</span></div> */}
             <div className={classes.content}>"{error ? error.message : q.content}"</div>

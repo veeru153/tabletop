@@ -2,23 +2,25 @@
     position: absolute;
     top: 0;
     left: 0;
-}
-
-.closeBtn {
-    --size: 24px;
-    padding: 6px;
-    width: var(--size);
-    height: var(--size);
-    transition: ease 0.4s;
-    background-color: firebrick;
-    color: #dedede;
-    border-radius: 100px;
-    opacity: 0.9;
-    cursor: pointer;
     margin: -18px -18px;
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
 
-    &:hover {
-        opacity: 1;
+    svg {
+        --size: 24px;
+        padding: 6px;
+        width: var(--size);
+        height: var(--size);
+        transition: ease 0.4s;
+        background-color: firebrick;
+        color: #dedede;
+        border-radius: 100px;
+        opacity: 0.9;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
     }
 }

@@ -2,11 +2,12 @@ import React from 'react';
 import classes from './Foreground.module.scss';
 import Settings from './Settings';
 import AddWidget from './AddWidget';
+import ModifyWidget from './ModifyWidget';
 
 // Handles all UI elements that need to be displayed on top
 // E.g: Settings, Menu Buttons, etc.
-const Foreground = ({ showSettings, setShowSettings, showAddWidget, setShowAddWidget }) => {
-    const isForegroundNeeded = (showSettings || showAddWidget);
+const Foreground = ({ showSettings, setShowSettings, showAddWidget, setShowAddWidget, modifyWidget, setModifyWidget }) => {
+    const isForegroundNeeded = (showSettings || showAddWidget || modifyWidget);
 
     return (
         <div 
@@ -15,6 +16,7 @@ const Foreground = ({ showSettings, setShowSettings, showAddWidget, setShowAddWi
         >
             {showSettings && <Settings showSettings={showSettings} setShowSettings={setShowSettings} />}
             {showAddWidget && <AddWidget showAddWidget={showAddWidget} setShowAddWidget={setShowAddWidget} />}
+            {modifyWidget && <ModifyWidget modifyWidget={modifyWidget} setModifyWidget={setModifyWidget} />}
         </div>
     )
 }

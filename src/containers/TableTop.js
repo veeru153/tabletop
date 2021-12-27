@@ -16,6 +16,7 @@ const TableTop = () => {
     const [widgets, setWidgets] = useState([]);
     const [showSettings, setShowSettings] = useState(false);
     const [showAddWidget, setShowAddWidget] = useState(false);
+    const [modifyWidget, setModifyWidget] = useState(false);
     const [editMode, setEditMode] = useState(false);
     // TODO: Find a way to hide the cover on start without hardcoding it.
     // const [showCover, setShowCover] = useState(meta.showCoverOnStart);
@@ -142,9 +143,9 @@ const TableTop = () => {
     }
 
     const dashboardProps = { widgets, setShowSettings, setShowAddWidget, filter: bg.filter, showZeroWidgetMsg: meta.showZeroWidgetMsg, hideZeroWidgetMsg };
-    const foregroundProps = { showSettings, setShowSettings, showAddWidget, setShowAddWidget };
+    const foregroundProps = { showSettings, setShowSettings, showAddWidget, setShowAddWidget, modifyWidget, setModifyWidget };
     const coverProps = { showCover, coverMsg, bgColor: bg.color, showCoverOnStart: meta.showCoverOnStart };
-    const configCtxProps = { addWidget, setBg, editMode, setEditMode, removeWidget, reload, clearWidgets, hideZeroWidgetMsg, meta, allowWidgetReposWithoutEdit, showCoverOnStart };
+    const configCtxProps = { addWidget, setBg, editMode, setEditMode, setModifyWidget, removeWidget, reload, clearWidgets, hideZeroWidgetMsg, meta, allowWidgetReposWithoutEdit, showCoverOnStart };
 
     return (
         <ConfigContext.Provider value={configCtxProps}>
