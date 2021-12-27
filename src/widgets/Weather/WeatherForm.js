@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import { TextInput, Button, Radio, Page } from '../../common/ui';
 import { cookies, SECRETS } from '../../common/util/cookies';
 import widget from './';
+// import useSecret from '../../common/hooks/useSecret';
 
 // TODO: Add an warning message that OWM Key has not been set.
 

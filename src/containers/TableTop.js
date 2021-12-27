@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { WIDGETS, CONFIG } from '../common/util/db';
+import { cookies, SECRETS } from '../common/util/cookies';
 import * as DEFAULTS from '../common/util/defaults';
 import Background from './Background';
 import Dashboard from './Dashboard';
@@ -27,6 +28,7 @@ const TableTop = () => {
             await updateMeta();
             await updateWidgets();
             await updateBg();
+            await initSecrets();
             setLoaded(true);
             setShowCover(false);
         }
@@ -65,6 +67,15 @@ const TableTop = () => {
         const _meta = await CONFIG.getItem('meta');
         setMeta({ ...meta, ..._meta });
         return Promise.resolve();
+    }
+
+    const initSecrets = async () => {
+        const expiryDate = new Date("2038-01-19T04:14:07");
+        const secretDoc = await cookies.get(SECRETS);
+        if(!secretDoc) {
+            cookies.set(SECRETS, { }, { expires: expiryDate });
+        }
+        console.log(secretDoc.owmKey);
     }
 
     const addWidget = async (type, params) => {
