@@ -18,7 +18,10 @@ const Weather = ({ id, meta, content }) => {
                 if(params.units === "imperial") setUnitsLabel("F");
                 setW(updatedW);
             } catch (err) {
-                setError(err);
+                if(Object.keys(data) > 0)
+                    setW(data)
+                else
+                    setError(err);
             }
         }
         onMount();

@@ -4,7 +4,7 @@ import { X, ArrowUp } from 'react-feather';
 import { NavContext } from '../../../common/util/contexts';
 
 
-const PageShell = ({ visibility, setVisibility, children }) => {
+const PageShell = ({ visibility, setVisibility, children, onClose = () => {} }) => {
     const [pageStack, setPageStack] = useState([children, ]);
     const [level, setLevel] = useState(pageStack.length);
 
@@ -27,6 +27,7 @@ const PageShell = ({ visibility, setVisibility, children }) => {
     }
 
     const close = () => {
+        onClose();
         setVisibility(false);
     }
 
