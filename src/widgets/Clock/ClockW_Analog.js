@@ -3,7 +3,8 @@ import classes from './Clock.module.scss';
 import Widget from '../../containers/Widget';
 import { DateTime } from 'luxon';
 
-const Clock_Analog = ({ id, meta, content }) => {
+const Clock_Analog = (props) => {
+    const { id, meta, content } = props;
     const { params, data } = content;
     const [rots, setRots] = useState({ hr: 0, min: 0, sec: 0 });
 
@@ -32,8 +33,7 @@ const Clock_Analog = ({ id, meta, content }) => {
 
     return (
         <Widget
-            id={id}
-            meta={meta}
+            {...props}
             className={classes.ClockAnalog}
         >
             <div className={classes.clockbox}>

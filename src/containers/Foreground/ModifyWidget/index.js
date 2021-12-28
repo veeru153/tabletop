@@ -8,30 +8,34 @@ import Colors from './Colors';
 import cuid from 'cuid';
 
 
-const ModifyWidget = ({ modifyWidget, setModifyWidget }) => {    
-    const [mods, setMods] = useState({});
+const ModifyWidget = ({ modifyWidget : w, setModifyWidget }) => {
+    const [mods, setMods] = useState(w.meta.mods ?? {});
     const [menu, setMenu] = useState(null);
-    const [w2, setW2] = useState({});
+    // const [w2, setW2] = useState({});
     const [updateCounter, setUpdateCounter] = useState(0);
 
-    useEffect(() => {
-        console.log("Running", updateCounter);
-        async function getMods() {
-            const w = await WIDGETS.getItem(modifyWidget);
-            console.log("WIDGETS.getItem() finished");
-            console.log(w);
-            setW2(w);
-            console.log('onmnt', w2);
-            setMods(w.meta.mods ?? {});
-        }   
-        getMods();
-    }, [updateCounter])
+    // useEffect(() => {
+    //     console.log("Running", updateCounter);
+    //     async function getMods() {
+    //         const w = await WIDGETS.getItem(modifyWidget);
+    //         console.log("WIDGETS.getItem() finished");
+    //         console.log(w);
+    //         setW2(w);
+    //         console.log('onmnt', w2);
+    //         setMods(w.meta.mods ?? {});
+    //     }
+    //     getMods();
+    // }, [updateCounter])
 
+    // useEffect(() => {
+    //     console.log(w);
+    //     setMods(w.meta.mods ?? {});
+    // }, [w])
 
     return (
-        <PageShell 
-            visibility={modifyWidget} 
-            setVisibility={setModifyWidget} 
+        <PageShell
+            visibility={w}
+            setVisibility={setModifyWidget}
             onClose={() => setModifyWidget(null)}
         >
             <Page
@@ -39,16 +43,16 @@ const ModifyWidget = ({ modifyWidget, setModifyWidget }) => {
                 subtitle="Tweak your Widget here:"
             >
                 <div className={classes.main}>
-                    <WidgetRenderer w={modifyWidget} mods={mods} />
+                    <WidgetRenderer w={w} mods={mods} />
                     <div className={classes.menus}>
                         <Button onClick={() => setMenu(1)}>Colors</Button>
                         <Button onClick={() => setMenu(2)}>Borders</Button>
                         <Button onClick={() => setMenu(3)}>Sizing</Button>
                         <Button onClick={() => setMenu(4)}>Advanced</Button>
                         <Button onClick={() => {
-console.log("the updateCounter", updateCounter );
-    setUpdateCounter(updateCounter + 1)
-}}>Update</Button>
+                            console.log("the updateCounter", updateCounter);
+                            setUpdateCounter(updateCounter + 1)
+                        }}>Update</Button>
                     </div>
                 </div>
                 <div className={classes.menuOpts}>

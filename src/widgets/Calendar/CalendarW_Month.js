@@ -3,7 +3,8 @@ import Widget from '../../containers/Widget';
 import classes from './Calendar.module.scss';
 import { DateTime } from 'luxon';
 
-const Calendar_Month = ({ id, meta, content }) => {
+const Calendar_Month = (props) => {
+    const { id, meta, content } = props;
     const { params, data } = content;
     const daysArrayMon = ["M", "T", "W", "T", "F", "S", "S"];
     const daysArraySun = ["S", "M", "T", "W", "T", "F", "S"];
@@ -25,8 +26,7 @@ const Calendar_Month = ({ id, meta, content }) => {
 
     return (
         <Widget
-            id={id}
-            meta={meta}
+            {...props}
             className={classes.CalendarMonth}
         >
             <div className={classes.header}>

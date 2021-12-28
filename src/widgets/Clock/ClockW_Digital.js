@@ -4,7 +4,8 @@ import Widget from '../../containers/Widget';
 import { DateTime } from 'luxon';
 
 
-const Clock = ({ id, meta, content }) => {
+const Clock = (props) => {
+    const { id, meta, content } = props;
     const { params, data } = content;
     // const [time, setTime] = useState({ hr: "00", min: "00", sec: "00" });
     const [time, setTime] = useState({ hr: "00", min: "00" });
@@ -28,8 +29,7 @@ const Clock = ({ id, meta, content }) => {
 
     return (
         <Widget
-            id={id}
-            meta={meta}
+            {...props}
             className={classes.ClockDigital}
         >
             {/* <div>{time.hr}:{time.min}:{time:sec} <span style={{ display: params.military ? "none" : "inline-block" }}>{am ? "AM" : "PM"}</span></div> */}

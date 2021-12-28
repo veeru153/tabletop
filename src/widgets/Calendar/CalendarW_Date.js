@@ -3,7 +3,8 @@ import Widget from '../../containers/Widget';
 import classes from './Calendar.module.scss';
 import { DateTime } from 'luxon';
 
-const Calendar_Date = ({ id, meta, content }) => {
+const Calendar_Date = (props) => {
+    const { id, meta, content } = props;
     const { params, data } = content;
     const [dt, setDt] = useState(DateTime.local());
     const { day, weekdayLong, monthShort, year } = dt;
@@ -20,8 +21,7 @@ const Calendar_Date = ({ id, meta, content }) => {
 
     return (
         <Widget
-            id={id}
-            meta={meta}
+            {...props}
             className={classes.CalendarDate}
         >
             <div className={classes.header}>

@@ -4,7 +4,8 @@ import Widget from '../../containers/Widget';
 import { icons } from './assets';
 import { defaultW, fetchData } from './helper';
 
-const Weather = ({ id, meta, content }) => {
+const Weather = (props) => {
+    const { id, meta, content } = props;
     const { params, data } = content;
     const [w, setW] = useState(defaultW);
     const [unitsLabel, setUnitsLabel] = useState("C");
@@ -29,8 +30,7 @@ const Weather = ({ id, meta, content }) => {
 
     return (
         <Widget
-            id={id}
-            meta={meta}
+            {...props}
             className={classes.Weather}
         >
             <div className={classes.temp}>

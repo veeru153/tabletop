@@ -6,7 +6,7 @@ import { X, Edit } from 'react-feather';
 import classes from './Widget.module.scss';
 
 const Widget = (props) => {
-    const { id, meta, style: userStyle, className: userClass, } = props;
+    const { id, meta, content, style: userStyle, className: userClass, } = props;
     const [pos, setPos] = useState(meta.pos);
     const [grabbed, setGrabbed] = useState(false);
 
@@ -20,12 +20,16 @@ const Widget = (props) => {
         await WIDGETS.setItem(id, wData);
     }
 
+    const handleModification = () => {
+        setModifyWidget({ id, meta, content });
+    }
+
     const styles = {
         cursor: (editMode && !modifyWidget) ? (grabbed ? 'grabbing' : 'grab') : 'default',
         ...userStyle,
     }
 
-    const editWidgetProps = { id, removeWidget, setModifyWidget };
+    const editWidgetProps = { id, removeWidget, handleModification };
 
 
     if (meta.modMode) {
@@ -60,11 +64,11 @@ const Widget = (props) => {
     )
 }
 
-const EditWidget = ({ id, removeWidget, setModifyWidget }) => {
+const EditWidget = ({ id, removeWidget, handleModification }) => {
     return (
         <div className={classes.EditWidget}>
             <X onClick={() => removeWidget(id)} />
-            <Edit onClick={() => setModifyWidget(id)} />
+            <Edit onClick={() => handleModification()} />
         </div>
     )
 }

@@ -3,7 +3,8 @@ import Widget from '../../containers/Widget';
 import classes from './Quotes.module.scss';
 import { defaultQ, fetchData } from './helper';
 
-const Quotes = ({ id, meta, content }) => {
+const Quotes = (props) => {
+    const { id, meta, content } = props;
     const { data, params } = content;
 
     const [q, setQ] = useState(defaultQ);
@@ -24,8 +25,7 @@ const Quotes = ({ id, meta, content }) => {
 
     return (
         <Widget
-            id={id}
-            meta={meta}
+            {...props}
             className={classes.Quotes}
             style={{
                 backgroundColor: 'rgba(255,0,0,0.4)',

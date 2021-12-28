@@ -16,7 +16,7 @@ const TableTop = () => {
     const [widgets, setWidgets] = useState([]);
     const [showSettings, setShowSettings] = useState(false);
     const [showAddWidget, setShowAddWidget] = useState(false);
-    const [modifyWidget, setModifyWidget] = useState(false);
+    const [modifyWidget, setModifyWidget] = useState(null);
     const [editMode, setEditMode] = useState(false);
     // TODO: Find a way to hide the cover on start without hardcoding it.
     // const [showCover, setShowCover] = useState(meta.showCoverOnStart);
@@ -53,8 +53,8 @@ const TableTop = () => {
     }
 
     const updateWidgets = async () => {
-        const w = await WIDGETS.keys();
-        // await WIDGETS.iterate(val => { w.push(val) });
+        const w = [];
+        await WIDGETS.iterate(val => { w.push(val) });
         setWidgets(w);
     }
 
@@ -93,7 +93,7 @@ const TableTop = () => {
             }
         }
         await WIDGETS.setItem(id, template);
-        setWidgets([...widgets, id]);
+        setWidgets([...widgets, template]);
         return Promise.resolve();
     }
 

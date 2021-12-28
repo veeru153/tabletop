@@ -12,11 +12,12 @@ import Widget from '../../containers/Widget';
  */
 
 
-const NewWidget = ({ id, meta, content }) => {
+const NewWidget = (props) => {
+    const { id, meta, content } = props;
+
     return (
         <Widget
-            id={id}
-            meta={meta}
+            {...props}
             // Additional  Props: className, styles
         >
             {/* Add Widget Content here */}
