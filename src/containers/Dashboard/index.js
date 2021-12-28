@@ -17,7 +17,7 @@ const Dashboard = ({ widgets, setShowSettings, setShowAddWidget, filter, showZer
 
     return (
         <div className={classes.Dashboard} style={dashStyles}>
-            {widgets && widgets.map(w => <WidgetRenderer key={w.key} w={w} />)}
+            {widgets && widgets.map(w => <WidgetRenderer key={w} w={w} />)}
             <Toolbar {...toolbarProps} />
             {(showZeroWidgetMsg && widgets.length < 1) && <ZeroWidgetMsg hideZeroWidgetMsg={hideZeroWidgetMsg} />}
         </div>

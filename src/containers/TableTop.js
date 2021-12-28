@@ -53,8 +53,8 @@ const TableTop = () => {
     }
 
     const updateWidgets = async () => {
-        const w = [];
-        await WIDGETS.iterate(val => { w.push(val) });
+        const w = await WIDGETS.keys();
+        // await WIDGETS.iterate(val => { w.push(val) });
         setWidgets(w);
     }
 
@@ -76,7 +76,6 @@ const TableTop = () => {
         if(!secretDoc) {
             cookies.set(SECRETS, { }, { expires: expiryDate });
         }
-        console.log(secretDoc.owmKey);
     }
 
     const addWidget = async (type, params) => {
@@ -93,8 +92,8 @@ const TableTop = () => {
                 data: {}
             }
         }
-        setWidgets([...widgets, template]);
         await WIDGETS.setItem(id, template);
+        setWidgets([...widgets, id]);
         return Promise.resolve();
     }
 
@@ -145,7 +144,7 @@ const TableTop = () => {
     const dashboardProps = { widgets, setShowSettings, setShowAddWidget, filter: bg.filter, showZeroWidgetMsg: meta.showZeroWidgetMsg, hideZeroWidgetMsg };
     const foregroundProps = { showSettings, setShowSettings, showAddWidget, setShowAddWidget, modifyWidget, setModifyWidget };
     const coverProps = { showCover, coverMsg, bgColor: bg.color, showCoverOnStart: meta.showCoverOnStart };
-    const configCtxProps = { addWidget, setBg, editMode, setEditMode, setModifyWidget, removeWidget, reload, clearWidgets, hideZeroWidgetMsg, meta, allowWidgetReposWithoutEdit, showCoverOnStart };
+    const configCtxProps = { addWidget, setBg, editMode, setEditMode, modifyWidget, setModifyWidget, removeWidget, reload, clearWidgets, hideZeroWidgetMsg, meta, allowWidgetReposWithoutEdit, showCoverOnStart };
 
     return (
         <ConfigContext.Provider value={configCtxProps}>

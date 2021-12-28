@@ -10,7 +10,7 @@ const Widget = (props) => {
     const [pos, setPos] = useState(meta.pos);
     const [grabbed, setGrabbed] = useState(false);
 
-    const { editMode, setModifyWidget, removeWidget, meta : appMeta } = useContext(ConfigContext);
+    const { editMode, modifyWidget, setModifyWidget, removeWidget, meta: appMeta } = useContext(ConfigContext);
 
     const handleReposition = async (rePos) => {
         setPos({ x: rePos.x, y: rePos.y });
@@ -20,13 +20,25 @@ const Widget = (props) => {
         await WIDGETS.setItem(id, wData);
     }
 
-
     const styles = {
-        cursor: editMode ? (grabbed ? 'grabbing' : 'grab') : 'default',
+        cursor: (editMode && !modifyWidget) ? (grabbed ? 'grabbing' : 'grab') : 'default',
         ...userStyle,
     }
 
     const editWidgetProps = { id, removeWidget, setModifyWidget };
+
+
+    if (meta.modMode) {
+        return (
+            <div
+                className={userClass}
+                style={{ ...styles, position: "relative", ...meta.mods }}
+            >
+                {(editMode && !modifyWidget) && <EditWidget {...editWidgetProps} />}
+                {props.children}
+            </div>
+        )
+    }
 
     return (
         <Draggable
@@ -35,13 +47,13 @@ const Widget = (props) => {
             onMouseDown={() => editMode && setGrabbed(true)}
             onDrag={(e, rePos) => handleReposition(rePos)}
             onStop={() => setGrabbed(false)}
-            disabled={!(editMode || appMeta.allowWidgetReposWithoutEdit)}
+            disabled={!(editMode || appMeta.allowWidgetReposWithoutEdit) || (modifyWidget && true)}
         >
-            <div 
-                className={userClass} 
+            <div
+                className={userClass}
                 style={styles}
             >
-                {editMode && <EditWidget {...editWidgetProps} />}
+                {(editMode && !modifyWidget) && <EditWidget {...editWidgetProps} />}
                 {props.children}
             </div>
         </Draggable>
