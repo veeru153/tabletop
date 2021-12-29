@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import classes from './ModifyWidget.module.scss';
 import PageShell from '../PageShell';
 import { Page, Button } from '../../../common/ui'
 import WidgetRenderer from '../../../common/util/WidgetRenderer';
-import { WIDGETS } from '../../../common/util/db';
 import Colors from './Colors';
-import cuid from 'cuid';
+import Baka from './Baka';
 
 
-const ModifyWidget = ({ modifyWidget : w, setModifyWidget }) => {
+const ModifyWidget = ({ modifyWidget: w, setModifyWidget }) => {
     const [mods, setMods] = useState(w.meta.mods ?? {});
     const [menu, setMenu] = useState(null);
-    // const [w2, setW2] = useState({});
     const [updateCounter, setUpdateCounter] = useState(0);
 
     // useEffect(() => {
@@ -27,39 +25,42 @@ const ModifyWidget = ({ modifyWidget : w, setModifyWidget }) => {
     //     getMods();
     // }, [updateCounter])
 
-    // useEffect(() => {
-    //     console.log(w);
-    //     setMods(w.meta.mods ?? {});
-    // }, [w])
+    useEffect(() => {
+        console.log("mods was updated");
+        setUpdateCounter(updateCounter + 1)
+    }, [mods])
+
+    const updateMods = (newMods) => {
+        setMods(newMods);
+    }
 
     return (
         <PageShell
+            key={updateCounter}
             visibility={w}
             setVisibility={setModifyWidget}
             onClose={() => setModifyWidget(null)}
         >
             <Page
+                key={JSON.stringify(mods)}
                 title="Modify Widget"
                 subtitle="Tweak your Widget here:"
             >
                 <div className={classes.main}>
-                    <WidgetRenderer w={w} mods={mods} />
+                    <WidgetRenderer key={updateCounter} w={w} mods={mods} />
                     <div className={classes.menus}>
                         <Button onClick={() => setMenu(1)}>Colors</Button>
                         <Button onClick={() => setMenu(2)}>Borders</Button>
                         <Button onClick={() => setMenu(3)}>Sizing</Button>
                         <Button onClick={() => setMenu(4)}>Advanced</Button>
-                        <Button onClick={() => {
-                            console.log("the updateCounter", updateCounter);
-                            setUpdateCounter(updateCounter + 1)
-                        }}>Update</Button>
                     </div>
                 </div>
                 <div className={classes.menuOpts}>
-                    <Colors mods={mods} setMods={setMods} />
+                    <Colors mods={mods} setMods={setMods} updateMods={updateMods} />
                 </div>
             </Page>
         </PageShell>
+        
     )
 }
 

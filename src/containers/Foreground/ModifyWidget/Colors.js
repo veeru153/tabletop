@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { TextInput, Button } from '../../../common/ui';
 
-const Colors = ({ mods, setMods }) => {
+const Colors = ({ mods, setMods, updateMods }) => {
     const [backgroundColor, setBackgroundColor] = useState(mods.backgroundColor ?? "");
     const [color, setColor] = useState(mods.color ?? "");
 
     const updateColors = () => {
-        setMods({
+        updateMods({
             ...mods,
             backgroundColor,
             color,
