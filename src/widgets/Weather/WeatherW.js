@@ -19,14 +19,16 @@ const Weather = (props) => {
                 if(params.units === "imperial") setUnitsLabel("F");
                 setW(updatedW);
             } catch (err) {
-                if(Object.keys(data) > 0)
-                    setW(data)
-                else
-                    setError(err);
+                setError(err);
             }
         }
         onMount();
     }, [])
+
+    useEffect(() => {
+        if(!error) return;
+        setW(data)
+    }, [data])
 
     return (
         <Widget
@@ -35,10 +37,13 @@ const Weather = (props) => {
         >
             <div className={classes.temp}>
                 <div className={classes.current}>
-                    {error ? "Error" : `${Math.round(w.main.temp)}°${unitsLabel}`}
+                    {/* {error ? "Error" : `${Math.round(w.main.temp)}°${unitsLabel}`} */}
+                    {`${Math.round(w.main.temp)}°${unitsLabel}`}
                 </div>
-                <div>{error ? 0 : Math.round(w.main.temp_max)}°{unitsLabel}</div>
-                <div>{error ? 0 : Math.round(w.main.temp_min)}°{unitsLabel}</div>
+                {/* <div>{error ? 0 : Math.round(w.main.temp_max)}°{unitsLabel}</div> */}
+                <div>{Math.round(w.main.temp_max)}°{unitsLabel}</div>
+                {/* <div>{error ? 0 : Math.round(w.main.temp_min)}°{unitsLabel}</div> */}
+                <div>{Math.round(w.main.temp_min)}°{unitsLabel}</div>
             </div>
             <Icon id={error ? error.icon : w.weather[0].icon} size={82} />
             <div className={classes.city}>{error ? error.message : w.name}</div>

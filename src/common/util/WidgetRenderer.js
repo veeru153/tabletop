@@ -4,7 +4,7 @@ import * as widgets from '../../widgets';
 // TODO: Prevent API calls and use previous data when modifying
 
 const WidgetRenderer = ({ w, mods = null }) => {
-    let { key, meta, content } = w;
+    let { key, id, meta, content } = w;
     const widgetList = Object.values(widgets);
     const wInfo = widgetList.find(r => r.type === meta.type);
     let widget = wInfo.el;
@@ -16,6 +16,7 @@ const WidgetRenderer = ({ w, mods = null }) => {
         _meta.modMode = true;
         _meta.mods = mods ?? {};
         wProps.meta = _meta;
+        wProps.id = id;     // Widget structure is a mess cause id/key discrepency
     }
 
 return (widget !== null && widget !== undefined)
