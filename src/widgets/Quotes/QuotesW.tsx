@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Widget from '../../containers/Widget';
 import classes from './Quotes.module.scss';
 import { defaultQ, fetchData } from './helper';
+import { WidgetInfo } from '../../common/util/types';
 
-const Quotes = ({ id, meta, content }) => {
+const Quotes = ({ id, meta, content } : WidgetInfo) => {
     const { data, params } = content;
 
     const [q, setQ] = useState(defaultQ);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<any>(null);
 
     useEffect(() => {
         async function onMount() {
             try {
                 const tmpQ = await fetchData(id, params);
                 setQ(tmpQ);
-            } catch (err) {
+            } catch (err : any) {
                 setError(err);
             }
         }

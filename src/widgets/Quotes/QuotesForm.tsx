@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import classes from './Quotes.module.scss';
 import { ConfigContext, NavContext } from '../../common/util/contexts';
 import { TextInput, Button, Page } from '../../common/ui';
@@ -9,7 +9,7 @@ const QuotesForm = () => {
     const { close } = useContext(NavContext);
     const [tags, setTags] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         addWidget(widget.type, { tags });
         close();
@@ -21,7 +21,7 @@ const QuotesForm = () => {
             subtitle='"Words you speak or spoke, will live forever." - Auliq Ice'
             className={classes.QuotesForm}
         >
-            <form onSubmit={handleSubmit} style={styles.form}>
+            <form onSubmit={(e) => handleSubmit(e)} style={styles.form}>
                 <div style={{ width: "100%" }}>
                     <h3>Tag Guide:</h3> 
                     <h4>- <code>table,top</code> finds quotes matching tags "table" AND "top"</h4>
@@ -45,7 +45,7 @@ const QuotesForm = () => {
     )
 }
 
-const styles = {
+const styles : Record<string, React.CSSProperties> = {
     form: {
         display: 'flex',
         flexDirection: 'column',

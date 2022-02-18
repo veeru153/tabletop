@@ -1,4 +1,3 @@
-import React from 'react';
 import NewWidget from './NewWidgetW';
 import NewWidgetForm from './NewWidgetForm';
 
@@ -29,9 +28,10 @@ import NewWidgetForm from './NewWidgetForm';
  * el   - (ReactComponent) Widget component (imported above)
  */
 export default {
-    // type: '',
-    // name: '',
-    // icon: <,
-    // form: <NewWidgetForm />,
-    // el: <NewWidget />,
+    type: '',
+    name: '',
+    // icon: < />,
+    form: <NewWidgetForm />,
+    // @ts-ignore
+    el: <NewWidget />,
 }

@@ -1,18 +1,19 @@
-import React, { useState, useContext } from 'react';
-import Draggable from 'react-draggable';
+import { useState, useContext } from 'react';
+import Draggable, { DraggableData } from 'react-draggable';
 import { WIDGETS } from '../common/util/db';
 import { ConfigContext } from '../common/util/contexts';
-import { X } from 'react-feather';
+import { X } from 'lucide-react';
 import classes from './Widget.module.scss';
+import { WidgetMeta } from '../common/util/types';
 
-const Widget = (props) => {
+const Widget = (props: WidgetProps) => {
     const { id, meta, style: userStyle, className: userClass, } = props;
     const [pos, setPos] = useState(meta.pos);
     const [grabbed, setGrabbed] = useState(false);
 
-    const { editMode, removeWidget, meta : appMeta } = useContext(ConfigContext);
+    const { editMode, removeWidget, meta: appMeta } = useContext(ConfigContext);
 
-    const handleReposition = async (rePos) => {
+    const handleReposition = async (rePos: DraggableData) => {
         setPos({ x: rePos.x, y: rePos.y });
         const updatedMeta = { ...meta, pos: { x: rePos.x, y: rePos.y } }
         const wData = await WIDGETS.getItem(id);
@@ -37,8 +38,8 @@ const Widget = (props) => {
             onStop={() => setGrabbed(false)}
             disabled={!(editMode || appMeta.allowWidgetReposWithoutEdit)}
         >
-            <div 
-                className={userClass} 
+            <div
+                className={userClass}
                 style={styles}
             >
                 {editMode && <EditWidget {...editWidgetProps} />}
@@ -48,7 +49,7 @@ const Widget = (props) => {
     )
 }
 
-const EditWidget = ({ id, removeWidget }) => {
+const EditWidget = ({ id, removeWidget }: { id: string, removeWidget: Function }) => {
     return (
         <div className={classes.EditWidget}>
             <X
@@ -57,6 +58,14 @@ const EditWidget = ({ id, removeWidget }) => {
             />
         </div>
     )
+}
+
+interface WidgetProps {
+    id: string;
+    meta: WidgetMeta;
+    children: React.ReactNode;
+    className?: string;
+    style?: React.CSSProperties;
 }
 
 export default Widget;

@@ -1,4 +1,3 @@
-import React from 'react';
 import TableTop from './containers/TableTop';
 
 function App() {

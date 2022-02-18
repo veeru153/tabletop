@@ -15,7 +15,8 @@ const Radio = (props: RadioProps) => {
 }
 
 interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    label: string
+    label: string;
+    value: any;
 }
 
 export default Radio;

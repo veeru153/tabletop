@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import classes from './Background.module.scss';
 import { CONFIG } from '../../../../../common/util/db';
 import { TextInput } from '../../../../../common/ui';
-import { PlusCircle, MinusCircle } from "react-feather"
+import { PlusCircle, MinusCircle } from "lucide-react";
 
 const VideoPicker = (props) => {
     const [sources, setSources] = useState([]);

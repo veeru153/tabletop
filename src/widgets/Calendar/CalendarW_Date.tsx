@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Widget from '../../containers/Widget';
 import classes from './Calendar.module.scss';
 import { DateTime } from 'luxon';
+import { WidgetInfo } from '../../common/util/types';
 
-const Calendar_Date = ({ id, meta, content }) => {
+const Calendar_Date = ({ id, meta, content } : WidgetInfo) => {
     const { params, data } = content;
     const [dt, setDt] = useState(DateTime.local());
     const { day, weekdayLong, monthShort, year } = dt;

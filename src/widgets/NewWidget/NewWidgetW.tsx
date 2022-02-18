@@ -1,4 +1,4 @@
-import React from 'react';
+import { WidgetInfo } from '../../common/util/types';
 import Widget from '../../containers/Widget';
 // ^^^^^ Required Imports ^^^^^
 // Add imports below
@@ -12,7 +12,7 @@ import Widget from '../../containers/Widget';
  */
 
 
-const NewWidget = ({ id, meta, content }) => {
+const NewWidget = ({ id, meta, content } : WidgetInfo) => {
     return (
         <Widget
             id={id}

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { Button, Accordion, Checkbox } from '../../../../../common/ui';
 import { WIDGETS, CONFIG } from '../../../../../common/util/db';
 import { cookies, SECRETS } from '../../../../../common/util/cookies';

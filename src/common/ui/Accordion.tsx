@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import classes from './Accordion.module.scss';
-import { ChevronUp, ChevronDown } from 'react-feather';
+import { ChevronUp, ChevronDown } from 'lucide-react';
 
 const Accordion = ({ title, children, className : userClasses, style : userStyles } : AccordionProps) => {
     const [expanded, setExpanded] = useState(false);
@@ -23,10 +23,10 @@ const Accordion = ({ title, children, className : userClasses, style : userStyle
 }
 
 interface AccordionProps {
-    title: string,
-    children: React.ReactNode,
-    className: string,
-    style: React.CSSProperties,
+    title: string;
+    children: React.ReactNode;
+    className: string;
+    style: React.CSSProperties;
 }
 
 export default Accordion;

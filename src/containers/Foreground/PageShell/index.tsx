@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import classes from './PageShell.module.scss';
-import { X, ArrowUp } from 'react-feather';
+import { X, ArrowUp } from 'lucide-react';
 import { NavContext } from '../../../common/util/contexts';
 
 

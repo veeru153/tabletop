@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import classes from './Weather.module.scss';
 import Widget from '../../containers/Widget';
 import { icons } from './assets';
 import { defaultW, fetchData } from './helper';
+import { WidgetInfo } from '../../common/util/types';
 
-const Weather = ({ id, meta, content }) => {
+const Weather = ({ id, meta, content } : WidgetInfo) => {
     const { params, data } = content;
     const [w, setW] = useState(defaultW);
     const [unitsLabel, setUnitsLabel] = useState("C");
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<any>(null);
 
     // Fetch Updated Weather or show Saved Weather
     useEffect(() => {
@@ -17,7 +18,7 @@ const Weather = ({ id, meta, content }) => {
                 const updatedW = await fetchData(id, params);
                 if(params.units === "imperial") setUnitsLabel("F");
                 setW(updatedW);
-            } catch (err) {
+            } catch (err : any) {
                 setError(err);
             }
         }
@@ -43,7 +44,7 @@ const Weather = ({ id, meta, content }) => {
     )
 }
 
-const Icon = ({ id, size }) => {
+const Icon = ({ id, size }: { id: string; size: number; }) => {
     const styles = {
         width: size ?? 44,
         height: size ?? 44,

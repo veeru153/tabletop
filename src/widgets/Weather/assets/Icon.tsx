@@ -1,4 +1,3 @@
-import React from 'react';
 import clearD from './clearD.webp';
 import clearN from './clearN.png';
 import fog from './fog.webp';
@@ -12,7 +11,7 @@ import snow from './snow.webp';
 import thunder from './thunder.webp';
 import atmosphere from './atmosphere.webp';
 
-const icons = {
+const icons : Record<string, string> = {
     'clearD': clearD,
     'clearN': clearN,
     'fog': fog,
@@ -27,7 +26,7 @@ const icons = {
     'atmosphere': atmosphere,
 }
 
-const Icon = (props) => {
+const Icon = (props: { name: string; size: number; }) => {
     const { name, size } = props;
     const styles = {
         width: size ?? 44,

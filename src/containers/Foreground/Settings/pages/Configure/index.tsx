@@ -1,4 +1,3 @@
-import React from 'react';
 import Page from '../../../../../common/ui/PageTemplate';
 import General from './General';
 import BackupRestore from './BackupRestore';

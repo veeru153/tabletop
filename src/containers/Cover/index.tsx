@@ -1,4 +1,3 @@
-import React from 'react';
 import classes from './Cover.module.scss';
 
 const Cover = ({ showCover, coverMsg, bgColor = "#282c34" }) => {

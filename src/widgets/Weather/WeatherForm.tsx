@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { ConfigContext, NavContext } from '../../common/util/contexts';
 import { Formik } from 'formik';
 import { TextInput, Button, Radio, Page } from '../../common/ui';
@@ -88,7 +88,7 @@ const Warning = () => {
     )
 }
 
-const styles = {
+const styles : Record<string, React.CSSProperties> = {
     form: {
         display: 'flex',
         flexDirection: 'column',

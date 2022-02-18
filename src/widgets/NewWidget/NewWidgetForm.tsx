@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { ConfigContext, NavContext } from '../../common/util/contexts';
 import widget from '.';
 // ^^^^^ Required Imports ^^^^^^
@@ -45,6 +45,16 @@ const NewWidgetForm = () => {
             )}
         </Formik>
     )
+}
+
+const styles : Record<string, React.CSSProperties> = {
+    form: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        height: '100%',
+    },
 }
 
 export default NewWidgetForm;

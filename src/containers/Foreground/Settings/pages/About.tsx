@@ -1,8 +1,6 @@
-import React from 'react';
 import PageTemplate from '../../../../common/ui/PageTemplate';
 import Button from '../../../../common/ui/Button';
-import GitHubLogo from '../../../../common/assets/GitHub-Mark-64px.png';
-import { Heart, GitHub } from 'react-feather';
+import { Heart, Github } from 'lucide-react';
 
 const About = () => {
     return (
@@ -32,7 +30,7 @@ const About = () => {
                 >
                     <Button style={{ display: 'inline-flex' }}>
                         {/* <img src={GitHubLogo} alt="GitHub Mark" /> */}
-                        <GitHub size={32} />
+                        <Github size={32} />
                         <p style={{ margin: "auto 0 auto 18px" }}>GitHub Repository</p>
                     </Button>
                 </a>

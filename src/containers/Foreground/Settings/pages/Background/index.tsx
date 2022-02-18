@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import classes from './Background.module.scss';
 import { BG } from '../../../../../common/util/defaults';
 import { CONFIG } from '../../../../../common/util/db';
@@ -32,7 +32,7 @@ const Background = () => {
     }
 
     return (
-        <Page 
+        <Page
             title="Background"
             subtitle="Your New Tab deserves to look pretty!"
         >
@@ -49,7 +49,7 @@ const Background = () => {
                             <div>
                                 <div className={classes.styleSelection}>
                                     <h3>Style: </h3>
-                                    <div>    
+                                    <div>
                                         <Radio
                                             label="Color"
                                             name="color"
@@ -80,18 +80,18 @@ const Background = () => {
                                         />
                                     </div>
                                 </div>
-                                {(props.values.type === 0) 
-                                    ? <ColorPicker {...props} /> 
-                                    : (props.values.type === 1 
-                                            ? <ImagePicker {...props} />  
-                                            : <VideoPicker {...props} />)}
+                                {(props.values.type === 0)
+                                    ? <ColorPicker {...props} />
+                                    : (props.values.type === 1
+                                        ? <ImagePicker {...props} />
+                                        : <VideoPicker {...props} />)}
                             </div>
                             <div>
                                 <h3>Background Filter: </h3>
                                 <div className={classes.fields}>
                                     <Dropdown
                                         name="filterFn"
-                                        onChange={(e) => updateFilter(props, "fn", e.target.value)}
+                                        onChange={(e : React.ChangeEvent<HTMLSelectElement>) => updateFilter(props, "fn", e.target.value)}
                                         style={{ textTransform: 'capitalize' }}
                                         value={props.values.filter.fn}
                                         options={filterFnList}
@@ -116,21 +116,21 @@ const Background = () => {
 }
 
 const filterFnList = [
-    "none",
-    "blur",
-    "brightness",
-    "contrast",
-    "drop-shadow",
-    "grayscale",
-    "hue-rotate",
-    "invert",
-    "opacity",
-    "saturate",
-    "sepia",
-    "url",
+    { label: "none", value: "none" },
+    { label: "blur", value: "blur" },
+    { label: "brightness", value: "brightness" },
+    { label: "contrast", value: "contrast" },
+    { label: "drop-shadow", value: "drop-shadow" },
+    { label: "grayscale", value: "grayscale" },
+    { label: "hue-rotate", value: "hue-rotate" },
+    { label: "invert", value: "invert" },
+    { label: "opacity", value: "opacity" },
+    { label: "saturate", value: "saturate" },
+    { label: "sepia", value: "sepia" },
+    { label: "url", value: "url" },
 ]
 
-const styles = {
+const styles : Record<string, React.CSSProperties> = {
     radioBtn: {
         fontSize: '18.72px',
     },

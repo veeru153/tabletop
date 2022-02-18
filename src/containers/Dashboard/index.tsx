@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import classes from './Dashboard.module.scss';
 import WidgetRenderer from '../../common/util/WidgetRenderer';
 import { ConfigContext } from '../../common/util/contexts';

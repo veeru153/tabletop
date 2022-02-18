@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import classes from './Background.module.scss';
 import { CONFIG } from '../../../../../common/util/db';
 import { TextInput, Dropdown, Radio } from '../../../../../common/ui';
-import { PlusCircle, MinusCircle } from "react-feather";
+import { PlusCircle, MinusCircle } from "lucide-react";
 
-const ImagePicker = (props) => {
+const ImagePicker = (props: ImagePickerProps) => {
     const [section, setSection] = useState(-1);      // Local = 0, Online = 1
     const [localImg, setLocalImg] = useState(props.values.image);
     const [sources, setSources] = useState([]);
@@ -14,8 +14,8 @@ const ImagePicker = (props) => {
     useEffect(() => {
         async function onMount() {
             const imgSrcs = await CONFIG.getItem('imageSrcs');
-            if(imgSrcs) {
-                if(imgSrcs[0].length > 0) setSection(1);
+            if (imgSrcs) {
+                if (imgSrcs[0].length > 0) setSection(1);
                 setSources(imgSrcs[0]);
             }
         }
@@ -31,18 +31,18 @@ const ImagePicker = (props) => {
     }, [sources]);
 
     const addSrc = () => {
-        if(currSrc.length === 0 || sources.includes(currSrc.trim())) return;
+        if (currSrc.length === 0 || sources.includes(currSrc.trim())) return;
         setSources([...sources, currSrc.trim()]);
         setCurrSrc("");
     }
 
-    const deleteSrc = (idx) => {
+    const deleteSrc = (idx: number) => {
         const tempSrcs = [...sources];
         tempSrcs.splice(idx, 1);
         setSources(tempSrcs);
     }
 
-    const dropHandler = (e) => {
+    const dropHandler = (e: { preventDefault: () => void; dataTransfer: { files: any[]; }; }) => {
         e.preventDefault();
         const file = e.dataTransfer.files[0];
         const fr = new FileReader();
@@ -52,7 +52,7 @@ const ImagePicker = (props) => {
         fr.readAsDataURL(file);
     }
 
-    const updateBlend = async (props, type, val) => {
+    const updateBlend = async (props: { values: { blend: any; }; setFieldValue: (arg0: string, arg1: any) => void; }, type: string, val: string) => {
         const tempBlend = props.values.blend;
         if (type === 'mode') tempBlend.mode = val;
         if (type === 'color') tempBlend.color = val;
@@ -86,13 +86,13 @@ const ImagePicker = (props) => {
                     />
                 </div>
             </div>
-            {section === 0 ? <LocalImagePicker selectedImg={localImg} dropHandler={dropHandler} /> : <OnlineImageSection { ...onlineImagesProps } />}
+            {section === 0 ? <LocalImagePicker selectedImg={localImg} dropHandler={dropHandler} /> : <OnlineImageSection {...onlineImagesProps} />}
             <div>
                 <h3>Background Blend: </h3>
                 <div className={classes.fields}>
                     <Dropdown
                         name="filterFn"
-                        onChange={(e) => updateBlend(props, "mode", e.target.value)}
+                        onChange={(e: { target: { value: any; }; }) => updateBlend(props, "mode", e.target.value)}
                         style={{ textTransform: 'capitalize' }}
                         value={props.values.blend.mode}
                         options={blendModeList}
@@ -111,7 +111,7 @@ const ImagePicker = (props) => {
     )
 }
 
-const LocalImagePicker = (props) => {
+const LocalImagePicker = (props: { selectedImg: any; dropHandler: any; }) => {
     const { selectedImg, dropHandler } = props;
     const preview = useRef();
 
@@ -149,7 +149,7 @@ const OnlineImageSection = ({ sources, currSrc, setCurrSrc, addSrc, deleteSrc, }
                 <PlusCircle size={36} onClick={addSrc} />
             </div>
             <div className={classes.sourceList}>
-                {sources.map((s, i) => <ImageSrc key={i} idx={i} src={s} deleteSrc={deleteSrc} />)}
+                {sources.map((s: any, i: React.Key | null | undefined) => <ImageSrc key={i} idx={i} src={s} deleteSrc={deleteSrc} />)}
             </div>
         </div>
     )
@@ -175,22 +175,33 @@ const styles = {
 }
 
 const blendModeList = [
-    "normal",
-    "multiply",
-    "overlay",
-    "screen",
-    "darken",
-    "lighten",
-    "color-dodge",
-    "color-burn",
-    "hard-light",
-    "soft-light",
-    "difference",
-    "exclusion",
-    "hue",
-    "saturation",
-    "color",
-    "luminosity",
+    { label: "normal", value: "normal" },
+    { label: "multiply", value: "multiply" },
+    { label: "overlay", value: "overlay" },
+    { label: "screen", value: "screen" },
+    { label: "darken", value: "darken" },
+    { label: "lighten", value: "lighten" },
+    { label: "color-dodge", value: "color-dodge" },
+    { label: "color-burn", value: "color-burn" },
+    { label: "hard-light", value: "hard-light" },
+    { label: "soft-light", value: "soft-light" },
+    { label: "difference", value: "difference" },
+    { label: "exclusion", value: "exclusion" },
+    { label: "hue", value: "hue" },
+    { label: "saturation", value: "saturation" },
+    { label: "color", value: "color" },
+    { label: "luminosity", value: "luminosity" },
 ]
+
+interface ImagePickerProps {
+    values: {
+        image: string; 
+        blend: { 
+            mode: string; 
+            color: string; 
+        };
+    }; 
+    setFieldValue: (arg0: string, arg1: any) => void;
+}
 
 export default ImagePicker;

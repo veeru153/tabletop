@@ -1,18 +1,19 @@
 import Axios from 'axios';
 import { WIDGETS } from '../../common/util/db';
 import { cookies, SECRETS } from '../../common/util/cookies';
+import { WidgetInfo } from '../../common/util/types';
 
 class WeatherException {
     name = "Error";
     message = "Error";
     icon = "50n";
 
-    constructor(message) {
+    constructor(message: string) {
         this.message = message;
     }
 }
 
-export const fetchData = async (id, params) => {
+export const fetchData = async (id: string, params: { units: string; city: string; }) => {
     const { units, city } = params;
     const { owmKey } = await cookies.get(SECRETS);
 

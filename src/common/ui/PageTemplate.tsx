@@ -16,11 +16,11 @@ const Page = ({ title, subtitle, children, className: userClasses, style: userSt
 }
 
 interface PageProps {
-    title: string,
-    subtitle: string,
-    children: React.ReactNode,
-    className?: string,
-    style?: React.CSSProperties
+    title: string;
+    subtitle: string;
+    children: React.ReactNode;
+    className?: string;
+    style?: React.CSSProperties;
 }
 
 export default Page;

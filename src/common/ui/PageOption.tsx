@@ -11,9 +11,9 @@ const PageOption = ({ name, icon, next = () => { } }: PageOptionProps) => {
 }
 
 interface PageOptionProps {
-    name: string,
-    icon: React.ReactNode,
-    next: Function
+    name: string;
+    icon: React.ReactNode;
+    next: Function;
 }
 
 export default PageOption;

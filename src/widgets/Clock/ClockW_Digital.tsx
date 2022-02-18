@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import classes from './Clock.module.scss';
 import Widget from '../../containers/Widget';
 import { DateTime } from 'luxon';
+import { WidgetInfo } from '../../common/util/types';
 
 
-const Clock = ({ id, meta, content }) => {
+const Clock = ({ id, meta, content } : WidgetInfo) => {
     const { params, data } = content;
     // const [time, setTime] = useState({ hr: "00", min: "00", sec: "00" });
     const [time, setTime] = useState({ hr: "00", min: "00" });

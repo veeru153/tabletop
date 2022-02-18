@@ -15,7 +15,7 @@ import bgCloudD from './bg_cloudD.png';
 import bgCloudN from './bg_cloudN.png';
 import bgRain from './bg_rain.png';
 
-export const icons = {
+export const icons : any = {
     '01d': clearD,
     '01n': clearN,
     '02d': pcloudyD,
@@ -36,7 +36,7 @@ export const icons = {
     '50n': atmosphere,
 }
 
-export const backgrounds = {
+export const backgrounds : any = {
     '01d': bgClearD,
     '01n': bgClearN,
     '02d': bgCloudD,

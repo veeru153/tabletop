@@ -21,17 +21,17 @@ const Dropdown = ({ name, onChange, style, value, defaultValue, options }: Dropd
 }
 
 interface DropdownProps {
-    name: string,
-    onChange: Function,
-    style?: React.CSSProperties,
-    value?: string,
-    defaultValue?: string,
-    options: DropdownOption[]
+    name: string;
+    onChange: Function;
+    style?: React.CSSProperties;
+    value?: string;
+    defaultValue?: string;
+    options: DropdownOption[];
 }
 
 interface DropdownOption {
-    label: string,
-    value: any
+    label: string;
+    value: any;
 }
 
 export default Dropdown;

@@ -5,12 +5,12 @@ class QuoteException {
     name = "Error";
     message = "Error";
 
-    constructor(message) {
+    constructor(message: string) {
         this.message = message;
     }
 }
 
-export const fetchData = async (id, params) => {
+export const fetchData = async (id: string, params: { tags: string, }) => {
     const { tags } = params;
     const MAX_LEN = 50;
     const TAGS = tags && tags.length > 0 ? `&tags=${tags}` : "" ;

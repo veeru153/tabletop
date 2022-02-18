@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Formik } from 'formik';
 import { ConfigContext, NavContext } from '../../common/util/contexts';
 import { Radio, Button, Page } from '../../common/ui';
@@ -75,7 +75,7 @@ const CalendarForm = () => {
     )
 }
 
-const styles = {
+const styles : Record<string, React.CSSProperties> = {
     form: {
         display: 'flex',
         flexDirection: 'column',

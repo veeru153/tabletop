@@ -1,4 +1,3 @@
-import React from 'react';
 import classes from './Background.module.scss';
 import Images from './Images';
 import Video from './Video';

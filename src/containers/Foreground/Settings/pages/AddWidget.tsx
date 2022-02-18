@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import classes from '../Settings.module.scss';
 import Page from '../../../../common/ui/PageTemplate';
 import Option from '../../../../common/ui/PageOption';

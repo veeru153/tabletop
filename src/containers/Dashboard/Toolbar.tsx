@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import classes from './Dashboard.module.scss';
-import { Menu, Edit2, Plus, ChevronUp, ChevronDown, Settings } from 'react-feather';
+import { Menu, Edit2, Plus, ChevronUp, ChevronDown, Settings } from 'lucide-react';
 
 const Toolbar = ({ setShowSettings, setShowAddWidget, editMode, setEditMode }) => {
     const [expandToolbar, setExpandToolbar] = useState(false);

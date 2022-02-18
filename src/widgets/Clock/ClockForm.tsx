@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { ConfigContext, NavContext } from '../../common/util/contexts';
 import { Formik } from 'formik';
 import { TextInput, Dropdown, Button, Page, Radio } from '../../common/ui';
@@ -70,7 +70,7 @@ const ClockForm = () => {
                         </div>}
                         <Dropdown
                             name="tz"
-                            onChange={(e) => props.setFieldValue("tz", e.target.value)}
+                            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => props.setFieldValue("tz", e.target.value)}
                             options={tzOffsets}
                         />
                         <TextInput
@@ -93,48 +93,48 @@ const ClockForm = () => {
 }
 
 const tzOffsets = [
-    "Select a Timezone",
-    "UTC-12:00",
-    "UTC-11:00",
-    "UTC-10:00",
-    "UTC-09:30",
-    "UTC-09:00",
-    "UTC-08:00",
-    "UTC-07:00",
-    "UTC-06:00",
-    "UTC-05:00",
-    "UTC-04:00",
-    "UTC-03:30",
-    "UTC-03:00",
-    "UTC-02:00",
-    "UTC-01:00",
-    "UTC+00:00",
-    "UTC+01:00",
-    "UTC+02:00",
-    "UTC+03:00",
-    "UTC+03:30",
-    "UTC+04:00",
-    "UTC+04:30",
-    "UTC+05:00",
-    "UTC+05:30",
-    "UTC+05:45",
-    "UTC+06:00",
-    "UTC+06:30",
-    "UTC+07:00",
-    "UTC+08:00",
-    "UTC+08:45",
-    "UTC+09:00",
-    "UTC+09:30",
-    "UTC+10:00",
-    "UTC+10:30",
-    "UTC+11:00",
-    "UTC+12:00",
-    "UTC+12:45",
-    "UTC+13:00",
-    "UTC+14:00"
+    { label: "Select a Timezone", value: "Select a Timezone" },
+    { label: "UTC-12:00", value: "UTC-12:00" },
+    { label: "UTC-11:00", value: "UTC-11:00" },
+    { label: "UTC-10:00", value: "UTC-10:00" },
+    { label: "UTC-09:30", value: "UTC-09:30" },
+    { label: "UTC-09:00", value: "UTC-09:00" },
+    { label: "UTC-08:00", value: "UTC-08:00" },
+    { label: "UTC-07:00", value: "UTC-07:00" },
+    { label: "UTC-06:00", value: "UTC-06:00" },
+    { label: "UTC-05:00", value: "UTC-05:00" },
+    { label: "UTC-04:00", value: "UTC-04:00" },
+    { label: "UTC-03:30", value: "UTC-03:30" },
+    { label: "UTC-03:00", value: "UTC-03:00" },
+    { label: "UTC-02:00", value: "UTC-02:00" },
+    { label: "UTC-01:00", value: "UTC-01:00" },
+    { label: "UTC+00:00", value: "UTC+00:00" },
+    { label: "UTC+01:00", value: "UTC+01:00" },
+    { label: "UTC+02:00", value: "UTC+02:00" },
+    { label: "UTC+03:00", value: "UTC+03:00" },
+    { label: "UTC+03:30", value: "UTC+03:30" },
+    { label: "UTC+04:00", value: "UTC+04:00" },
+    { label: "UTC+04:30", value: "UTC+04:30" },
+    { label: "UTC+05:00", value: "UTC+05:00" },
+    { label: "UTC+05:30", value: "UTC+05:30" },
+    { label: "UTC+05:45", value: "UTC+05:45" },
+    { label: "UTC+06:00", value: "UTC+06:00" },
+    { label: "UTC+06:30", value: "UTC+06:30" },
+    { label: "UTC+07:00", value: "UTC+07:00" },
+    { label: "UTC+08:00", value: "UTC+08:00" },
+    { label: "UTC+08:45", value: "UTC+08:45" },
+    { label: "UTC+09:00", value: "UTC+09:00" },
+    { label: "UTC+09:30", value: "UTC+09:30" },
+    { label: "UTC+10:00", value: "UTC+10:00" },
+    { label: "UTC+10:30", value: "UTC+10:30" },
+    { label: "UTC+11:00", value: "UTC+11:00" },
+    { label: "UTC+12:00", value: "UTC+12:00" },
+    { label: "UTC+12:45", value: "UTC+12:45" },
+    { label: "UTC+13:00", value: "UTC+13:00" },
+    { label: "UTC+14:00", value: "UTC+14:00" }
 ]
 
-const styles = {
+const styles : Record<string, React.CSSProperties> = {
     form: {
         display: 'flex',
         flexDirection: 'column',

@@ -1,4 +1,3 @@
-import React from 'react';
 import classes from './Foreground.module.scss';
 import Settings from './Settings';
 import AddWidget from './AddWidget';

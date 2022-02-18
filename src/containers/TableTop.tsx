@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { WIDGETS, CONFIG } from '../common/util/db';
 import * as DEFAULTS from '../common/util/defaults';
 import Background from './Background';

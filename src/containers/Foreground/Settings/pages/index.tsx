@@ -1,5 +1,4 @@
-import React from 'react';
-import { PlusSquare, Trash2, Tool, Key, Info, Image } from 'react-feather';
+import { PlusSquare, Trash2, Wrench, Key, Info, Image } from 'lucide-react';
 import Configure from './Configure';
 import Background from './Background';
 import Secrets from './Secrets';
@@ -20,7 +19,7 @@ const settingsNavRoutes = [
     // },
     { 
         key: 'config',
-        icon: <Tool />, 
+        icon: <Wrench />, 
         name: 'Configure', 
         next: <Configure />
     },

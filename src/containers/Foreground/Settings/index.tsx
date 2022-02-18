@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import classes from './Settings.module.scss';
 import PageShell from '../PageShell';
 import { Page, Option } from '../../../common/ui';
