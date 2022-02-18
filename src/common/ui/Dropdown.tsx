@@ -1,25 +1,37 @@
-import React from 'react';
 import classes from './Dropdown.module.scss';
 
-const Dropdown = (props) => {
-    const { options } = props;
+const Dropdown = ({ name, onChange, style, value, defaultValue, options }: DropdownProps) => {
     return (
         <select
-            id={props.name}
-            name={props.name}
+            id={name}
+            name={name}
             className={classes.Dropdown}
-            onChange={props.onChange}
-            style={props.style}
-            value={props.value}
-            defaultValue={props.defaultValue}
+            onChange={(e) => onChange(e)}
+            style={style}
+            value={value}
+            defaultValue={defaultValue}
         >
-            {options.map(opt => {
+            {options.map((opt) => {
                 const label = opt.label ?? opt;
-                const val = opt.val ?? opt;
+                const val = opt.value ?? opt;
                 return <option key={val} value={val}>{label}</option>
             })}
         </select>
     )
+}
+
+interface DropdownProps {
+    name: string,
+    onChange: Function,
+    style?: React.CSSProperties,
+    value?: string,
+    defaultValue?: string,
+    options: DropdownOption[]
+}
+
+interface DropdownOption {
+    label: string,
+    value: any
 }
 
 export default Dropdown;

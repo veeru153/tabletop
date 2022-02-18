@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import classes from './Accordion.module.scss';
 import { ChevronUp, ChevronDown } from 'react-feather';
 
-const Accordion = ({ title, children, className : userClasses, style : userStyles }) => {
+const Accordion = ({ title, children, className : userClasses, style : userStyles } : AccordionProps) => {
     const [expanded, setExpanded] = useState(false);
 
     return (
@@ -20,6 +20,13 @@ const Accordion = ({ title, children, className : userClasses, style : userStyle
             <hr />
         </div>
     )
+}
+
+interface AccordionProps {
+    title: string,
+    children: React.ReactNode,
+    className: string,
+    style: React.CSSProperties,
 }
 
 export default Accordion;

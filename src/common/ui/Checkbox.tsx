@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import classes from './Checkbox.module.scss'
 import { Square, CheckSquare } from 'react-feather';
 
-const Checkbox = ({ children, checked : controlledCheck, onClick : clicked, className : userClasses, style : userStyles }) => {
+const Checkbox = ({ children, checked : controlledCheck, onClick : clicked, className : userClasses, style : userStyles } : CheckboxProps) => {
     const [checked, setChecked] = useState(false);
 
     useEffect(() => {
@@ -30,7 +30,13 @@ const Checkbox = ({ children, checked : controlledCheck, onClick : clicked, clas
     )
 }
 
-export default Checkbox;
+interface CheckboxProps {
+    children: React.ReactChildren,
+    checked: boolean,
+    onClick: Function,
+    className: string,
+    style: React.CSSProperties,
+}
 
 const styles = {
     checkbox: {
@@ -38,3 +44,5 @@ const styles = {
         minHeight: 24,
     }
 }
+
+export default Checkbox;

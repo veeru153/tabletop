@@ -1,7 +1,6 @@
-import React from 'react';
 import classes from './Radio.module.scss'
 
-const Radio = (props) => {
+const Radio = (props: RadioProps) => {
     return (
         <div className={classes.Radio}>
             <label className={props.checked ? classes.active : ""} style={props.style}>
@@ -13,6 +12,10 @@ const Radio = (props) => {
             </label>
         </div>
     )
+}
+
+interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    label: string
 }
 
 export default Radio;

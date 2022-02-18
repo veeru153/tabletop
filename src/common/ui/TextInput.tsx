@@ -1,7 +1,6 @@
-import React from 'react';
 import classes from './TextInput.module.scss';
 
-const TextInput = (props) => {
+const TextInput = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
     return (
         <input 
             className={classes.TextInput}
