@@ -7,7 +7,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "cspbuild": "INLINE_RUNTIME_CHUNK=false tsc && vite build && cp -r build/* dist",
-    "webbuild": "vtsc && vite build && cp -r build/* dist-web"
+    "webbuild": "tsc && vite build && cp -r build/* dist-web"
   },
   "dependencies": {
     "axios": "^0.21.1",
