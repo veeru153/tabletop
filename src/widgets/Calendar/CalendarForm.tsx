@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Formik } from 'formik';
 import { ConfigContext, NavContext } from '../../common/util/contexts';
 import { Radio, Button, Page } from '../../common/ui';
-import widget from './';
+import widget from '.';
 
 const CalendarForm = () => {
     const { addWidget } = useContext(ConfigContext);

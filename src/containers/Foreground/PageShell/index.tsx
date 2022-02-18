@@ -37,7 +37,8 @@ const PageShell = ({ visibility, setVisibility, children }) => {
                 else upOneLevel();
             }
         }
-    });
+    }, []);
+    
     useEffect(() => {
         document.addEventListener("keydown", onEscPress);
         return () =>  document.removeEventListener("keydown", onEscPress);

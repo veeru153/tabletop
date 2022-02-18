@@ -1,7 +1,7 @@
 import React from 'react';
 import { PlusSquare, Trash2, Tool, Key, Info, Image } from 'react-feather';
-import Configure from './Configure/';
-import Background from './Background/';
+import Configure from './Configure';
+import Background from './Background';
 import Secrets from './Secrets';
 import About from './About';
 

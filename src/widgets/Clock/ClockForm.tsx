@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ConfigContext, NavContext } from '../../common/util/contexts';
 import { Formik } from 'formik';
 import { TextInput, Dropdown, Button, Page, Radio } from '../../common/ui';
-import widget from './';
+import widget from '.';
 
 const ClockForm = () => {
     const { addWidget } = useContext(ConfigContext);

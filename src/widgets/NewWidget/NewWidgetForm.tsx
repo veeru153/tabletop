@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ConfigContext, NavContext } from '../../common/util/contexts';
-import widget from './';
+import widget from '.';
 // ^^^^^ Required Imports ^^^^^^
 import { Formik } from 'formik';                        // Form management library
 import { Button, Page } from '../../common/ui';         // TableTop UI components

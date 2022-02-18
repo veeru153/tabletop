@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import classes from './Quotes.module.scss';
 import { ConfigContext, NavContext } from '../../common/util/contexts';
 import { TextInput, Button, Page } from '../../common/ui';
-import widget from './';
+import widget from '.';
 
 const QuotesForm = () => {
     const { addWidget } = useContext(ConfigContext);

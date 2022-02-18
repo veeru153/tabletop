@@ -2,49 +2,32 @@
   "name": "tabletop",
   "version": "1.0",
   "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "cspbuild": "INLINE_RUNTIME_CHUNK=false tsc && vite build && cp -r build/* dist",
+    "webbuild": "vtsc && vite build && cp -r build/* dist-web"
+  },
   "dependencies": {
-    "@material-ui/core": "^4.11.4",
-    "@material-ui/icons": "^4.11.2",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
     "axios": "^0.21.1",
     "cuid": "^2.1.8",
     "formik": "^2.2.0",
-    "localbase": "^0.7.4",
     "localforage": "^1.9.0",
     "luxon": "^1.25.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-draggable": "^4.4.3",
     "react-feather": "^2.0.9",
-    "react-rnd": "^10.2.4",
-    "react-scripts": "3.4.3",
-    "sass": "^1.35.1",
     "super-tiny-icons": "^0.4.0",
     "universal-cookie": "^4.0.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "cspbuild": "INLINE_RUNTIME_CHUNK=false react-scripts build && cp -r build/* dist",
-    "webbuild": "react-scripts build && cp -r build/* dist-web"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "@vitejs/plugin-react": "^1.0.7",
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0",
+    "sass": "^1.35.1"
   }
 }
