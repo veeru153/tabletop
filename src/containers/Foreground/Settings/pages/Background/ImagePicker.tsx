@@ -1,34 +1,19 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Fragment } from 'react';
+import { useRecoilState } from 'recoil';
+import { imageSrcsSelector } from '../../../../../common/atoms/config';
 import classes from './Background.module.scss';
-import { CONFIG } from '../../../../../common/util/db';
 import { TextInput, Dropdown, Radio } from '../../../../../common/ui';
 import { PlusCircle, MinusCircle } from "lucide-react";
 
 const ImagePicker = (props: ImagePickerProps) => {
     const [section, setSection] = useState(-1);      // Local = 0, Online = 1
     const [localImg, setLocalImg] = useState(props.values.image);
-    const [sources, setSources] = useState([]);
     const [currSrc, setCurrSrc] = useState("");
-
-
-    useEffect(() => {
-        async function onMount() {
-            const imgSrcs = await CONFIG.getItem('imageSrcs');
-            if (imgSrcs) {
-                if (imgSrcs[0].length > 0) setSection(1);
-                setSources(imgSrcs[0]);
-            }
-        }
-        onMount();
-    }, [])
+    const [sources, setSources] = useRecoilState(imageSrcsSelector);
 
     useEffect(() => {
         props.setFieldValue('image', localImg);
     }, [localImg])
-
-    useEffect(() => {
-        CONFIG.setItem('imageSrcs', { 0: sources });
-    }, [sources]);
 
     const addSrc = () => {
         if (currSrc.length === 0 || sources.includes(currSrc.trim())) return;
@@ -120,7 +105,7 @@ const LocalImagePicker = (props: { selectedImg: any; dropHandler: any; }) => {
     }, [selectedImg]);
 
     return (
-        <React.Fragment>
+        <Fragment>
             <p>Only displayed when Online images can't be displayed or there are no sources in the Online collection. Falls back to Color.</p>
             <div className={classes.imagePickerDropzone} onDrop={(e) => dropHandler(e)} onDragOver={(e) => e.preventDefault()}>
                 <img
@@ -130,11 +115,11 @@ const LocalImagePicker = (props: { selectedImg: any; dropHandler: any; }) => {
                 ></img>
                 <p style={{ display: selectedImg ? 'none' : 'block' }}>Drag an Image in this Dropzone</p>
             </div>
-        </React.Fragment>
+        </Fragment>
     )
 }
 
-const OnlineImageSection = ({ sources, currSrc, setCurrSrc, addSrc, deleteSrc, }) => {
+const OnlineImageSection = ({ sources, currSrc, setCurrSrc, addSrc, deleteSrc }: { sources: [], currSrc: string, setCurrSrc: Function, addSrc: Function, deleteSrc: Function }) => {
     return (
         <div className={classes.imagePicker}>
             <span style={{ fontSize: 16 }}>Falls back to Local Image</span>
@@ -146,16 +131,16 @@ const OnlineImageSection = ({ sources, currSrc, setCurrSrc, addSrc, deleteSrc, }
                     onChange={(e) => setCurrSrc(e.target.value)}
                     style={styles.textInput}
                 />
-                <PlusCircle size={36} onClick={addSrc} />
+                <PlusCircle size={36} onClick={() => addSrc()} />
             </div>
             <div className={classes.sourceList}>
-                {sources.map((s: any, i: React.Key | null | undefined) => <ImageSrc key={i} idx={i} src={s} deleteSrc={deleteSrc} />)}
+                {sources.map((s: any, i: number) => <ImageSrc key={i} idx={i} src={s} deleteSrc={deleteSrc} />)}
             </div>
         </div>
     )
 }
 
-const ImageSrc = ({ idx, src, deleteSrc }) => {
+const ImageSrc = ({ idx, src, deleteSrc }: { idx: number, src: string, deleteSrc: Function }) => {
     return (
         <div className={classes.source}>
             <p>{src}</p>
@@ -195,12 +180,12 @@ const blendModeList = [
 
 interface ImagePickerProps {
     values: {
-        image: string; 
-        blend: { 
-            mode: string; 
-            color: string; 
+        image: string;
+        blend: {
+            mode: string;
+            color: string;
         };
-    }; 
+    };
     setFieldValue: (arg0: string, arg1: any) => void;
 }
 

@@ -1,27 +1,21 @@
 import { useState, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { videoSrcsSelector } from '../../../../../common/atoms/config';
 import classes from './Background.module.scss';
 import { CONFIG } from '../../../../../common/util/db';
 import { TextInput } from '../../../../../common/ui';
 import { PlusCircle, MinusCircle } from "lucide-react";
 
 const VideoPicker = (props) => {
-    const [sources, setSources] = useState([]);
+    const [sources, setSources] = useRecoilState(videoSrcsSelector);
     const [currSrc, setCurrSrc] = useState("");
-
-    useEffect(() => {
-        async function onMount() {
-            const videoSrcs = await CONFIG.getItem('videoSrcs');
-            videoSrcs && setSources(videoSrcs[0]);
-        }
-        onMount();
-    }, [])
 
     useEffect(() => {
         CONFIG.setItem('videoSrcs', { 0: sources });
     }, [sources]);
 
     const addSrc = () => {
-        if(currSrc.length === 0 || sources.includes(currSrc.trim())) return;
+        if (currSrc.length === 0 || sources.includes(currSrc.trim())) return;
         setSources([...sources, currSrc.trim()]);
         setCurrSrc("");
     }
@@ -52,7 +46,7 @@ const VideoPicker = (props) => {
     )
 }
 
-const VideoSrc = ({ idx, src, deleteSrc }) => {
+const VideoSrc = ({ idx, src, deleteSrc }: { idx: number, src: string, deleteSrc: Function }) => {
     return (
         <div className={classes.source}>
             <p>{src}</p>

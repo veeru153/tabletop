@@ -30,14 +30,14 @@ const PageShell = ({ visibility, setVisibility, children }) => {
         setVisibility(false);
     }
 
-    const onEscPress = useCallback((e) => {
+    const onEscPress = (e : KeyboardEvent) => {
         if(visibility) {
             if(e.key === "Escape") {
                 if(level === 1) setVisibility(false);
                 else upOneLevel();
             }
         }
-    }, []);
+    };
     
     useEffect(() => {
         document.addEventListener("keydown", onEscPress);
