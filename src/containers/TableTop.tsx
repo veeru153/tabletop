@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { WIDGETS, CONFIG } from '../common/util/db';
 import * as DEFAULTS from '../common/util/defaults';
 import Background from './Background';
@@ -7,6 +7,8 @@ import Foreground from './Foreground';
 import Cover from './Cover';
 import cuid from 'cuid';
 import { ConfigContext } from '../common/util/contexts';
+
+
 
 const TableTop = () => {
     const [bg, setBg] = useState(DEFAULTS.BG);
@@ -70,7 +72,7 @@ const TableTop = () => {
     const addWidget = async (type, params) => {
         const id = cuid();
         const template = {
-            key: id,
+            id: id,
             meta: {
                 pos: { x: 10, y: 10 },
                 type: type,
@@ -130,17 +132,17 @@ const TableTop = () => {
         CONFIG.setItem('meta', _meta);
     }
 
-    const dashboardProps = { widgets, setShowSettings, setShowAddWidget, filter: bg.filter, showZeroWidgetMsg: meta.showZeroWidgetMsg, hideZeroWidgetMsg };
+    const dashboardProps = { setShowSettings, setShowAddWidget, filter: bg.filter, showZeroWidgetMsg: meta.showZeroWidgetMsg, hideZeroWidgetMsg };
     const foregroundProps = { showSettings, setShowSettings, showAddWidget, setShowAddWidget };
     const coverProps = { showCover, coverMsg, bgColor: bg.color, showCoverOnStart: meta.showCoverOnStart };
     const configCtxProps = { addWidget, setBg, editMode, setEditMode, removeWidget, reload, clearWidgets, hideZeroWidgetMsg, meta, allowWidgetReposWithoutEdit, showCoverOnStart };
 
     return (
         <ConfigContext.Provider value={configCtxProps}>
-            {loaded && <Background bg={bg} />}
-            {loaded && <Dashboard {...dashboardProps} />}
-            <Foreground {...foregroundProps} />
-            <Cover {...coverProps} />
+            <Suspense fallback={<div />}><Background /></Suspense>
+            <Suspense fallback={<div />}>{loaded && <Dashboard {...dashboardProps} />}</Suspense>
+            <Suspense fallback={<div />}><Foreground {...foregroundProps} /></Suspense>
+            <Suspense fallback={<div />}><Cover {...coverProps} /></Suspense>
         </ConfigContext.Provider>
     )
 }

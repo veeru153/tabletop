@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import Widget from '../../containers/Widget';
 import classes from './Calendar.module.scss';
 import { DateTime } from 'luxon';
-import { WidgetInfo } from '../../common/util/types';
+import { WidgetProps } from '../../common/util/types';
 
-const Calendar_Month = ({ id, meta, content } : WidgetInfo) => {
+const Calendar_Month = ({ content } : WidgetProps) => {
     const { params, data } = content;
     const daysArrayMon = ["M", "T", "W", "T", "F", "S", "S"];
     const daysArraySun = ["S", "M", "T", "W", "T", "F", "S"];
@@ -25,11 +24,7 @@ const Calendar_Month = ({ id, meta, content } : WidgetInfo) => {
     }, [])
 
     return (
-        <Widget
-            id={id}
-            meta={meta}
-            className={classes.CalendarMonth}
-        >
+        <div className={classes.CalendarMonth}>
             <div className={classes.header}>
                 <div className={classes.month}>{monthLong}</div>
                 <div className={classes.year}>{year}</div>
@@ -38,7 +33,7 @@ const Calendar_Month = ({ id, meta, content } : WidgetInfo) => {
             <div className={classes.calContainer}>
                 {cal.map((day, i) => <Day key={i} day={day} i={i} dt={dt} startsMonday={params.startsMonday} />)}
             </div>
-        </Widget>
+        </div>
     )
 }
 

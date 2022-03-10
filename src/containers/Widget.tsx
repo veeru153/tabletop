@@ -5,6 +5,8 @@ import { ConfigContext } from '../common/util/contexts';
 import { X } from 'lucide-react';
 import classes from './Widget.module.scss';
 import { WidgetMeta } from '../common/util/types';
+import { useSetRecoilState } from 'recoil';
+import { widgetSelector } from '../common/atoms/widgets';
 
 const Widget = (props: WidgetProps) => {
     const { id, meta, style: userStyle, className: userClass, } = props;
@@ -50,11 +52,17 @@ const Widget = (props: WidgetProps) => {
 }
 
 const EditWidget = ({ id, removeWidget }: { id: string, removeWidget: Function }) => {
+    const setWidget = useSetRecoilState(widgetSelector(id));
+
+    const _removeWidget = () => {
+        setWidget(null);
+    }
+
     return (
         <div className={classes.EditWidget}>
             <X
                 className={classes.closeBtn}
-                onClick={() => removeWidget(id)}
+                onClick={() => _removeWidget()}
             />
         </div>
     )

@@ -1,5 +1,4 @@
-import { WidgetInfo } from '../../common/util/types';
-import Widget from '../../containers/Widget';
+import { WidgetProps } from '../../common/util/types';
 // ^^^^^ Required Imports ^^^^^
 // Add imports below
 
@@ -12,15 +11,13 @@ import Widget from '../../containers/Widget';
  */
 
 
-const NewWidget = ({ id, meta, content } : WidgetInfo) => {
+const NewWidget = ({ content } : WidgetProps) => {
+    const { params, data } = content;
+    
     return (
-        <Widget
-            id={id}
-            meta={meta}
-            // Additional  Props: className, styles
-        >
+        <div>
             {/* Add Widget Content here */}
-        </Widget>
+        </div>
     )
 }
 

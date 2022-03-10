@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import classes from './Clock.module.scss';
-import Widget from '../../containers/Widget';
 import { DateTime } from 'luxon';
-import { WidgetInfo } from '../../common/util/types';
+import { WidgetProps } from '../../common/util/types';
 
-const Clock_Analog = ({ id, meta, content } : WidgetInfo) => {
+const Clock_Analog = ({ content } : WidgetProps) => {
     const { params, data } = content;
     const [rots, setRots] = useState({ hr: 0, min: 0, sec: 0 });
 
@@ -32,11 +31,7 @@ const Clock_Analog = ({ id, meta, content } : WidgetInfo) => {
     }
 
     return (
-        <Widget
-            id={id}
-            meta={meta}
-            className={classes.ClockAnalog}
-        >
+        <div className={classes.ClockAnalog}>
             <div className={classes.clockbox}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
                     <g id="face">
@@ -59,7 +54,7 @@ const Clock_Analog = ({ id, meta, content } : WidgetInfo) => {
                 </svg>
             </div>
             <div className={classes.label}>{params.label}</div>
-        </Widget>
+        </div>
     )
 }
 

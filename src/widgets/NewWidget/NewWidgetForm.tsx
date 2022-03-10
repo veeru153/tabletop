@@ -1,9 +1,11 @@
 import { useContext } from 'react';
-import { ConfigContext, NavContext } from '../../common/util/contexts';
+import { NavContext } from '../../common/util/contexts';
+import { withFormUtils } from '../../common/hoc';
 import widget from '.';
 // ^^^^^ Required Imports ^^^^^^
 import { Formik } from 'formik';                        // Form management library
 import { Button, Page } from '../../common/ui';         // TableTop UI components
+import { WidgetFormProps } from '../../common/util/types';
 
 /** Instructions on use:
  * 1. DO NOT USE NewWidget DIRECTLY! Make a copy of NewWidget and edit that.
@@ -13,8 +15,7 @@ import { Button, Page } from '../../common/ui';         // TableTop UI component
  * 5. Remove all template comments from NewWidget before sending PR.
  */
 
-const NewWidgetForm = () => {
-    const { addWidget } = useContext(ConfigContext);    // Adds Widget to the Dashboard
+const NewWidgetForm = (props: WidgetFormProps) => {
     const { close } = useContext(NavContext);           // Closes page
 
     const values = { 
@@ -27,7 +28,7 @@ const NewWidgetForm = () => {
             onSubmit={(values, actions) => {
                 // Perform any action before form submission.
 
-                addWidget(widget.type, values);
+                props.addWidget(widget.type, values);
                 close()
                 actions.resetForm();
             }}
@@ -57,4 +58,4 @@ const styles : Record<string, React.CSSProperties> = {
     },
 }
 
-export default NewWidgetForm;
+export default withFormUtils(NewWidgetForm);

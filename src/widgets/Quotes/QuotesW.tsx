@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import Widget from '../../containers/Widget';
 import classes from './Quotes.module.scss';
 import { defaultQ, fetchData } from './helper';
-import { WidgetInfo } from '../../common/util/types';
+import { WidgetProps } from '../../common/util/types';
+import withWidget from '../../common/hoc/withWidget';
 
-const Quotes = ({ id, meta, content } : WidgetInfo) => {
+const Quotes = ({ id, content } : WidgetProps) => {
     const { data, params } = content;
 
     const [q, setQ] = useState(defaultQ);
@@ -24,16 +24,12 @@ const Quotes = ({ id, meta, content } : WidgetInfo) => {
 
 
     return (
-        <Widget
-            id={id}
-            meta={meta}
-            className={classes.Quotes}
-        >
+        <div className={classes.Quotes}>
             {/* <div>{time.hr}:{time.min}:{time:sec} <span style={{ display: params.military ? "none" : "inline-block" }}>{am ? "AM" : "PM"}</span></div> */}
             <div className={classes.content}>"{error ? error.message : q.content}"</div>
             <div className={classes.author}>~ {error ? error.name : q.author}</div>
-        </Widget>
+        </div>
     )
 }
 
-export default Quotes;
+export default withWidget(Quotes);

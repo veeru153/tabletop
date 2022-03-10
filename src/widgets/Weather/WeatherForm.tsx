@@ -3,12 +3,13 @@ import { ConfigContext, NavContext } from '../../common/util/contexts';
 import { Formik } from 'formik';
 import { TextInput, Button, Radio, Page } from '../../common/ui';
 import { cookies, SECRETS } from '../../common/util/cookies';
+import { withFormUtils } from '../../common/hoc';
 import widget from '.';
+import { WidgetFormProps } from '../../common/util/types';
 
 // TODO: Add an warning message that OWM Key has not been set.
 
-const WeatherForm = () => {
-    const { addWidget } = useContext(ConfigContext);
+const WeatherForm = (props: WidgetFormProps) => {
     const { close } = useContext(NavContext);
     const [apiKeyExists, setApiKeyExists] = useState(false);
 
@@ -29,7 +30,7 @@ const WeatherForm = () => {
         <Formik
             initialValues={values}
             onSubmit={(values, actions) => {
-                addWidget(widget.type, values);
+                props.addWidget(widget.type, values);
                 close()
                 actions.resetForm();
             }}
@@ -120,4 +121,4 @@ const styles : Record<string, React.CSSProperties> = {
     },
 }
 
-export default WeatherForm;
+export default withFormUtils(WeatherForm);

@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
-import { CONFIG } from '../../common/util/db';
+import { useRecoilValue } from 'recoil';
+import { videoSrcsSelector } from '../../common/atoms/config';
 import classes from './Background.module.scss';
 
 const Video = () => {
     const [src, setSrc] = useState("");
+    const urls = useRecoilValue(videoSrcsSelector);
 
     useEffect(() => {
         async function onMount() {
-            const urls = await CONFIG.getItem('videoSrcs');
-            const i = Math.floor(Math.random() * urls[0].length);
-            setSrc(urls[0][i]);
+            const i = Math.floor(Math.random() * urls.length);
+            setSrc(urls[i]);
         }
         onMount();
     }, [])

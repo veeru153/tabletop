@@ -1,18 +1,19 @@
 import { useContext } from 'react';
 import { Formik } from 'formik';
-import { ConfigContext, NavContext } from '../../common/util/contexts';
+import { NavContext } from '../../common/util/contexts';
 import { Radio, Button, Page } from '../../common/ui';
+import { withFormUtils } from '../../common/hoc';
 import widget from '.';
+import { WidgetFormProps } from '../../common/util/types';
 
-const CalendarForm = () => {
-    const { addWidget } = useContext(ConfigContext);
+const CalendarForm = (props: WidgetFormProps) => {
     const { close } = useContext(NavContext);
 
     return (
         <Formik
             initialValues={{ startsMonday: true, daily: true }}
             onSubmit={(values, actions) => {
-                addWidget(widget.type, values);
+                props.addWidget(widget.type, values);
                 close();
                 actions.resetForm();
             }}
@@ -96,4 +97,4 @@ const styles : Record<string, React.CSSProperties> = {
     },
 }
 
-export default CalendarForm;
+export default withFormUtils(CalendarForm);

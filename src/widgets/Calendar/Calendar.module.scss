@@ -1,5 +1,5 @@
 .CalendarMonth {
-    background-color: rgb(0, 0, 0, 0.56);
+    background-color: rgba(0, 0, 0, 0.56);
     color: #dedede;
     position: fixed;
     width: calc(1.24 * 248px);
@@ -10,7 +10,7 @@
     justify-content: space-evenly;
     align-items: center;
     user-select: none;
-    transform: scale(2);
+    // transform: scale(2);
 
     hr {
         width: 86%;
@@ -57,7 +57,7 @@
 }
 
 .CalendarDate {
-    background-color: rgb(0, 0, 0, 0.56);
+    background-color: rgba(0, 0, 0, 0.56);
     color: #dedede;
     position: fixed;
     width: 186px;
@@ -67,7 +67,6 @@
     // justify-content: space-evenly;
     align-items: center;
     user-select: none;
-    transform: scale(2);
 
     hr {
         width: 86%;

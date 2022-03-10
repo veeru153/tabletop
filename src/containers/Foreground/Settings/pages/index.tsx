@@ -5,38 +5,26 @@ import Secrets from './Secrets';
 import About from './About';
 
 const settingsNavRoutes = [
-    // { 
-    //     key: 'addWidget',
-    //     icon: <PlusSquare />, 
-    //     name: 'Add Widget', 
-    //     next: <AddWidget />
-    // },
-    // { 
-    //     key: 'removeWidget',
-    //     icon: <Trash2 />, 
-    //     name: 'Remove Widgets', 
-    //     // next: <RemoveWidgetForm />
-    // },
     { 
-        key: 'config',
+        id: 'config',
         icon: <Wrench />, 
         name: 'Configure', 
         next: <Configure />
     },
     { 
-        key: 'background',
+        id: 'background',
         icon: <Image />, 
         name: 'Background', 
         next: <Background />
     },
     { 
-        key: 'secrets',
+        id: 'secrets',
         icon: <Key />, 
         name: 'Secrets', 
         next: <Secrets />
     },
     { 
-        key: 'about',
+        id: 'about',
         icon: <Info />, 
         name: 'About', 
         next: <About />

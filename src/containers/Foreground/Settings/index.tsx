@@ -25,7 +25,7 @@ const RootSettings = () => {
         >
             {navRoutes.map(r => (
                 <Option 
-                    key={r.key} 
+                    key={r.id} 
                     name={r.name} 
                     icon={r.icon} 
                     next={() => open(r.next)} 

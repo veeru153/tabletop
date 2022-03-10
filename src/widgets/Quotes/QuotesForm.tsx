@@ -1,17 +1,18 @@
 import { useState, useContext } from 'react';
 import classes from './Quotes.module.scss';
-import { ConfigContext, NavContext } from '../../common/util/contexts';
+import { NavContext } from '../../common/util/contexts';
 import { TextInput, Button, Page } from '../../common/ui';
+import { withFormUtils } from '../../common/hoc';
 import widget from '.';
+import { WidgetFormProps } from '../../common/util/types';
 
-const QuotesForm = () => {
-    const { addWidget } = useContext(ConfigContext);
+const QuotesForm = (props: WidgetFormProps) => {
     const { close } = useContext(NavContext);
     const [tags, setTags] = useState("");
 
     const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        addWidget(widget.type, { tags });
+        props.addWidget(widget.type, { tags });
         close();
     }
     
@@ -63,4 +64,4 @@ const styles : Record<string, React.CSSProperties> = {
     },
 }
 
-export default QuotesForm;
+export default withFormUtils(QuotesForm);

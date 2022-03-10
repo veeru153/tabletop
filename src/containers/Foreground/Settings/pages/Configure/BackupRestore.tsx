@@ -20,7 +20,7 @@ const BackupRestore = () => {
 
         await WIDGETS.iterate(w => {
             backup.widgets.push(w);
-            console.log(`Backed up: Widget ID - ${w.key}`);
+            console.log(`Backed up: Widget ID - ${w.id}`);
         });
         await CONFIG.iterate((val, key) => {
             backup.config[key] = val;
@@ -61,7 +61,7 @@ const BackupRestore = () => {
 
     const restoreWidgets = async (wList) => {
         const _setWidget = async (w) => {
-            await WIDGETS.setItem(w.key, w);
+            await WIDGETS.setItem(w.id, w);
             return Promise.resolve(); 
         }
 

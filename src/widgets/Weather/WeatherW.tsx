@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import classes from './Weather.module.scss';
-import Widget from '../../containers/Widget';
 import { icons } from './assets';
 import { defaultW, fetchData } from './helper';
-import { WidgetInfo } from '../../common/util/types';
+import { WidgetProps } from '../../common/util/types';
+import withWidget from '../../common/hoc/withWidget';
 
-const Weather = ({ id, meta, content } : WidgetInfo) => {
+const Weather = ({ id, content } : WidgetProps) => {
     const { params, data } = content;
     const [w, setW] = useState(defaultW);
     const [unitsLabel, setUnitsLabel] = useState("C");
@@ -26,11 +26,7 @@ const Weather = ({ id, meta, content } : WidgetInfo) => {
     }, [])
 
     return (
-        <Widget
-            id={id}
-            meta={meta}
-            className={classes.Weather}
-        >
+        <div className={classes.Weather}>
             <div className={classes.temp}>
                 <div className={classes.current}>
                     {error ? "Error" : `${Math.round(w.main.temp)}°${unitsLabel}`}
@@ -40,7 +36,7 @@ const Weather = ({ id, meta, content } : WidgetInfo) => {
             </div>
             <Icon id={error ? error.icon : w.weather[0].icon} size={82} />
             <div className={classes.city}>{error ? error.message : w.name}</div>
-        </Widget>
+        </div>
     )
 }
 
@@ -60,4 +56,4 @@ const Icon = ({ id, size }: { id: string; size: number; }) => {
     )
 }
 
-export default Weather;
+export default withWidget(Weather);

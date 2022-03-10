@@ -5,7 +5,6 @@ import * as DEFAULTS from '../util/defaults';
 //TODO: ts errors. Idk how to ignore.
 const localforageEffect = (key: string) => ({ setSelf, onSet }) => {
     setSelf(CONFIG.getItem(key).then((prev: any) => {
-        console.log(prev);
         return (prev != null) ? { ...DefaultValue, ...prev } : DefaultValue
     }));
 
@@ -57,3 +56,5 @@ export const videoSrcsSelector = selector({
     get: ({ get }) => (get(videoSrcsAtom)[0]),
     set: ({ set }, sources) => (set(videoSrcsAtom, { 0: [...sources as []] }))
 })
+
+// export const config = 

@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
-import { CONFIG } from '../../common/util/db';
+import { useRecoilValue } from 'recoil';
+import { imageSrcsSelector } from '../../common/atoms/config';
 import classes from './Background.module.scss';
 
-const Images = ({ blend, local }) => {
+const Images = ({ blend, local } : { blend: any, local: any }) => {
     const [src, setSrc] = useState(BASE_IMG);
+    const urls = useRecoilValue(imageSrcsSelector);
 
     useEffect(() => {
         async function onMount() {
             if(navigator.onLine) {
-                const urls = await CONFIG.getItem('imageSrcs');
-                if(local.length > 0) urls[0].push(local);
-                if(urls[0].length > 0) {
-                    const i = Math.floor(Math.random() * urls[0].length);
-                    setSrc(urls[0][i]);
-                }
+                const tmp = [...urls];
+                if(local.length > 0) tmp.push(local);
+                const i = Math.floor(Math.random() * tmp.length);
+                setSrc(tmp[i]);
             } else {
                 setSrc(local);
             }

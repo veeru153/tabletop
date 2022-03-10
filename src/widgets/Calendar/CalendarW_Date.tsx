@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import Widget from '../../containers/Widget';
 import classes from './Calendar.module.scss';
 import { DateTime } from 'luxon';
-import { WidgetInfo } from '../../common/util/types';
+import { WidgetProps } from '../../common/util/types';
 
-const Calendar_Date = ({ id, meta, content } : WidgetInfo) => {
+const Calendar_Date = ({ content, useClassName } : WidgetProps) => {
     const { params, data } = content;
     const [dt, setDt] = useState(DateTime.local());
     const { day, weekdayLong, monthShort, year } = dt;
@@ -20,11 +19,7 @@ const Calendar_Date = ({ id, meta, content } : WidgetInfo) => {
     const isSunday = (weekdayLong === "Sunday");
 
     return (
-        <Widget
-            id={id}
-            meta={meta}
-            className={classes.CalendarDate}
-        >
+        <div className={classes.CalendarDate}>
             <div className={classes.header}>
                 <div className={classes.month}>{monthShort}</div>
                 <div className={classes.year}>{year}</div>
@@ -37,7 +32,7 @@ const Calendar_Date = ({ id, meta, content } : WidgetInfo) => {
                     style={{ color: isSunday ? "tomato" : "#dedede"}}
                 >{weekdayLong}</div>
             </div>
-        </Widget>
+        </div>
     )
 }
 

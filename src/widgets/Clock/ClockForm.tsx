@@ -1,12 +1,14 @@
 import { useContext } from 'react';
-import { ConfigContext, NavContext } from '../../common/util/contexts';
+import { NavContext } from '../../common/util/contexts';
 import { Formik } from 'formik';
 import { TextInput, Dropdown, Button, Page, Radio } from '../../common/ui';
+import { withFormUtils } from '../../common/hoc';
 import widget from '.';
+import { WidgetFormProps } from '../../common/util/types';
 
-const ClockForm = () => {
-    const { addWidget } = useContext(ConfigContext);
+const ClockForm = (props: WidgetFormProps) => {
     const { close } = useContext(NavContext);
+
     const values = {
         digital: true,
         military: true,
@@ -19,7 +21,7 @@ const ClockForm = () => {
             initialValues={values}
             onSubmit={(values, actions) => {
                 if (values.tz === "Select a Timezone") return;
-                addWidget(widget.type, values);
+                props.addWidget(widget.type, values);
                 close();
                 actions.resetForm();
             }}
@@ -163,4 +165,4 @@ const styles : Record<string, React.CSSProperties> = {
     }
 }
 
-export default ClockForm;
+export default withFormUtils(ClockForm);

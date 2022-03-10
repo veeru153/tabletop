@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import classes from './Clock.module.scss';
-import Widget from '../../containers/Widget';
 import { DateTime } from 'luxon';
-import { WidgetInfo } from '../../common/util/types';
+import { WidgetProps } from '../../common/util/types';
 
 
-const Clock = ({ id, meta, content } : WidgetInfo) => {
+const Clock = ({ content } : WidgetProps) => {
     const { params, data } = content;
     // const [time, setTime] = useState({ hr: "00", min: "00", sec: "00" });
     const [time, setTime] = useState({ hr: "00", min: "00" });
@@ -28,15 +27,11 @@ const Clock = ({ id, meta, content } : WidgetInfo) => {
     }, [params.tz])
 
     return (
-        <Widget
-            id={id}
-            meta={meta}
-            className={classes.ClockDigital}
-        >
+        <div className={classes.ClockDigital}>
             {/* <div>{time.hr}:{time.min}:{time:sec} <span style={{ display: params.military ? "none" : "inline-block" }}>{am ? "AM" : "PM"}</span></div> */}
             <div>{time.hr}:{time.min} <span style={{ display: params.military ? "none" : "inline-block" }}>{am ? "AM" : "PM"}</span></div>
             <div className={classes.label}>{params.label}</div>
-        </Widget>
+        </div>
     )
 }
 
