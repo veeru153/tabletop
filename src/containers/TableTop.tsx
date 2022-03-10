@@ -28,7 +28,7 @@ const TableTop = () => {
             init();
             await updateMeta();
             await updateWidgets();
-            await updateBg();
+            // await updateBg();
             setLoaded(true);
             setShowCover(false);
         }
@@ -69,34 +69,6 @@ const TableTop = () => {
         return Promise.resolve();
     }
 
-    const addWidget = async (type, params) => {
-        const id = cuid();
-        const template = {
-            id: id,
-            meta: {
-                pos: { x: 10, y: 10 },
-                type: type,
-                z: widgets.length + 1,
-            },
-            content: {
-                params: params,
-                data: {}
-            }
-        }
-        setWidgets([...widgets, template]);
-        await WIDGETS.setItem(id, template);
-        return Promise.resolve();
-    }
-
-    const removeWidget = async (id) => {
-        try {
-            await WIDGETS.removeItem(id);
-            updateWidgets();
-        } catch (err) {
-            console.error(err);
-        }
-    }
-
     const clearWidgets = async () => {
         setWidgets([]);
         await WIDGETS.clear();
@@ -135,7 +107,7 @@ const TableTop = () => {
     const dashboardProps = { setShowSettings, setShowAddWidget, filter: bg.filter, showZeroWidgetMsg: meta.showZeroWidgetMsg, hideZeroWidgetMsg };
     const foregroundProps = { showSettings, setShowSettings, showAddWidget, setShowAddWidget };
     const coverProps = { showCover, coverMsg, bgColor: bg.color, showCoverOnStart: meta.showCoverOnStart };
-    const configCtxProps = { addWidget, setBg, editMode, setEditMode, removeWidget, reload, clearWidgets, hideZeroWidgetMsg, meta, allowWidgetReposWithoutEdit, showCoverOnStart };
+    const configCtxProps = { editMode, setEditMode, reload, clearWidgets, hideZeroWidgetMsg, meta, allowWidgetReposWithoutEdit, showCoverOnStart };
 
     return (
         <ConfigContext.Provider value={configCtxProps}>

@@ -56,5 +56,3 @@ export const videoSrcsSelector = selector({
     get: ({ get }) => (get(videoSrcsAtom)[0]),
     set: ({ set }, sources) => (set(videoSrcsAtom, { 0: [...sources as []] }))
 })
-
-// export const config = 

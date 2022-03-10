@@ -1,10 +1,13 @@
 import { useState, useContext } from 'react';
 import { Button, Accordion, Checkbox } from '../../../../../common/ui';
 import { ConfigContext } from '../../../../../common/util/contexts';
+import { useResetRecoilState } from 'recoil';
+import { widgetsAtom } from '../../../../../common/atoms/widgets';
 
 const General = () => {
-    const { clearWidgets, hideZeroWidgetMsg, allowWidgetReposWithoutEdit, showCoverOnStart, meta } = useContext(ConfigContext);
+    const { hideZeroWidgetMsg, allowWidgetReposWithoutEdit, showCoverOnStart, meta } = useContext(ConfigContext);
     const [clearConfirm, setClearConfirm] = useState(false);
+    const clearWidgets = useResetRecoilState(widgetsAtom);
 
     // const handleShowCoverOnStart = () => {
     //     if(meta.showCoverOnStart) showCoverOnStart(false);
